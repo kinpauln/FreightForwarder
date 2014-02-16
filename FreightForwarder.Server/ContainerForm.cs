@@ -34,7 +34,8 @@ namespace FreightForwarder
             //MessageBox.Show(dbconnString);
             FreightForwarder.Server.DBHelper.GetEntries();
 
-            if (!Validate()) {
+            if (!Validate())
+            {
                 return;
             }
 
@@ -43,7 +44,8 @@ namespace FreightForwarder
             ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
         }
 
-        private bool Validate() {
+        private bool Validate()
+        {
             string machineCode = CommonTool.GetMachineCode();
             RegisterCode rc = BusinessBase.IsRegistered(machineCode);
             if (rc == null)
@@ -53,10 +55,18 @@ namespace FreightForwarder
             }
             else
             {
-                IIdentity _identity = new GenericIdentity(rc.RegCode);
-                IPrincipal _principal = new GenericPrincipal(_identity, new string[] { "管理员" });
+                //IIdentity _identity = new GenericIdentity(rc.RegCode);
+                //IPrincipal _principal = new GenericPrincipal(_identity, new string[] { "管理员" });
+                //Thread.CurrentPrincipal = _principal;//将其附加到当前线程的CurrentPrincipal
 
-                Thread.CurrentPrincipal = _principal;//将其附加到当前线程的CurrentPrincipal
+                //将注册码信息Session 
+                Session.CURRENT_SOFT = new RegisterCode() { 
+                     RegCode=rc.RegCode,
+                     MachineCode = machineCode,
+                     CompanyId = rc.CompanyId,
+                     State = rc.State
+                };
+
                 return true;
             }
         }

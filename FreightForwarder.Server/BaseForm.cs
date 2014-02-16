@@ -12,16 +12,20 @@ namespace FreightForwarder.Server
     public class BaseForm:Form
     {
         public BaseForm() {
-            IPrincipal _principal = Thread.CurrentPrincipal;
-            if (_principal.Identity.IsAuthenticated)
-            {
-                MessageBox.Show(_principal.Identity.Name);
-                //MessageBox.Show(_principal.IsInRole("管理员").ToString());
-            }
-            else
-            {
-                MessageBox.Show("你还没有注册");
-            }
+            //IPrincipal _principal = Thread.CurrentPrincipal;
+            //if (_principal.Identity.IsAuthenticated)
+            //{
+            //    MessageBox.Show(_principal.Identity.Name);
+            //    //MessageBox.Show(_principal.IsInRole("管理员").ToString());
+            //}
+            //else
+            //{
+            //    MessageBox.Show("你还没有注册");
+            //}
+
+            //注册码
+            string regCode = Session.CURRENT_SOFT.RegCode;
+            MessageBox.Show(regCode);
         }
     }
 }

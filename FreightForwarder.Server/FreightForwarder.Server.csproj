@@ -83,6 +83,7 @@
       <DependentUpon>RegCodeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ServerBusinessManager.cs" />
+    <Compile Include="Session.cs" />
     <EmbeddedResource Include="AddCompanyForm.resx">
       <DependentUpon>AddCompanyForm.cs</DependentUpon>
     </EmbeddedResource>

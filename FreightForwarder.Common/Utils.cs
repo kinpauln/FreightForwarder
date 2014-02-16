@@ -11,6 +11,128 @@ namespace FreightForwarder.Common
     {
     }
 
+    /// <summary> 
+    /// 用户类 
+    /// </summary> 
+    public class UserInfo
+    {
+
+        private int userid;
+
+        private string username;
+
+        private string password;
+
+        private int typeid;
+
+        private string trueName;
+
+        private DateTime lastTime;
+
+
+
+        /// <summary> 
+
+        /// 用户最后登录时间 
+
+        /// </summary> 
+
+        public DateTime LastTime
+        {
+
+            get { return lastTime; }
+
+            set { lastTime = value; }
+
+        }
+
+
+
+        /// <summary> 
+
+        /// 真实姓名 
+
+        /// </summary> 
+
+        public string TrueName
+        {
+
+            get { return trueName; }
+
+            set { trueName = value; }
+
+        }
+
+
+
+        /// <summary> 
+
+        /// 用户类型ID 
+
+        /// </summary> 
+
+        public int TypeId
+        {
+
+            get { return typeid; }
+
+            set { typeid = value; }
+
+        }
+
+
+
+        /// <summary> 
+
+        /// 用户密码 
+
+        /// </summary> 
+
+        public string Password
+        {
+
+            get { return password; }
+
+            set { password = value; }
+
+        }
+
+
+
+        /// <summary> 
+
+        /// 用户名 
+
+        /// </summary> 
+
+        public string Username
+        {
+
+            get { return username; }
+
+            set { username = value; }
+
+        }
+
+
+
+        /// <summary> 
+
+        /// 用户ID 
+
+        /// </summary> 
+
+        public int UserId
+        {
+
+            get { return userid; }
+
+            set { userid = value; }
+
+        }
+
+    }
+
     [Description("是否直达")]
     public enum SailNonstopValues
     {
