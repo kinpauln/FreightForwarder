@@ -10,7 +10,9 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,11 +46,19 @@ namespace FreightForwarder
         private bool Validate() {
             string machineCode = CommonTool.GetMachineCode();
             RegisterCode rc = BusinessBase.IsRegistered(machineCode);
-            if (rc == null) {
+            if (rc == null)
+            {
                 MessageBox.Show(string.Format("还没注册，请将机器码{0}发给软件供应商，购买注册码后才能使用。", machineCode));
                 return false;
             }
-            return true;
+            else
+            {
+                IIdentity _identity = new GenericIdentity(rc.RegCode);
+                IPrincipal _principal = new GenericPrincipal(_identity, new string[] { "管理员" });
+
+                Thread.CurrentPrincipal = _principal;//将其附加到当前线程的CurrentPrincipal
+                return true;
+            }
         }
 
         /// <summary>
@@ -135,6 +145,11 @@ namespace FreightForwarder
             RegCodeForm regForm = new RegCodeForm();
             regForm.StartPosition = FormStartPosition.CenterParent;
             regForm.Show();
+        }
+
+        private void ContainerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Thread.CurrentPrincipal = null;
         }
     }
 }

@@ -203,6 +203,7 @@
             this.IsMdiContainer = true;
             this.Name = "ContainerForm";
             this.Text = "货代";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContainerForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
