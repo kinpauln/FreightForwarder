@@ -30,35 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContainerForm));
-            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsItemBtnAddCompany = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripMenuItemSearch = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsItemBtnRegCode = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tsddBtnImport
-            // 
-            this.tsddBtnImport.Image = global::FreightForwarder.Server.Properties.Resources.database_up;
-            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsddBtnImport.Name = "tsddBtnImport";
-            this.tsddBtnImport.ShowDropDownArrow = false;
-            this.tsddBtnImport.Size = new System.Drawing.Size(72, 61);
-            this.tsddBtnImport.Text = "导入数据库";
-            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
             // 
             // toolStrip1
             // 
@@ -74,15 +65,10 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // tlspBtnExport
+            // toolStripSeparator1
             // 
-            this.tlspBtnExport.Image = global::FreightForwarder.Server.Properties.Resources.database_down;
-            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tlspBtnExport.Name = "tlspBtnExport";
-            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
-            this.tlspBtnExport.Text = "导出数据";
-            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 64);
             // 
             // menuStrip1
             // 
@@ -110,6 +96,16 @@
             this.打开ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.打开ToolStripMenuItem.Text = "打开";
             // 
+            // 工具ToolStripMenuItem
+            // 
+            this.工具ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSearch,
+            this.tsItemBtnAddCompany,
+            this.tsItemBtnRegCode});
+            this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
+            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.工具ToolStripMenuItem.Text = "工具";
+            // 
             // 帮助ToolStripMenuItem
             // 
             this.帮助ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -121,7 +117,7 @@
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             // 
             // imageList1
@@ -153,13 +149,33 @@
             this.panelContainer.TabIndex = 4;
             this.panelContainer.Visible = false;
             // 
-            // 工具ToolStripMenuItem
+            // tsItemBtnAddCompany
             // 
-            this.工具ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSearch});
-            this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
-            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.工具ToolStripMenuItem.Text = "工具";
+            this.tsItemBtnAddCompany.Name = "tsItemBtnAddCompany";
+            this.tsItemBtnAddCompany.Size = new System.Drawing.Size(152, 22);
+            this.tsItemBtnAddCompany.Text = "添加公司";
+            this.tsItemBtnAddCompany.Click += new System.EventHandler(this.tsItemBtnAddCompany_Click);
+            // 
+            // tsddBtnImport
+            // 
+            this.tsddBtnImport.Image = global::FreightForwarder.Server.Properties.Resources.database_up;
+            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddBtnImport.Name = "tsddBtnImport";
+            this.tsddBtnImport.ShowDropDownArrow = false;
+            this.tsddBtnImport.Size = new System.Drawing.Size(72, 61);
+            this.tsddBtnImport.Text = "导入数据库";
+            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
+            // 
+            // tlspBtnExport
+            // 
+            this.tlspBtnExport.Image = global::FreightForwarder.Server.Properties.Resources.database_down;
+            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlspBtnExport.Name = "tlspBtnExport";
+            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
+            this.tlspBtnExport.Text = "导出数据";
+            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
             // 
             // toolStripMenuItemSearch
             // 
@@ -168,10 +184,12 @@
             this.toolStripMenuItemSearch.Text = "查询";
             this.toolStripMenuItemSearch.Click += new System.EventHandler(this.toolStripMenuItemSearch_Click);
             // 
-            // toolStripSeparator1
+            // tsItemBtnRegCode
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 64);
+            this.tsItemBtnRegCode.Name = "tsItemBtnRegCode";
+            this.tsItemBtnRegCode.Size = new System.Drawing.Size(152, 22);
+            this.tsItemBtnRegCode.Text = "生成注册码";
+            this.tsItemBtnRegCode.Click += new System.EventHandler(this.tsItemBtnRegCode_Click);
             // 
             // ContainerForm
             // 
@@ -210,8 +228,10 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.ToolStripMenuItem 工具ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSearch;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem tsItemBtnAddCompany;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSearch;
+        private System.Windows.Forms.ToolStripMenuItem tsItemBtnRegCode;
 
     }
 }

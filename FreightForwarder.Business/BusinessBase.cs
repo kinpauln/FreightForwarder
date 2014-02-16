@@ -26,5 +26,10 @@ namespace FreightForwarder.Business
 
             return rlist;
         }
+
+        public static RegisterCode IsRegistered(string machineCode)
+        {
+            return DBHelper.SoftwareIsRegistered(machineCode);
+        }
     }
 }

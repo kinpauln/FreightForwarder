@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCompanyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCompanyForm.Designer.cs">
+      <DependentUpon>AddCompanyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBHelper.cs" />
     <Compile Include="ContainerForm.cs">
       <SubType>Form</SubType>
@@ -67,7 +73,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegCodeForm.Designer.cs">
+      <DependentUpon>RegCodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServerBusinessManager.cs" />
+    <EmbeddedResource Include="AddCompanyForm.resx">
+      <DependentUpon>AddCompanyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ContainerForm.resx">
       <DependentUpon>ContainerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +99,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RegCodeForm.resx">
+      <DependentUpon>RegCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

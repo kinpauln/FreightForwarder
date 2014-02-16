@@ -49,10 +49,19 @@ namespace FreightForwarder.Business
             }
         }
 
-        public IList<RouteInformationItem> CovertTableToRoutItemList() {
+        public bool AddCompany(string companyName, string companyCode) {
+            bool result = DBHelper.AddCompany(companyName, companyCode);
+            return result;
+        }
 
+        public bool RegCode(string machineCode, string regCode, int companyId)
+        {
+            bool result = DBHelper.AddRegCode(machineCode, regCode, companyId);
+            return result;
+        }
 
-            return null;
+        public IEnumerable<Company> GetAllCompanies() {
+            return DBHelper.GetAllCompanies();
         }
     }
 }

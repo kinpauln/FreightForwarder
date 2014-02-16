@@ -32,6 +32,7 @@ namespace FreightForwarder.Data
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<RouteInformationItem> RouteItems { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<RegisterCode> RegisterCodes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

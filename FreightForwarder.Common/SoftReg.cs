@@ -37,10 +37,11 @@ namespace FreightForwarder.Common
             return strCpu;
         }
 
-        /// <summary>         /// 生成机器码
+        /// <summary>
+        /// 生成机器码
         /// </summary>          
         /// <returns></returns>         
-        public string GetMNum()
+        public string GetMachineCode()
         {
             string strNum = GetCpu() + GetDiskVolumeSerialNumber();//获得24位Cpu和硬盘序列号 
 
@@ -56,15 +57,18 @@ namespace FreightForwarder.Common
             for (int i = 1; i < intCode.Length; i++)
             { intCode[i] = i % 9; }
         }
-        /// <summary>         /// 生成注册码         
-        /// </summary>          
-        /// <returns></returns>         
-        public string GetRNum()
+
+        /// <summary>
+        /// 生成注册码
+        /// </summary>
+        /// <param name="machineCode">机器码</param>
+        /// <returns></returns>
+
+        public string GetRegCode(string machineCode)
         {
-            setIntCode();//初始化127位数组              
-            string MNum = this.GetMNum();//获取注册码              
+            setIntCode();//初始化127位数组     
             for (int i = 1; i < Charcode.Length; i++)//把机器码存入数组中             
-            { Charcode[i] = Convert.ToChar(MNum.Substring(i - 1, 1)); }
+            { Charcode[i] = Convert.ToChar(machineCode.Substring(i - 1, 1)); }
             for (int j = 1; j < intNumber.Length; j++)//把字符的ASCII值存入一个整数组中。             
             { intNumber[j] = intCode[Convert.ToInt32(Charcode[j])] + Convert.ToInt32(Charcode[j]); }
             string strAsciiName = "";//用于存储注册码             

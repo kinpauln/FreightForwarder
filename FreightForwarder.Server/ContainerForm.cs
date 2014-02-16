@@ -1,6 +1,7 @@
 ﻿using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
+using FreightForwarder.Domain.Entities;
 using FreightForwarder.Server;
 using System;
 using System.Collections.Generic;
@@ -26,22 +27,34 @@ namespace FreightForwarder
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.StartPosition = FormStartPosition.CenterParent;
             string dbconnString = _defaultSettings.FFDBContext;
             //MessageBox.Show(dbconnString);
             FreightForwarder.Server.DBHelper.GetEntries();
 
-            //SoftReg sr = new SoftReg();
-            //MessageBox.Show(sr.GetRNum());
+            if (!Validate()) {
+                return;
+            }
 
             panelContainer.Visible = true;
             panelContainer.SendToBack();
-            ShowSingleWindow(typeof(MainForm));
+            ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+        }
+
+        private bool Validate() {
+            string machineCode = CommonTool.GetMachineCode();
+            RegisterCode rc = BusinessBase.IsRegistered(machineCode);
+            if (rc == null) {
+                MessageBox.Show(string.Format("还没注册，请将机器码{0}发给软件供应商，购买注册码后才能使用。", machineCode));
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
         /// 确保child form实例只有一个
         /// </summary>
-        private void ShowSingleWindow(Type type)
+        private void ShowSingleWindow(Type type, FormWindowState windowState)
         {
             foreach (Form f in this.MdiChildren)
             {
@@ -54,7 +67,7 @@ namespace FreightForwarder
 
             Form frm = type.Assembly.CreateInstance(type.ToString()) as Form;
             frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
+            frm.WindowState = windowState;
             //frm.ControlBox = false;
             //frm.MaximizeBox = false;
             //frm.MinimizeBox = false;
@@ -105,7 +118,23 @@ namespace FreightForwarder
 
         private void toolStripMenuItemSearch_Click(object sender, EventArgs e)
         {
-            ShowSingleWindow(typeof(MainForm));
+            ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+        }
+
+        private void tsItemBtnAddCompany_Click(object sender, EventArgs e)
+        {
+            //ShowSingleWindow(typeof(AddCompanyForm));
+            AddCompanyForm addForm = new AddCompanyForm();
+            addForm.StartPosition = FormStartPosition.CenterParent;
+            addForm.Show();
+        }
+
+        private void tsItemBtnRegCode_Click(object sender, EventArgs e)
+        {
+            //ShowSingleWindow(typeof(RegCodeForm));
+            RegCodeForm regForm = new RegCodeForm();
+            regForm.StartPosition = FormStartPosition.CenterParent;
+            regForm.Show();
         }
     }
 }

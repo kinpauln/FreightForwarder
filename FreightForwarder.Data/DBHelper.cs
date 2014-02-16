@@ -13,7 +13,9 @@ namespace FreightForwarder.Data
 {
     public class DBHelper
     {
-        public static IEnumerable<Company> GetAllCompanies() {
+        #region Company
+        public static IEnumerable<Company> GetAllCompanies()
+        {
             using (FFDBContext context = new FFDBContext())
             {
                 try
@@ -24,10 +26,35 @@ namespace FreightForwarder.Data
                 {
                     return null;
                 }
-            } 
+            }
         }
 
-        public static bool AddRouteInformationItems(IEnumerable<RouteInformationItem> rlist){
+        public static bool AddCompany(string companyName, string companyCode)
+        {
+
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    context.Companies.Add(new Company()
+                    {
+                        Code = companyCode,
+                        Name = companyName
+                    });
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        #endregion
+
+        #region RouteInformationItems
+        public static bool AddRouteInformationItems(IEnumerable<RouteInformationItem> rlist)
+        {
 
             using (FFDBContext context = new FFDBContext())
             {
@@ -45,7 +72,7 @@ namespace FreightForwarder.Data
                 {
                     return false;
                 }
-            } 
+            }
         }
 
         public static bool ImportRouteInformationItems(IEnumerable<RouteInformationItem> importlist)
@@ -133,7 +160,8 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static IList<RouteInformationItem> GetRouteInformationItems(string companyCode) {
+        public static IList<RouteInformationItem> GetRouteInformationItems(string companyCode)
+        {
 
             using (FFDBContext context = new FFDBContext())
             {
@@ -141,16 +169,15 @@ namespace FreightForwarder.Data
                 {
                     return context.RouteItems
                         .Include(ri => ri.Company) //预先加载
-                        .Where(ri=>!ri.IsDeleted)
+                        .Where(ri => !ri.IsDeleted)
                         .ToList();
                 }
                 catch (Exception ex)
                 {
                     return null;
                 }
-            } 
+            }
         }
-
 
         public static IList<RouteInformationItem> GetRouteInformationItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer)
         {
@@ -164,7 +191,8 @@ namespace FreightForwarder.Data
                         .Where(ri => !ri.IsDeleted);
 
                     // 船名
-                    if (!string.IsNullOrEmpty(shipName)) {
+                    if (!string.IsNullOrEmpty(shipName))
+                    {
                         //importlist = importlist.WhereOrLike(ri => ri.ShipName, new string[] { shipName });
                         rlist = rlist.Where(ri => ri.ShipName.Contains(shipName));
                     }
@@ -188,13 +216,55 @@ namespace FreightForwarder.Data
                     {
                         rlist = rlist.Where(ri => ri.IsSingleContainer == (int)IsSingleContainerValues.Yes);
                     }
-                    else if(isSingleContainer.HasValue && !isSingleContainer.Value)
+                    else if (isSingleContainer.HasValue && !isSingleContainer.Value)
                     {
                         rlist = rlist.Where(ri => ri.IsSingleContainer == (int)IsSingleContainerValues.No);
                     }
 
                     return rlist
                         .ToList();
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+        #endregion
+
+        #region RegCodes
+
+        public static bool AddRegCode(string machineCode, string regCode, int companyId)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    context.RegisterCodes.Add(new RegisterCode() { 
+                        MachineCode = machineCode,
+                        RegCode = regCode,
+                        CompanyId = companyId,
+                        CreatedDate = DateTime.Now,
+                        State = (int)RegCodeStates.Actived
+                    });
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        #endregion
+
+        public static RegisterCode SoftwareIsRegistered(string machineCode)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    return context.RegisterCodes.Where(rc => rc.MachineCode.Trim().Equals(machineCode)).SingleOrDefault();
                 }
                 catch (Exception ex)
                 {
