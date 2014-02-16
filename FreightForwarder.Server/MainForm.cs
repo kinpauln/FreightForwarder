@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace FreightForwarder.Server
 {
-    public partial class MainForm : Form
+    public partial class MainForm : BaseForm
     {
         public MainForm()
         {
