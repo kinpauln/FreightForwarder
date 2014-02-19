@@ -11,6 +11,41 @@ namespace FreightForwarder.Common
     {
     }
 
+    /// <summary>
+    /// 设置进度条的委托
+    /// </summary>
+    /// <param name="maxValue"></param>
+    /// <param name="currentValue"></param>
+    /// <param name="textValue"></param>
+    public delegate void SetProgessBarEventHandler(ProgressBarUpdateEventArgs e);
+    /// <summary>
+    /// 响应的控制进度条事件的委托
+    /// </summary>
+    /// <param name="e"></param>
+    public delegate void BindProgessBarEventHandler(SetProgessBarEventHandler e);
+
+
+    public class ProgressBarUpdateEventArgs : System.EventArgs
+    {
+        public int MaxValue
+        {
+            get;
+            set;
+        }
+
+        public int CurrentValue
+        {
+            get;
+            set;
+        }
+
+        public string DisplayText
+        {
+            get;
+            set;
+        }
+    }
+
     /// <summary> 
     /// 用户类 
     /// </summary> 

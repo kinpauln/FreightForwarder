@@ -60,11 +60,12 @@ namespace FreightForwarder
                 //Thread.CurrentPrincipal = _principal;//将其附加到当前线程的CurrentPrincipal
 
                 //将注册码信息Session 
-                Session.CURRENT_SOFT = new RegisterCode() { 
-                     RegCode=rc.RegCode,
-                     MachineCode = machineCode,
-                     CompanyId = rc.CompanyId,
-                     State = rc.State
+                Session.CURRENT_SOFT = new RegisterCode()
+                {
+                    RegCode = rc.RegCode,
+                    MachineCode = machineCode,
+                    CompanyId = rc.CompanyId,
+                    State = rc.State
                 };
 
                 return true;
@@ -109,7 +110,9 @@ namespace FreightForwarder
                 MessageBox.Show(result.ToString());
             }
         }
-
+        FormProgressBar frmProgress = new FormProgressBar();
+        delegate void dShowForm();
+        public SetProgessBarEventHandler frmSetProgressBar;
         private void tlspBtnExport_Click(object sender, EventArgs e)
         {
             //string localFilePath, fileNameExt, newFileName, FilePath;   
@@ -131,8 +134,71 @@ namespace FreightForwarder
                 //FilePath = localFilePath.Substring(0, localFilePath.LastIndexOf("\\"));
                 //System.IO.FileStream fs = (System.IO.FileStream)sfd.OpenFile();//输出文件 
 
-                ClientBusinesses.ExportExcel(localFilePath);
-                MessageBox.Show("导出成功！");
+
+                //ProgressBarHelper pBarHelper = new ProgressBarHelper();
+                ////此处使用了一个匿名函数，当然也可以才要满足要求的函数(BindProgessBarEventHandler的实例)
+                //pBarHelper.BindProgressBar = new BindProgessBarEventHandler(new Action<SetProgessBarEventHandler>((esb) =>
+                //{
+                //    int maxVal = 9999;
+                //    int currentVal = 1;
+                //    string txt = "";
+                //    for (int i = 0; i < 10000; i++)
+                //    {
+                //        txt = String.Format("当前的值为：{0}", i);
+                //        ProgressBarUpdateEventArgs args = new ProgressBarUpdateEventArgs() { 
+                //            MaxValue = maxVal,
+                //            CurrentValue = currentVal++,
+                //            DisplayText = txt
+                //        };
+                //        esb.Invoke(args);
+                //    }
+                //})); 
+                //pBarHelper.Start();
+
+                new System.Threading.Thread(new System.Threading.ThreadStart(ShowProgressForm)).Start();
+
+                new System.Threading.Thread(new System.Threading.ThreadStart(new Action(() =>
+                {
+                    ClientBusinesses cb = new ClientBusinesses();
+                    cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+                    {
+                        frmProgress.SetProgressBar(args);
+                    }));
+                    cb.ExportExcel(localFilePath);
+                    MessageBox.Show("导出成功！");
+                }))).Start();
+
+            }
+        }
+
+        // 控制进度 
+        void Export(string localFilePath)
+        {
+            ClientBusinesses cb = new ClientBusinesses();
+            cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+            {
+                frmProgress.SetProgressBar(args);
+            }));
+            cb.ExportExcel(localFilePath);
+            MessageBox.Show("导出成功！");
+        }
+
+        // 控制进度 
+        void SetProgress(ProgressBarUpdateEventArgs e)
+        {
+            frmProgress.SetProgressBar(e);
+            System.Threading.Thread.Sleep(50);
+        }
+
+        void ShowProgressForm()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new dShowForm(this.ShowProgressForm));
+            }
+            else
+            {
+                frmProgress.ShowDialog(this);
             }
         }
 
