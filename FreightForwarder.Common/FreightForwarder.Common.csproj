@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractProgressBar.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="NPOIHelper.cs" />

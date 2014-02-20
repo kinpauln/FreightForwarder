@@ -20,9 +20,14 @@ namespace FreightForwarder
 {
     public partial class ContainerForm : Form
     {
+        FrmStart _load = null;
         private Server.Properties.Settings _defaultSettings;
         public ContainerForm()
         {
+            _load = new FrmStart();
+            _load.TopMost = true;
+            _load.Show();
+
             InitializeComponent();
             _defaultSettings = Server.Properties.Settings.Default;
         }
@@ -42,6 +47,12 @@ namespace FreightForwarder
             panelContainer.Visible = true;
             panelContainer.SendToBack();
             ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+
+            if (_load != null)
+            {
+                _load.Close();
+                this.Focus();
+            }
         }
 
         private bool Validate()
@@ -155,19 +166,28 @@ namespace FreightForwarder
                 //})); 
                 //pBarHelper.Start();
 
-                new System.Threading.Thread(new System.Threading.ThreadStart(ShowProgressForm)).Start();
+                Thread showFormThread = new Thread(new System.Threading.ThreadStart(ShowProgressForm));
+                showFormThread.IsBackground = true;
+                showFormThread.Start();
 
-                new System.Threading.Thread(new System.Threading.ThreadStart(new Action(() =>
+                //Thread setBarThread = new System.Threading.Thread(new System.Threading.ThreadStart(new Action(() =>
+                //{
+                //    ClientBusinesses cb = new ClientBusinesses();
+                //    cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+                //    {
+                //        frmProgress.SetProgressBar(args);
+                //    }));
+                //    cb.ExportExcel(localFilePath);
+                //})));
+                //setBarThread.IsBackground = true;
+                //setBarThread.Start();
+
+                ClientBusinesses cb = new ClientBusinesses();
+                cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
                 {
-                    ClientBusinesses cb = new ClientBusinesses();
-                    cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
-                    {
-                        frmProgress.SetProgressBar(args);
-                    }));
-                    cb.ExportExcel(localFilePath);
-                    MessageBox.Show("导出成功！");
-                }))).Start();
-
+                    frmProgress.SetProgressBar(args);
+                }));
+                cb.ExportExcel(localFilePath);
             }
         }
 
@@ -212,7 +232,7 @@ namespace FreightForwarder
             //ShowSingleWindow(typeof(AddCompanyForm));
             AddCompanyForm addForm = new AddCompanyForm();
             addForm.StartPosition = FormStartPosition.CenterParent;
-            addForm.Show();
+            addForm.ShowDialog(this);
         }
 
         private void tsItemBtnRegCode_Click(object sender, EventArgs e)
@@ -220,7 +240,7 @@ namespace FreightForwarder
             //ShowSingleWindow(typeof(RegCodeForm));
             RegCodeForm regForm = new RegCodeForm();
             regForm.StartPosition = FormStartPosition.CenterParent;
-            regForm.Show();
+            regForm.ShowDialog(this);
         }
 
         private void ContainerForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -8,36 +8,64 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FreightForwarder.Business
 {
-    public class BusinessBase
+    public class BusinessBase : AbstractProgressBar
     {
         public void ExportExcel(string filePath)
         {
             //要导出的列表
             IList<RouteInformationItem> rlist = DBHelper.GetRouteInformationItems(null);
             DataTable rdt = rlist.ToDataTable();
-            int rmin = 0;
-            int rmax = 10000;
 
-            //if (rdt == null || rdt.Rows.Count < 0) { rmax = 0; }
-            //else {
-            //    rmax = rdt.Rows.Count;
+            //int rmin = 0;
+            //int rmax = 8;
+            //for (int i = rmin; i <= rmax; i++)
+            //{
+            //    ProgressBarUpdateEventArgs args = new ProgressBarUpdateEventArgs()
+            //    {
+            //        MaxValue = rmax,
+            //        CurrentValue = i,
+            //        DisplayText = "现在的进度值是" + i.ToString()
+            //    };
+            //    OnSetProgessBar(args);
             //}
 
-            for (int i = rmin; i <= rmax; i++) {
-                ProgressBarUpdateEventArgs args = new ProgressBarUpdateEventArgs() { 
-                    MaxValue = rmax,
-                    CurrentValue = i,
-                    DisplayText = "现在的进度值是"+i.ToString()
-                };
-                OnSetProgessBar(args);
-            }
+            //Thread setBarThread = new System.Threading.Thread(new System.Threading.ThreadStart(new Action(() =>
+            //{
+            //    NPOIHelper helper = new NPOIHelper(null);
+            //    helper.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+            //    {
+            //        OnSetProgessBar(args);
+            //    }));
+            //    MemoryStream ms = helper.RenderToExcel(rdt);
+            //    NPOIHelper.SaveToFile(ms, filePath);
+            //})));
+            //setBarThread.IsBackground = true;
+            //setBarThread.Start();
+            Thread setBarThread = new System.Threading.Thread(new System.Threading.ThreadStart(new Action(() =>
+            {
+                NPOIHelper helper = new NPOIHelper(null);
+                helper.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+                {
+                    this.OnSetProgessBar(args);
+                }));
+                MemoryStream ms = helper.RenderToExcel(rdt);
+                NPOIHelper.SaveToFile(ms, filePath);
+            })));
+            setBarThread.IsBackground = true;
+            setBarThread.Start();
 
-            MemoryStream ms = NPOIHelper.RenderToExcel(rdt);
-            NPOIHelper.SaveToFile(ms, filePath);
+            //NPOIHelper helper = new NPOIHelper(null);
+            //helper.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+            //{
+            //    this.OnSetProgessBar(args);
+            //}));
+            //MemoryStream ms = helper.RenderToExcel(rdt);
+            //NPOIHelper.SaveToFile(ms, filePath);
         }
 
         public static IList<RouteInformationItem> GetRoutItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer) {
@@ -49,19 +77,6 @@ namespace FreightForwarder.Business
         public static RegisterCode IsRegistered(string machineCode)
         {
             return DBHelper.SoftwareIsRegistered(machineCode);
-        }
-
-        /// <summary>
-        /// 设置进度条的事件
-        /// </summary>
-        public event SetProgessBarEventHandler UpdateProgessBarEvent;
-
-        /// <summary>
-        /// 定义事件处理方法
-        /// </summary>
-        protected virtual void OnSetProgessBar(ProgressBarUpdateEventArgs e){
-            if (UpdateProgessBarEvent != null)
-                UpdateProgessBarEvent(e);
         }
     }
 }

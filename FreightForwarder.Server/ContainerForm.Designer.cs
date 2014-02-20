@@ -31,22 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContainerForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemSearch = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsItemBtnAddCompany = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsItemBtnRegCode = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.tsItemBtnAddCompany = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
-            this.toolStripMenuItemSearch = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsItemBtnRegCode = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,14 +61,35 @@
             this.tlspBtnExport});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(745, 64);
+            this.toolStrip1.Size = new System.Drawing.Size(1008, 64);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsddBtnImport
+            // 
+            this.tsddBtnImport.Image = global::FreightForwarder.Server.Properties.Resources.database_up;
+            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddBtnImport.Name = "tsddBtnImport";
+            this.tsddBtnImport.ShowDropDownArrow = false;
+            this.tsddBtnImport.Size = new System.Drawing.Size(72, 61);
+            this.tsddBtnImport.Text = "导入数据库";
+            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 64);
+            // 
+            // tlspBtnExport
+            // 
+            this.tlspBtnExport.Image = global::FreightForwarder.Server.Properties.Resources.database_down;
+            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlspBtnExport.Name = "tlspBtnExport";
+            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
+            this.tlspBtnExport.Text = "导出数据";
+            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
             // 
             // menuStrip1
             // 
@@ -78,7 +99,7 @@
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(745, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 25);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -105,6 +126,27 @@
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
             this.工具ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.工具ToolStripMenuItem.Text = "工具";
+            // 
+            // toolStripMenuItemSearch
+            // 
+            this.toolStripMenuItemSearch.Name = "toolStripMenuItemSearch";
+            this.toolStripMenuItemSearch.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItemSearch.Text = "查询";
+            this.toolStripMenuItemSearch.Click += new System.EventHandler(this.toolStripMenuItemSearch_Click);
+            // 
+            // tsItemBtnAddCompany
+            // 
+            this.tsItemBtnAddCompany.Name = "tsItemBtnAddCompany";
+            this.tsItemBtnAddCompany.Size = new System.Drawing.Size(136, 22);
+            this.tsItemBtnAddCompany.Text = "添加公司";
+            this.tsItemBtnAddCompany.Click += new System.EventHandler(this.tsItemBtnAddCompany_Click);
+            // 
+            // tsItemBtnRegCode
+            // 
+            this.tsItemBtnRegCode.Name = "tsItemBtnRegCode";
+            this.tsItemBtnRegCode.Size = new System.Drawing.Size(136, 22);
+            this.tsItemBtnRegCode.Text = "生成注册码";
+            this.tsItemBtnRegCode.Click += new System.EventHandler(this.tsItemBtnRegCode_Click);
             // 
             // 帮助ToolStripMenuItem
             // 
@@ -145,63 +187,22 @@
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 89);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(745, 283);
+            this.panelContainer.Size = new System.Drawing.Size(1008, 641);
             this.panelContainer.TabIndex = 4;
             this.panelContainer.Visible = false;
-            // 
-            // tsItemBtnAddCompany
-            // 
-            this.tsItemBtnAddCompany.Name = "tsItemBtnAddCompany";
-            this.tsItemBtnAddCompany.Size = new System.Drawing.Size(152, 22);
-            this.tsItemBtnAddCompany.Text = "添加公司";
-            this.tsItemBtnAddCompany.Click += new System.EventHandler(this.tsItemBtnAddCompany_Click);
-            // 
-            // tsddBtnImport
-            // 
-            this.tsddBtnImport.Image = global::FreightForwarder.Server.Properties.Resources.database_up;
-            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsddBtnImport.Name = "tsddBtnImport";
-            this.tsddBtnImport.ShowDropDownArrow = false;
-            this.tsddBtnImport.Size = new System.Drawing.Size(72, 61);
-            this.tsddBtnImport.Text = "导入数据库";
-            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
-            // 
-            // tlspBtnExport
-            // 
-            this.tlspBtnExport.Image = global::FreightForwarder.Server.Properties.Resources.database_down;
-            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tlspBtnExport.Name = "tlspBtnExport";
-            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
-            this.tlspBtnExport.Text = "导出数据";
-            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
-            // 
-            // toolStripMenuItemSearch
-            // 
-            this.toolStripMenuItemSearch.Name = "toolStripMenuItemSearch";
-            this.toolStripMenuItemSearch.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemSearch.Text = "查询";
-            this.toolStripMenuItemSearch.Click += new System.EventHandler(this.toolStripMenuItemSearch_Click);
-            // 
-            // tsItemBtnRegCode
-            // 
-            this.tsItemBtnRegCode.Name = "tsItemBtnRegCode";
-            this.tsItemBtnRegCode.Size = new System.Drawing.Size(152, 22);
-            this.tsItemBtnRegCode.Text = "生成注册码";
-            this.tsItemBtnRegCode.Click += new System.EventHandler(this.tsItemBtnRegCode_Click);
             // 
             // ContainerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 372);
+            this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "ContainerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "货代";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContainerForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
