@@ -1,9 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FreightForwarder.Server.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="FFDBContext" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=KINPAULN-PC\SQLSERVER2008R2;Database=FFDB;User Id=sa;Password=123456</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>

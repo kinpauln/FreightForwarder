@@ -37,7 +37,6 @@ namespace FreightForwarder
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.StartPosition = FormStartPosition.CenterParent;
-            string dbconnString = _defaultSettings.FFDBContext;
             //MessageBox.Show(dbconnString);
             //FreightForwarder.Server.DBHelper.GetEntries();
 

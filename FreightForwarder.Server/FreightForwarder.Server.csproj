@@ -60,7 +60,6 @@
     <Compile Include="AddCompanyForm.Designer.cs">
       <DependentUpon>AddCompanyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBHelper.cs" />
     <Compile Include="ContainerForm.cs">
       <SubType>Form</SubType>
     </Compile>
