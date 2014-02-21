@@ -22,6 +22,8 @@ namespace FreightForwarder
     {
         FrmStart _load = null;
         private Server.Properties.Settings _defaultSettings;
+        private FreightForwarder.Server.FFWCF.FFServiceClient _service = new Server.FFWCF.FFServiceClient();
+
         public ContainerForm()
         {
             _load = new FrmStart();
@@ -37,9 +39,16 @@ namespace FreightForwarder
             this.StartPosition = FormStartPosition.CenterParent;
             string dbconnString = _defaultSettings.FFDBContext;
             //MessageBox.Show(dbconnString);
-            FreightForwarder.Server.DBHelper.GetEntries();
+            //FreightForwarder.Server.DBHelper.GetEntries();
 
-            if (!Validate())
+            Thread.Sleep(2000);
+            if (_load != null)
+            {
+                _load.Close();
+                this.Focus();
+            }
+
+            if (!ValidateSoft())
             {
                 return;
             }
@@ -48,17 +57,13 @@ namespace FreightForwarder
             panelContainer.SendToBack();
             ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
 
-            if (_load != null)
-            {
-                _load.Close();
-                this.Focus();
-            }
         }
 
-        private bool Validate()
+        private bool ValidateSoft()
         {
             string machineCode = CommonTool.GetMachineCode();
-            RegisterCode rc = BusinessBase.IsRegistered(machineCode);
+            RegisterCode rc = _service.IsRegistered(machineCode);
+            //RegisterCode rc = BusinessBase.IsRegistered(machineCode);
             if (rc == null)
             {
                 MessageBox.Show(string.Format("还没注册，请将机器码{0}发给软件供应商，购买注册码后才能使用。", machineCode));

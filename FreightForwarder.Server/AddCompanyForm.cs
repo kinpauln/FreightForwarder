@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FreightForwarder.Server
 {
-    public partial class AddCompanyForm : BaseForm
+    public partial class AddCompanyForm : Form
     {
         public AddCompanyForm()
         {

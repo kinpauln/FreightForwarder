@@ -42,6 +42,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,9 +59,6 @@
     </Compile>
     <Compile Include="AddCompanyForm.Designer.cs">
       <DependentUpon>AddCompanyForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaseForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="DBHelper.cs" />
     <Compile Include="ContainerForm.cs">
@@ -102,6 +101,11 @@
       <DependentUpon>RegCodeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ServerBusinessManager.cs" />
+    <Compile Include="Service References\FFWCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Session.cs" />
     <EmbeddedResource Include="AddCompanyForm.resx">
       <DependentUpon>AddCompanyForm.cs</DependentUpon>
@@ -135,6 +139,7 @@
       <DependentUpon>RegCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RegisterCode.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -144,6 +149,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\FFWCF\FFService.wsdl" />
+    <None Include="Service References\FFWCF\FFService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FreightForwarder.Server.FFWCF.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -207,6 +228,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\青岛_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FFWCF\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\FFService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

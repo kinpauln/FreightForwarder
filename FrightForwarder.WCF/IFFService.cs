@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreightForwarder.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,15 +13,14 @@ namespace FrightForwarder.WCF
     [ServiceContract]
     public interface IFFService
     {
+        [OperationContract]
+        RegisterCode IsRegistered(string machineCode);
 
         [OperationContract]
         bool ValidateMachineCode(string machineCode);
 
         [OperationContract]
         bool AddCompany(string companyName, string companyCode);
-
-        [OperationContract]
-        string GetData(int value);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

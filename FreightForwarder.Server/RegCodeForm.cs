@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace FreightForwarder.Server
 {
-    public partial class RegCodeForm : BaseForm
+    public partial class RegCodeForm : Form
     {
         public RegCodeForm()
         {

@@ -89,6 +89,10 @@
       <Project>{e8e1c397-1f15-45d2-8050-fcc454395a57}</Project>
       <Name>FreightForwarder.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FreightForwarder.Domain\FreightForwarder.Domain.csproj">
+      <Project>{164335dd-3c80-4b92-b99f-aad5cd7f8567}</Project>
+      <Name>FreightForwarder.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

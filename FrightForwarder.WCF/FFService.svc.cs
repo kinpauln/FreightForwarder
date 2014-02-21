@@ -1,4 +1,5 @@
 ﻿using FreightForwarder.Business;
+using FreightForwarder.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace FrightForwarder.WCF
     // NOTE: In order to launch WCF Test Client for testing this service, please select FFService.svc or FFService.svc.cs at the Solution Explorer and start debugging.
     public class FFService : IFFService
     {
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
+        public RegisterCode IsRegistered(string machineCode)
+        {             
+            return BusinessBase.IsRegistered(machineCode);
         }
 
         public bool ValidateMachineCode(string machineCode) {
