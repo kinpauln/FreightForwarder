@@ -78,6 +78,12 @@ namespace FreightForwarder.Server.FFWCF {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FFWCF.IFFService")]
     public interface IFFService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRoutItems", ReplyAction="http://tempuri.org/IFFService/GetRoutItemsResponse")]
+        FreightForwarder.Domain.Entities.RouteInformationItem[] GetRoutItems(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRoutItems", ReplyAction="http://tempuri.org/IFFService/GetRoutItemsResponse")]
+        System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RouteInformationItem[]> GetRoutItemsAsync(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/IsRegistered", ReplyAction="http://tempuri.org/IFFService/IsRegisteredResponse")]
         FreightForwarder.Domain.Entities.RegisterCode IsRegistered(string machineCode);
         
@@ -128,6 +134,14 @@ namespace FreightForwarder.Server.FFWCF {
         
         public FFServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public FreightForwarder.Domain.Entities.RouteInformationItem[] GetRoutItems(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer) {
+            return base.Channel.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+        }
+        
+        public System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RouteInformationItem[]> GetRoutItemsAsync(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer) {
+            return base.Channel.GetRoutItemsAsync(shipName, startPort, destinationPort, isSingleContainer);
         }
         
         public FreightForwarder.Domain.Entities.RegisterCode IsRegistered(string machineCode) {

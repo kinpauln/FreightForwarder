@@ -50,9 +50,13 @@ namespace FreightForwarder
 
             if (!ValidateSoft())
             {
-                return;
             }
-
+            else
+            {
+                //panelContainer.Visible = true;
+                //panelContainer.SendToBack();
+                //ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+            }
             panelContainer.Visible = true;
             panelContainer.SendToBack();
             ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
@@ -66,7 +70,7 @@ namespace FreightForwarder
             //RegisterCode rc = BusinessBase.IsRegistered(machineCode);
             if (rc == null)
             {
-                MessageBox.Show(string.Format("还没注册，请将机器码{0}发给软件供应商，购买注册码后才能使用。", machineCode));
+                MessageBox.Show(string.Format("还没注册，请联系软件供应商，并将机器码{0}发给，购买注册码后才能使用。", machineCode));
                 return false;
             }
             else
@@ -81,6 +85,8 @@ namespace FreightForwarder
                     RegCode = rc.RegCode,
                     MachineCode = machineCode,
                     CompanyId = rc.CompanyId,
+                    EndDate = rc.EndDate,
+                    CreatedDate = rc.CreatedDate,
                     State = rc.State
                 };
 

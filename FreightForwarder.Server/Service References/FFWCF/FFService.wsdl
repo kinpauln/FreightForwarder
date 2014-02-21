@@ -8,6 +8,12 @@
       <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IFFService_GetRoutItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoutItems" />
+  </wsdl:message>
+  <wsdl:message name="IFFService_GetRoutItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoutItemsResponse" />
+  </wsdl:message>
   <wsdl:message name="IFFService_IsRegistered_InputMessage">
     <wsdl:part name="parameters" element="tns:IsRegistered" />
   </wsdl:message>
@@ -33,6 +39,10 @@
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
   <wsdl:portType name="IFFService">
+    <wsdl:operation name="GetRoutItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetRoutItems" message="tns:IFFService_GetRoutItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetRoutItemsResponse" message="tns:IFFService_GetRoutItems_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="IsRegistered">
       <wsdl:input wsaw:Action="http://tempuri.org/IFFService/IsRegistered" message="tns:IFFService_IsRegistered_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFFService/IsRegisteredResponse" message="tns:IFFService_IsRegistered_OutputMessage" />
@@ -52,6 +62,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IFFService" type="tns:IFFService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRoutItems">
+      <soap:operation soapAction="http://tempuri.org/IFFService/GetRoutItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IsRegistered">
       <soap:operation soapAction="http://tempuri.org/IFFService/IsRegistered" style="document" />
       <wsdl:input>

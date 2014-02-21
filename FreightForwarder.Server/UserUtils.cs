@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FreightForwarder.Server
 {
-    public class ServerBusinessManager
+    public class UserUtils
     {
     }
 }

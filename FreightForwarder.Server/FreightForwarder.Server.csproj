@@ -100,7 +100,7 @@
     <Compile Include="RegCodeForm.Designer.cs">
       <DependentUpon>RegCodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ServerBusinessManager.cs" />
+    <Compile Include="UserUtils.cs" />
     <Compile Include="Service References\FFWCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -140,6 +140,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RegisterCode.datasource" />
+    <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RouteInformationItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

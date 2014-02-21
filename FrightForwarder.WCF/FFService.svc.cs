@@ -14,6 +14,10 @@ namespace FrightForwarder.WCF
     // NOTE: In order to launch WCF Test Client for testing this service, please select FFService.svc or FFService.svc.cs at the Solution Explorer and start debugging.
     public class FFService : IFFService
     {
+        public IList<RouteInformationItem> GetRoutItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer) {
+            return BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+        }
+
         public RegisterCode IsRegistered(string machineCode)
         {             
             return BusinessBase.IsRegistered(machineCode);

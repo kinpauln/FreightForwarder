@@ -16,9 +16,12 @@ namespace FreightForwarder.Server
 {
     public partial class MainForm : Form
     {
+        private FreightForwarder.Server.FFWCF.FFServiceClient _service = null;
+
         public MainForm()
         {
             InitializeComponent();
+            _service = new Server.FFWCF.FFServiceClient();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -38,7 +41,7 @@ namespace FreightForwarder.Server
                 isSingleContainer = true;
             }
 
-            rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+            rlist = _service.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
             gvRoutItems.AutoGenerateColumns = false;
             gvRoutItems.DataSource = rlist;
         }
