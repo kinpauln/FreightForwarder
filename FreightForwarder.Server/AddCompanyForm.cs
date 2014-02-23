@@ -24,7 +24,7 @@ namespace FreightForwarder.Server
             string code = txtCompanyCode.Text.Trim();
             ServerBusinesses sb = new ServerBusinesses();
             bool result = sb.AddCompany(name, code);
-            MessageBox.Show(result.ToString());
+            UserUtils.ShowError(result.ToString());
         }
     }
 }

@@ -19,6 +19,37 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AssociatMachineAndRegCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="regcode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AssociatMachineAndRegCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AssociatMachineAndRegCodeResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddMachineCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddMachineCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddMachineCodeResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="IsRegistered">
     <xs:complexType>
       <xs:sequence>

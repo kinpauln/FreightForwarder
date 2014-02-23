@@ -14,6 +14,18 @@
   <wsdl:message name="IFFService_GetRoutItems_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRoutItemsResponse" />
   </wsdl:message>
+  <wsdl:message name="IFFService_AssociatMachineAndRegCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssociatMachineAndRegCode" />
+  </wsdl:message>
+  <wsdl:message name="IFFService_AssociatMachineAndRegCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssociatMachineAndRegCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFFService_AddMachineCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMachineCode" />
+  </wsdl:message>
+  <wsdl:message name="IFFService_AddMachineCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMachineCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IFFService_IsRegistered_InputMessage">
     <wsdl:part name="parameters" element="tns:IsRegistered" />
   </wsdl:message>
@@ -43,6 +55,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetRoutItems" message="tns:IFFService_GetRoutItems_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetRoutItemsResponse" message="tns:IFFService_GetRoutItems_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AssociatMachineAndRegCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/AssociatMachineAndRegCode" message="tns:IFFService_AssociatMachineAndRegCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/AssociatMachineAndRegCodeResponse" message="tns:IFFService_AssociatMachineAndRegCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMachineCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/AddMachineCode" message="tns:IFFService_AddMachineCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/AddMachineCodeResponse" message="tns:IFFService_AddMachineCode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="IsRegistered">
       <wsdl:input wsaw:Action="http://tempuri.org/IFFService/IsRegistered" message="tns:IFFService_IsRegistered_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFFService/IsRegisteredResponse" message="tns:IFFService_IsRegistered_OutputMessage" />
@@ -64,6 +84,24 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetRoutItems">
       <soap:operation soapAction="http://tempuri.org/IFFService/GetRoutItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssociatMachineAndRegCode">
+      <soap:operation soapAction="http://tempuri.org/IFFService/AssociatMachineAndRegCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMachineCode">
+      <soap:operation soapAction="http://tempuri.org/IFFService/AddMachineCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

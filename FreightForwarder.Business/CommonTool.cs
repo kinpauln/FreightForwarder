@@ -11,13 +11,27 @@ namespace FreightForwarder.Business
     {
         public static string GetMachineCode() {
             SoftReg sr = new SoftReg();
-            return sr.GetMachineCode();
+            try
+            {
+                return sr.GetMachineCode();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public static string GeRegCode(string machineCode)
+        public static string GetRegCode(string machineCode)
         {
             SoftReg sr = new SoftReg();
-            return sr.GetRegCode(machineCode);
+            try
+            {
+                return sr.GetRegCode(machineCode).InsertFormat(6, "-");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

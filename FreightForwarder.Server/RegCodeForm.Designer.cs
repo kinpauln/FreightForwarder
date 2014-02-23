@@ -31,10 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtMachineCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtRegCode = new System.Windows.Forms.TextBox();
             this.btnRegCode = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbBoxCompanies = new System.Windows.Forms.ComboBox();
+            this.lblRegCode = new System.Windows.Forms.Label();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -51,23 +52,16 @@
             this.txtMachineCode.Location = new System.Drawing.Point(108, 29);
             this.txtMachineCode.Name = "txtMachineCode";
             this.txtMachineCode.Size = new System.Drawing.Size(205, 21);
-            this.txtMachineCode.TabIndex = 1;
+            this.txtMachineCode.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 92);
+            this.label2.Location = new System.Drawing.Point(49, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 0;
             this.label2.Text = "注册码：";
-            // 
-            // txtRegCode
-            // 
-            this.txtRegCode.Location = new System.Drawing.Point(108, 89);
-            this.txtRegCode.Name = "txtRegCode";
-            this.txtRegCode.Size = new System.Drawing.Size(205, 21);
-            this.txtRegCode.TabIndex = 1;
             // 
             // btnRegCode
             // 
@@ -94,23 +88,48 @@
             this.cbBoxCompanies.Location = new System.Drawing.Point(108, 60);
             this.cbBoxCompanies.Name = "cbBoxCompanies";
             this.cbBoxCompanies.Size = new System.Drawing.Size(121, 20);
-            this.cbBoxCompanies.TabIndex = 3;
+            this.cbBoxCompanies.TabIndex = 1;
+            // 
+            // lblRegCode
+            // 
+            this.lblRegCode.AutoSize = true;
+            this.lblRegCode.Font = new System.Drawing.Font("SimSun", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblRegCode.ForeColor = System.Drawing.Color.Red;
+            this.lblRegCode.Location = new System.Drawing.Point(106, 92);
+            this.lblRegCode.Name = "lblRegCode";
+            this.lblRegCode.Size = new System.Drawing.Size(156, 20);
+            this.lblRegCode.TabIndex = 0;
+            this.lblRegCode.Text = "等待生成中……";
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Location = new System.Drawing.Point(431, 91);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(75, 23);
+            this.btnCopy.TabIndex = 3;
+            this.btnCopy.Text = "复制";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Visible = false;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // RegCodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 191);
+            this.ClientSize = new System.Drawing.Size(554, 191);
             this.Controls.Add(this.cbBoxCompanies);
+            this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnRegCode);
-            this.Controls.Add(this.txtRegCode);
             this.Controls.Add(this.txtMachineCode);
+            this.Controls.Add(this.lblRegCode);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RegCodeForm";
+            this.ShowIcon = false;
             this.Text = "注册码";
             this.Load += new System.EventHandler(this.RegCodeForm_Load);
             this.ResumeLayout(false);
@@ -123,9 +142,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMachineCode;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtRegCode;
         private System.Windows.Forms.Button btnRegCode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbBoxCompanies;
+        private System.Windows.Forms.Label lblRegCode;
+        private System.Windows.Forms.Button btnCopy;
     }
 }

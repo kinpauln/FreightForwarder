@@ -13,6 +13,20 @@ namespace FreightForwarder.Business
 {
     public class ServerBusinesses : BusinessBase
     {
+        public bool ExistedEntity(string machineCode, int companyId)
+        {
+            return DBHelper.ExistedEntity(machineCode, companyId);
+        }
+
+        public bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId)
+        {
+            return DBHelper.AssociatMachineAndRegCode(machineCode, regcode, companyId);
+        }
+
+        public bool AddMachineCode(string machineCode, int companyId) {
+            return DBHelper.AddMachineCode(machineCode, companyId);
+        }
+
         public bool ImportExcelData(Stream stream) {
             DataTable dt = NPOIHelper.ReadFromExcel(stream);
 

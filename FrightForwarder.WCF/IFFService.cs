@@ -17,6 +17,12 @@ namespace FrightForwarder.WCF
         IList<RouteInformationItem> GetRoutItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer);
 
         [OperationContract]
+        bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId);
+
+        [OperationContract]
+        bool AddMachineCode(string machineCode, int companyId);
+
+        [OperationContract]
         RegisterCode IsRegistered(string machineCode);
 
         [OperationContract]

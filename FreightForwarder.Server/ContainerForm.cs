@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -37,7 +38,10 @@ namespace FreightForwarder
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.StartPosition = FormStartPosition.CenterParent;
-            //MessageBox.Show(dbconnString);
+            this.KeyPreview = true;
+            RegisterHotKey();
+
+            //UserUtils.ShowError(dbconnString);
             //FreightForwarder.Server.DBHelper.GetEntries();
 
             Thread.Sleep(2000);
@@ -59,35 +63,86 @@ namespace FreightForwarder
             panelContainer.Visible = true;
             panelContainer.SendToBack();
             ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+        }
 
+        private void RegisterHotKey()
+        {
+            //注册热键Ctrl+Alt+Shift+F8，Id号为100。HotKey.KeyModifiers.Alt也可以直接使用数字1来表示。   
+            HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Alt | HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.F8);
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+            //按快捷键    
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    switch (m.WParam.ToInt32())
+                    {
+                        case 100:    //按下的是Ctrl+Alt+Shift+F8
+                            FrmUserRegister formRegCode = new FrmUserRegister();
+                            formRegCode.StartPosition = FormStartPosition.CenterParent;
+                            DialogResult dresult = formRegCode.ShowDialog(this);
+                            if (dresult == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                UserUtils.ShowInfo("注册成功！");
+                            }
+                            if (dresult == System.Windows.Forms.DialogResult.No)
+                            {
+                                UserUtils.ShowError("注册失败！");
+                            }
+                            break;
+                    }
+                    break;
+            }
+            base.WndProc(ref m);
         }
 
         private bool ValidateSoft()
         {
             string machineCode = CommonTool.GetMachineCode();
             RegisterCode rc = _service.IsRegistered(machineCode);
-            //RegisterCode rc = BusinessBase.IsRegistered(machineCode);
+            //RegisterCode entity = BusinessBase.IsRegistered(machineCode);
             if (rc == null)
             {
-                MessageBox.Show(string.Format("还没注册，请联系软件供应商，并将机器码{0}发给，购买注册码后才能使用。", machineCode));
+                UserUtils.ShowWarning(string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。", machineCode));
                 return false;
             }
             else
             {
-                //IIdentity _identity = new GenericIdentity(rc.RegCode);
-                //IPrincipal _principal = new GenericPrincipal(_identity, new string[] { "管理员" });
-                //Thread.CurrentPrincipal = _principal;//将其附加到当前线程的CurrentPrincipal
-
                 //将注册码信息Session 
                 Session.CURRENT_SOFT = new RegisterCode()
                 {
                     RegCode = rc.RegCode,
                     MachineCode = machineCode,
-                    CompanyId = rc.CompanyId,
+                    CompanyId = rc.Company.Id,
                     EndDate = rc.EndDate,
                     CreatedDate = rc.CreatedDate,
                     State = rc.State
                 };
+
+                // 机器码不为空，但注册码为空，说明还未注册
+                if (string.IsNullOrEmpty(rc.RegCode))
+                {
+                    UserUtils.ShowWarning("您的软件尚未完成注册，请用软件商提供给您的注册码完成注册。如果忘记注册码，请向注册商提供机器码，重新获取直至完成注册。");
+                    return false;
+                }
+
+                // 数据库中保存的注册码与实际注册码不一致
+                string trueRegCode = CommonTool.GetRegCode(machineCode);
+                if (trueRegCode != rc.RegCode)
+                {
+                    UserUtils.ShowWarning("您之前完成的注册，填写的注册码有问题，详情请联系软件供应商。");
+                    return false;
+                }
+
+                RegCodeStates softSate = (RegCodeStates)rc.State;
+                if (softSate != RegCodeStates.Actived)
+                {
+                    UserUtils.ShowWarning(string.Format("您的软件尚且不能使用，现在处于【{0}】的状态。", softSate.GetDescription()));
+                    return false;
+                }
 
                 return true;
             }
@@ -128,7 +183,7 @@ namespace FreightForwarder
             {
                 theFile = openFileDialog1.FileName;
                 bool result = (new ServerBusinesses()).ImportExcelData(theFile);
-                MessageBox.Show(result.ToString());
+                UserUtils.ShowError(result.ToString());
             }
         }
         FormProgressBar frmProgress = new FormProgressBar();
@@ -210,7 +265,7 @@ namespace FreightForwarder
                 frmProgress.SetProgressBar(args);
             }));
             cb.ExportExcel(localFilePath);
-            MessageBox.Show("导出成功！");
+            UserUtils.ShowError("导出成功！");
         }
 
         // 控制进度 
@@ -250,12 +305,64 @@ namespace FreightForwarder
             //ShowSingleWindow(typeof(RegCodeForm));
             RegCodeForm regForm = new RegCodeForm();
             regForm.StartPosition = FormStartPosition.CenterParent;
-            regForm.ShowDialog(this);
+            DialogResult dresult = regForm.ShowDialog(this);
         }
 
         private void ContainerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Thread.CurrentPrincipal = null;
+        }
+
+        private void toolStripMenuItemSoftInfo_Click(object sender, EventArgs e)
+        {
+            FrmSoftInfo formInstance = new FrmSoftInfo();
+            formInstance.StartPosition = FormStartPosition.CenterParent;
+            formInstance.ShowDialog(this);
+        }
+
+        private void toolStripMenuItemRegCodeViewer_Click(object sender, EventArgs e)
+        {
+            FrmRegCodeViewer formInstance = new FrmRegCodeViewer();
+            formInstance.StartPosition = FormStartPosition.CenterParent;
+            formInstance.ShowDialog(this);
+        }
+
+        private void ContainerForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 组合键
+            if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F8)         //Ctrl+Shift+Alt+F8
+            {
+            }
+        }
+    }
+
+
+    class HotKey
+    {
+        //如果函数执行成功，返回值不为0。            
+        //如果函数执行失败，返回值为0。要得到扩展错误信息，调用GetLastError。
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool RegisterHotKey(
+            IntPtr hWnd,                //要定义热键的窗口的句柄
+            int id,                     //定义热键ID（不能与其它ID重复）           
+            KeyModifiers fsModifiers,   //标识热键是否在按Alt、Ctrl、Shift、Windows等键时才会生效
+            Keys vk                     //定义热键的内容
+            );
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool UnregisterHotKey(
+            IntPtr hWnd,                //要取消热键的窗口的句柄
+            int id                      //要取消热键的ID
+            );
+
+        //定义了辅助键的名称（将数字转变为字符以便于记忆，也可去除此枚举而直接使用数值）
+        [Flags()]
+        public enum KeyModifiers
+        {
+            None = 0,
+            Alt = 1,
+            Ctrl = 2,
+            Shift = 4,
+            WindowsKey = 8
         }
     }
 }

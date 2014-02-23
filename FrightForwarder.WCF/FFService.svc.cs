@@ -18,6 +18,20 @@ namespace FrightForwarder.WCF
             return BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
         }
 
+        public bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId)
+        {
+            return (new ServerBusinesses()).AssociatMachineAndRegCode(machineCode, regcode, companyId);
+        }
+
+        public bool AddMachineCode(string machineCode, int companyId)
+        {
+            // 机器码数据库中已经存在
+            if ((new ServerBusinesses()).ExistedEntity(machineCode, companyId)) {
+                return false;
+            }
+            return (new ServerBusinesses()).AddMachineCode(machineCode, companyId);
+        }
+
         public RegisterCode IsRegistered(string machineCode)
         {             
             return BusinessBase.IsRegistered(machineCode);

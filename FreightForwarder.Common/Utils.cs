@@ -198,9 +198,11 @@ namespace FreightForwarder.Common
         Stopped = 0,// 停用
         [Description("有效")]
         Actived = 1, // 有效
+        [Description("未激活")]
+        UnActived = 2,// 未激活
         [Description("暂停")]
-        Suspend = 2,// 暂停
+        Suspend = 3,// 暂停
         [Description("过期")]
-        Invalid = 3,// 过期
+        Invalid = 4// 过期
     }
 }

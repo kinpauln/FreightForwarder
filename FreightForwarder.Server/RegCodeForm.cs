@@ -14,6 +14,8 @@ namespace FreightForwarder.Server
 {
     public partial class RegCodeForm : Form
     {
+        private FreightForwarder.Server.FFWCF.FFServiceClient _service = new Server.FFWCF.FFServiceClient();
+
         public RegCodeForm()
         {
             InitializeComponent();
@@ -21,15 +23,17 @@ namespace FreightForwarder.Server
 
         private void btnRegCode_Click(object sender, EventArgs e)
         {
-            //string mcode = txtMachineCode.Text.Trim();
             string mcode = CommonTool.GetMachineCode();
-            string regCode = CommonTool.GeRegCode(mcode);
+            string regCode = CommonTool.GetRegCode(mcode);
             int companyId = (int)cbBoxCompanies.SelectedValue;
-            ServerBusinesses sb = new ServerBusinesses();
-            if (sb.RegCode(mcode, regCode, companyId))
-                txtRegCode.Text = regCode;
+
+            if (_service.AddMachineCode(mcode, companyId))
+            {
+                lblRegCode.Text = regCode;
+                btnCopy.Visible = true;
+            }
             else
-                MessageBox.Show("生成注册码失败");
+                UserUtils.ShowError("生成注册码失败");
 
         }
 
@@ -40,6 +44,14 @@ namespace FreightForwarder.Server
             cbBoxCompanies.DataSource = companies;
             cbBoxCompanies.ValueMember = "ID";
             cbBoxCompanies.DisplayMember = "Name";
+
+            btnCopy.Visible = false;
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(lblRegCode.Text, true);
+            UserUtils.ShowInfo("复制成功！");
         }
     }
 }

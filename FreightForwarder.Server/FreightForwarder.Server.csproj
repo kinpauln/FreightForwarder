@@ -78,6 +78,24 @@
     <Compile Include="FrmProgres.Designer.cs">
       <DependentUpon>FrmProgres.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUserRegister.Designer.cs">
+      <DependentUpon>FrmUserRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRegCodeViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRegCodeViewer.Designer.cs">
+      <DependentUpon>FrmRegCodeViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSoftInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSoftInfo.Designer.cs">
+      <DependentUpon>FrmSoftInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmStart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +135,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProgres.resx">
       <DependentUpon>FrmProgres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserRegister.resx">
+      <DependentUpon>FrmUserRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRegCodeViewer.resx">
+      <DependentUpon>FrmRegCodeViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSoftInfo.resx">
+      <DependentUpon>FrmSoftInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStart.resx">
       <DependentUpon>FrmStart.cs</DependentUpon>

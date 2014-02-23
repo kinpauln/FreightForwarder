@@ -1,4 +1,5 @@
 ﻿using FreightForwarder.Domain.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -234,6 +235,69 @@ namespace FreightForwarder.Data
 
         #region RegCodes
 
+        public static bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    RegisterCode entity = context.RegisterCodes.Where(rc => rc.MachineCode.ToLower().Equals(machineCode.ToLower())).FirstOrDefault();
+                    if (entity != null)
+                    {
+                        entity.RegCode = regcode;
+                        entity.CompanyId = companyId;
+                        entity.State = (int)RegCodeStates.Actived;
+
+                        context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool ExistedEntity(string machineCode, int companyId)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    return context.RegisterCodes.Where(rc => rc.MachineCode.Equals(machineCode) && rc.CompanyId.Equals(companyId)).Count()>0?true:false;
+                }
+                catch (Exception ex)
+                {
+                    return true;
+                }
+            }
+        }
+
+        public static bool AddMachineCode(string machineCode, int companyId)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    context.RegisterCodes.Add(new RegisterCode()
+                    {
+                        MachineCode = machineCode,
+                        CreatedDate = DateTime.Now,
+                        CompanyId = companyId,
+                        State = (int)RegCodeStates.UnActived
+                    });
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+
         public static bool AddRegCode(string machineCode, string regCode, int companyId)
         {
             using (FFDBContext context = new FFDBContext())
@@ -264,7 +328,9 @@ namespace FreightForwarder.Data
             {
                 try
                 {
-                    return context.RegisterCodes.Where(rc => rc.MachineCode.Trim().Equals(machineCode)).SingleOrDefault();
+                    return context.RegisterCodes
+                        .Include(ri => ri.Company) //预先加载
+                        .Where(rc => rc.MachineCode.Trim().Equals(machineCode)).SingleOrDefault();
                 }
                 catch (Exception ex)
                 {
