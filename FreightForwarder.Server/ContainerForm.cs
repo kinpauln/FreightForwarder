@@ -25,6 +25,8 @@ namespace FreightForwarder
         private Server.Properties.Settings _defaultSettings;
         private FreightForwarder.Server.FFWCF.FFServiceClient _service = new Server.FFWCF.FFServiceClient();
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public ContainerForm()
         {
             _load = new FrmStart();

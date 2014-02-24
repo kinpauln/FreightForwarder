@@ -35,7 +35,8 @@ namespace FreightForwarder.Server
             }
             catch (Exception ex)
             {
-                UserUtils.ShowError("生成注册码失败！");
+                //UserUtils.ShowError("生成注册码失败！");
+                throw ex;
             }
         }
 
