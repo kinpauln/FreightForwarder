@@ -119,6 +119,7 @@ namespace FreightForwarder
                     RegCode = rc.RegCode,
                     MachineCode = machineCode,
                     CompanyId = rc.Company.Id,
+                    Company = rc.Company,
                     EndDate = rc.EndDate,
                     CreatedDate = rc.CreatedDate,
                     State = rc.State

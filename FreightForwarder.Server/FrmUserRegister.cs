@@ -28,8 +28,11 @@ namespace FreightForwarder.Server
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(txtPart1.Text.Trim());
+            sb.Append("-");
             sb.Append(txtPart2.Text.Trim());
+            sb.Append("-");
             sb.Append(txtPart3.Text.Trim());
+            sb.Append("-");
             sb.Append(txtPart4.Text.Trim());
             string regcode = sb.ToString();
 

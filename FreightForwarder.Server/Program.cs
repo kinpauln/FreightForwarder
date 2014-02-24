@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FreightForwarder.Domain.Entities;
+using FreightForwarder.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +37,9 @@ namespace FreightForwarder
             catch (Exception ex)
             {
                 string str = GetExceptionMsg(ex, string.Empty);
-                MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                UserUtils.SendEmail("错误日志", str);
                 log.Error(str);
             }
         }
@@ -43,7 +47,9 @@ namespace FreightForwarder
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             string str = GetExceptionMsg(e.Exception, e.ToString());
-            MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            UserUtils.SendEmail("错误日志", str);
             //LogManager.WriteLog(str);
             log.Error(str);
         }
@@ -51,7 +57,9 @@ namespace FreightForwarder
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             string str = GetExceptionMsg(e.ExceptionObject as Exception, e.ToString());
-            MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            UserUtils.SendEmail("错误日志", str);
             //LogManager.WriteLog(str);
             log.Error(str);
         }
@@ -64,6 +72,8 @@ namespace FreightForwarder
         /// <returns>异常字符串文本</returns>
         static string GetExceptionMsg(Exception ex, string backStr)
         {
+            RegisterCode sessionEntity = Session.CURRENT_SOFT;
+
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("****************************异常文本****************************");
             sb.AppendLine("【出现时间】：" + DateTime.Now.ToString());
@@ -77,7 +87,18 @@ namespace FreightForwarder
             {
                 sb.AppendLine("【未处理异常】：" + backStr);
             }
+
+            if(sessionEntity!=null && sessionEntity.Company!=null){
+                sb.AppendLine("【用户信息】：");
+                sb.AppendLine("公司ID："+sessionEntity.Company.Id);
+                sb.AppendLine("公司名称："+sessionEntity.Company.Name);
+                sb.AppendLine("公司编码：" + sessionEntity.Company.Code);
+                sb.AppendLine("注册码：" + sessionEntity.RegCode);
+                sb.AppendLine("机器码：" + sessionEntity.MachineCode);
+            }
+
             sb.AppendLine("***************************************************************");
+
             return sb.ToString();
         }
     }

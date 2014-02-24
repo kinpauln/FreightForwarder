@@ -32,63 +32,90 @@ namespace FreightForwarder.Server
         public static void Debug(object message, Exception exception)
         {
             ILog log = init();
-            log.Debug(message, exception);
+            log.Debug(GetExceptionMsg(exception, message.ToString()));
         }
 
         public static void Debug(object message)
         {
             ILog log = init();
-            log.Debug(message);
+            log.Debug(GetExceptionMsg(null, message.ToString()));
         }
 
         public static void Error(object message, Exception exception)
         {
             ILog log = init();
-            log.Error(message, exception);
+            log.Error(GetExceptionMsg(exception, message.ToString()));
         }
 
         public static void Error(object message)
         {
             ILog log = init();
-            log.Error(message);
+            log.Error(GetExceptionMsg(null, message.ToString()));
         }
 
         public static void Fatal(object message, Exception exception)
         {
             ILog log = init();
-            log.Fatal(message, exception);
+            log.Fatal(GetExceptionMsg(exception, message.ToString()));
         }
 
         public static void Fatal(object message)
         {
             ILog log = init();
-            log.Fatal(message);
+            log.Fatal(GetExceptionMsg(null, message.ToString()));
         }
 
         public static void Info(object message, Exception exception)
         {
             ILog log = init();
-            log.Info(message, exception);
+            log.Info(GetExceptionMsg(exception, message.ToString()));
         }
 
         public static void Info(object message)
         {
             ILog log = init();
-            log.Info(message);
+            log.Info(GetExceptionMsg(null, message.ToString()));
         }
 
         public static void Warn(object message, Exception exception)
         {
             ILog log = init();
-            log.Warn(message, exception);
+            log.Warn(GetExceptionMsg(exception, message.ToString()));
         }
 
         public static void Warn(object message)
         {
             ILog log = init();
-            log.Warn(message);
+            log.Warn(GetExceptionMsg(null,message.ToString()));
         }
 
         #endregion
+
+        /// <summary>
+        /// 生成自定义异常消息
+        /// </summary>
+        /// <param name="ex">异常对象</param>
+        /// <param name="backStr">备用异常消息：当ex为null时有效</param>
+        /// <returns>异常字符串文本</returns>
+        static string GetExceptionMsg(Exception ex, string backStr)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("****************************异常文本****************************");
+            sb.AppendLine("【出现时间】：" + DateTime.Now.ToString());
+            if (ex != null)
+            {
+                sb.AppendLine("【异常类型】：" + ex.GetType().Name);
+                sb.AppendLine("【异常信息】：" + ex.Message);
+                sb.AppendLine("【堆栈调用】：" + ex.StackTrace);
+            }
+            else
+            {
+                sb.AppendLine("【出错信息】：" + backStr);
+            }
+
+            sb.AppendLine("***************************************************************");
+
+            return sb.ToString();
+        }
     }  
 }
