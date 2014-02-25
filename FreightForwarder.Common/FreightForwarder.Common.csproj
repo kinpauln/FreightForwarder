@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\Libraries\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\Libraries\NPOI.dll</HintPath>
     </Reference>
@@ -46,6 +49,7 @@
     <Compile Include="AbstractProgressBar.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="Extentions.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="NPOIHelper.cs" />
     <Compile Include="SoftReg.cs" />
     <Compile Include="Utils.cs" />

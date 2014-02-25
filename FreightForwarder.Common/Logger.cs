@@ -5,27 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FreightForwarder.Server
+namespace FreightForwarder.Common
 {
     public class Logger
     {
         #region
         public static ILog init()
         {
-            DateTime now = DateTime.Now;
-            int year = now.Year;
-            int month = now.Month;
-            int date = now.Day;
-            int hour = now.Hour;
-            int minute = now.Minute;
-            int second = now.Second;
-            int millisecond = now.Millisecond;
-            string format = year + "/" + month + "/" + date + " " + hour + ":" + minute + ":" + second + ":" + millisecond;
-            //string pattern = "["+format+"]%n MESSAGE:%message 日志级别:%-5level%n";  
-            string pattern = "[" + format + "]%n %-5level:[%message]%n%n";
-            log4net.Layout.PatternLayout pl = new log4net.Layout.PatternLayout(pattern);
-            log4net.Appender.FileAppender file = new log4net.Appender.FileAppender(pl, "D:/log.txt");
-            log4net.Config.BasicConfigurator.Configure(file);
+            //DateTime now = DateTime.Now;
+            //int year = now.Year;
+            //int month = now.Month;
+            //int date = now.Day;
+            //int hour = now.Hour;
+            //int minute = now.Minute;
+            //int second = now.Second;
+            //int millisecond = now.Millisecond;
+            //string format = year + "/" + month + "/" + date + " " + hour + ":" + minute + ":" + second + ":" + millisecond;
+            ////string pattern = "["+format+"]%n MESSAGE:%message 日志级别:%-5level%n";  
+            //string pattern = "[" + format + "]%n %-5level:[%message]%n%n";
+            //log4net.Layout.PatternLayout pl = new log4net.Layout.PatternLayout(pattern);
+            //log4net.Appender.FileAppender file = new log4net.Appender.FileAppender(pl, "D:/log.txt");
+            //log4net.Config.BasicConfigurator.Configure(file);
             return log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
@@ -100,6 +100,7 @@ namespace FreightForwarder.Server
         static string GetExceptionMsg(Exception ex, string backStr)
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine();
             sb.AppendLine("****************************异常文本****************************");
             sb.AppendLine("【出现时间】：" + DateTime.Now.ToString());
             if (ex != null)

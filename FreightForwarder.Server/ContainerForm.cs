@@ -22,6 +22,7 @@ namespace FreightForwarder
     public partial class ContainerForm : Form
     {
         FrmStart _load = null;
+        FrmUnStateProgressBar formProgressBar;
         private Server.Properties.Settings _defaultSettings;
         private FreightForwarder.Server.FFWCF.FFServiceClient _service = new Server.FFWCF.FFServiceClient();
 
@@ -53,18 +54,24 @@ namespace FreightForwarder
                 this.Focus();
             }
 
-            if (!ValidateSoft())
-            {
-            }
-            else
-            {
-                //panelContainer.Visible = true;
-                //panelContainer.SendToBack();
-                //ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
-            }
-            panelContainer.Visible = true;
-            panelContainer.SendToBack();
-            ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+            Thread validateThread = new Thread(new ThreadStart(asdfsafd));
+            validateThread.IsBackground = true;
+            validateThread.Start();
+            formProgressBar = new FrmUnStateProgressBar();
+            formProgressBar.ShowDialog();
+
+            //if (!ValidateSoft())
+            //{
+            //}
+            //else
+            //{
+            //    //panelContainer.Visible = true;
+            //    //panelContainer.SendToBack();
+            //    //ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+            //}
+            //panelContainer.Visible = true;
+            //panelContainer.SendToBack();
+            //ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
         }
 
         private void RegisterHotKey()
@@ -99,6 +106,79 @@ namespace FreightForwarder
                     break;
             }
             base.WndProc(ref m);
+        }
+
+        private void asdfsafd()
+        {
+            bool checkResult = true;
+            string machineCode = CommonTool.GetMachineCode();
+            RegisterCode rc = _service.IsRegistered(machineCode);
+            //RegisterCode entity = BusinessBase.IsRegistered(machineCode);
+            if (rc == null)
+            {
+                UserUtils.ShowWarning(string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。", machineCode));
+                checkResult = false;
+            }
+            else
+            {
+                //将注册码信息Session 
+                Session.CURRENT_SOFT = new RegisterCode()
+                {
+                    RegCode = rc.RegCode,
+                    MachineCode = machineCode,
+                    CompanyId = rc.Company.Id,
+                    Company = rc.Company,
+                    EndDate = rc.EndDate,
+                    CreatedDate = rc.CreatedDate,
+                    State = rc.State
+                };
+
+                // 机器码不为空，但注册码为空，说明还未注册
+                if (string.IsNullOrEmpty(rc.RegCode))
+                {
+                    UserUtils.ShowWarning("您的软件尚未完成注册，请用软件商提供给您的注册码完成注册。如果忘记注册码，请向注册商提供机器码，重新获取直至完成注册。");
+                    checkResult = false;
+                }
+
+                // 数据库中保存的注册码与实际注册码不一致
+                string trueRegCode = CommonTool.GetRegCode(machineCode);
+                if (trueRegCode != rc.RegCode)
+                {
+                    UserUtils.ShowWarning("您之前完成的注册，填写的注册码有问题，详情请联系软件供应商。");
+                    checkResult = false;
+                }
+
+                RegCodeStates softSate = (RegCodeStates)rc.State;
+                if (softSate != RegCodeStates.Actived)
+                {
+                    UserUtils.ShowWarning(string.Format("您的软件尚且不能使用，现在处于【{0}】的状态。", softSate.GetDescription()));
+                    checkResult = false;
+                }
+
+                if (checkResult)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        panelContainer.Visible = true;
+                        panelContainer.SendToBack();
+                        ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+                    })
+                    );
+                }
+                else
+                {
+                }
+
+
+                if (formProgressBar != null)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        formProgressBar.Close();
+                    })
+                    );
+                }
+            }
         }
 
         private bool ValidateSoft()

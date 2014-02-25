@@ -1,4 +1,5 @@
 ﻿using FreightForwarder.Business;
+using FreightForwarder.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace FreightForwarder.Server
             catch (Exception ex)
             {
                 Logger.Error("注册码查看失败", ex);
-                UserUtils.ShowError("生成注册码失败！");
+                UserUtils.ShowError("请输入合法的机器码！");
             }
         }
 
