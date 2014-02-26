@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DD6BB18B-25AB-4F8E-A8DF-AACBB3DEF6C7}</ProjectGuid>
+    <ProjectGuid>{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FreightForwarder.Client</RootNamespace>
     <AssemblyName>FreightForwarder.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,10 +32,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Libraries\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,14 +60,112 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AddCompanyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AddCompanyForm.Designer.cs">
+      <DependentUpon>AddCompanyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContainerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContainerForm.Designer.cs">
+      <DependentUpon>ContainerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProgressBar.Designer.cs">
+      <DependentUpon>FormProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProgres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProgres.Designer.cs">
+      <DependentUpon>FrmProgres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUnStateProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUnStateProgressBar.Designer.cs">
+      <DependentUpon>FrmUnStateProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUserRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUserRegister.Designer.cs">
+      <DependentUpon>FrmUserRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRegCodeViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRegCodeViewer.Designer.cs">
+      <DependentUpon>FrmRegCodeViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSoftInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSoftInfo.Designer.cs">
+      <DependentUpon>FrmSoftInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStart.Designer.cs">
+      <DependentUpon>FrmStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressBarHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegCodeForm.Designer.cs">
+      <DependentUpon>RegCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserUtils.cs" />
+    <Compile Include="Service References\FFWCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Session.cs" />
+    <EmbeddedResource Include="AddCompanyForm.resx">
+      <DependentUpon>AddCompanyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContainerForm.resx">
+      <DependentUpon>ContainerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProgressBar.resx">
+      <DependentUpon>FormProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProgres.resx">
+      <DependentUpon>FrmProgres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUnStateProgressBar.resx">
+      <DependentUpon>FrmUnStateProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserRegister.resx">
+      <DependentUpon>FrmUserRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRegCodeViewer.resx">
+      <DependentUpon>FrmRegCodeViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSoftInfo.resx">
+      <DependentUpon>FrmSoftInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStart.resx">
+      <DependentUpon>FrmStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -60,7 +174,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RegCodeForm.resx">
+      <DependentUpon>RegCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RegisterCode.datasource" />
+    <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RegisterCode1.datasource" />
+    <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RouteInformationItem.datasource" />
+    <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RouteInformationItem1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -70,9 +193,106 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\FFWCF\FFService.wsdl" />
+    <None Include="Service References\FFWCF\FFService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FreightForwarder.Client.FFWCF.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreightForwarder.Business\FreightForwarder.Business.csproj">
+      <Project>{b49779fd-9e33-48b8-9c48-9817a9dcc544}</Project>
+      <Name>FreightForwarder.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreightForwarder.Common\FreightForwarder.Common.csproj">
+      <Project>{e8e1c397-1f15-45d2-8050-fcc454395a57}</Project>
+      <Name>FreightForwarder.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreightForwarder.Data\FreightForwarder.Data.csproj">
+      <Project>{9e909f78-4151-49a9-9405-314074e98159}</Project>
+      <Name>FreightForwarder.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FreightForwarder.Domain\FreightForwarder.Domain.csproj">
+      <Project>{164335dd-3c80-4b92-b99f-aad5cd7f8567}</Project>
+      <Name>FreightForwarder.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_process.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\青岛.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\青岛_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FFWCF\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\FFService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFWCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

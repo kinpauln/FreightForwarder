@@ -1,6 +1,6 @@
 ﻿namespace FreightForwarder.Client
 {
-    partial class Form1
+    partial class FrmStart
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FrmStart
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.BackgroundImage = global::FreightForwarder.Client.Properties.Resources.青岛_small;
+            this.ClientSize = new System.Drawing.Size(512, 280);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "FrmStart";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
     }
 }
-
