@@ -1,6 +1,6 @@
-﻿namespace FreightForwarder.Client
+﻿namespace FreightForwarder.Server
 {
-    partial class AddCompanyForm
+    partial class FrmAddCompany
     {
         /// <summary>
         /// Required designer variable.
@@ -77,7 +77,7 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // AddCompanyForm
+            // FrmAddCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,7 +89,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddCompanyForm";
+            this.Name = "FrmAddCompany";
             this.Text = "添加公司";
             this.ResumeLayout(false);
             this.PerformLayout();

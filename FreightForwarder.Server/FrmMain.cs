@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace FreightForwarder.Server
 {
-    public partial class MainForm : Form
+    public partial class FrmMain : Form
     {
         private FreightForwarder.Server.FFWCF.FFServiceClient _service = null;
 
-        public MainForm()
+        public FrmMain()
         {
             InitializeComponent();
             _service = new Server.FFWCF.FFServiceClient();

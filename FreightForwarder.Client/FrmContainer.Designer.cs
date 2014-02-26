@@ -1,6 +1,6 @@
 ﻿namespace FreightForwarder.Client
 {
-    partial class ContainerForm
+    partial class FrmContainer
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContainerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmContainer));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRegCodeViewer = new System.Windows.Forms.ToolStripMenuItem();
             this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.tsItemBtnAddCompany = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,12 +48,11 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
-            this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemRegCodeViewer = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLblCompanyInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -68,15 +69,35 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // tsddBtnImport
+            // 
+            this.tsddBtnImport.Image = global::FreightForwarder.Client.Properties.Resources.database_up;
+            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddBtnImport.Name = "tsddBtnImport";
+            this.tsddBtnImport.ShowDropDownArrow = false;
+            this.tsddBtnImport.Size = new System.Drawing.Size(60, 61);
+            this.tsddBtnImport.Text = "导入数据";
+            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 64);
             // 
+            // tlspBtnExport
+            // 
+            this.tlspBtnExport.Image = global::FreightForwarder.Client.Properties.Resources.database_down;
+            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlspBtnExport.Name = "tlspBtnExport";
+            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
+            this.tlspBtnExport.Text = "导出数据";
+            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.文件ToolStripMenuItem,
             this.编辑ToolStripMenuItem,
             this.工具ToolStripMenuItem,
             this.帮助ToolStripMenuItem});
@@ -86,19 +107,20 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 文件ToolStripMenuItem
+            // 编辑ToolStripMenuItem
             // 
-            this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.打开ToolStripMenuItem});
-            this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
-            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.文件ToolStripMenuItem.Text = "文件";
+            this.编辑ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemRegCodeViewer});
+            this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.编辑ToolStripMenuItem.Text = "工具";
             // 
-            // 打开ToolStripMenuItem
+            // toolStripMenuItemRegCodeViewer
             // 
-            this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
-            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.打开ToolStripMenuItem.Text = "打开";
+            this.toolStripMenuItemRegCodeViewer.Name = "toolStripMenuItemRegCodeViewer";
+            this.toolStripMenuItemRegCodeViewer.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemRegCodeViewer.Text = "注册码查看器";
+            this.toolStripMenuItemRegCodeViewer.Click += new System.EventHandler(this.toolStripMenuItemRegCodeViewer_Click);
             // 
             // 工具ToolStripMenuItem
             // 
@@ -143,13 +165,13 @@
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             // 
             // toolStripMenuItemSoftInfo
             // 
             this.toolStripMenuItemSoftInfo.Name = "toolStripMenuItemSoftInfo";
-            this.toolStripMenuItemSoftInfo.Size = new System.Drawing.Size(112, 22);
+            this.toolStripMenuItemSoftInfo.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItemSoftInfo.Text = "机器码";
             this.toolStripMenuItemSoftInfo.Click += new System.EventHandler(this.toolStripMenuItemSoftInfo_Click);
             // 
@@ -182,55 +204,36 @@
             this.panelContainer.TabIndex = 4;
             this.panelContainer.Visible = false;
             // 
-            // tsddBtnImport
+            // statusStrip1
             // 
-            this.tsddBtnImport.Image = global::FreightForwarder.Client.Properties.Resources.database_up;
-            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsddBtnImport.Name = "tsddBtnImport";
-            this.tsddBtnImport.ShowDropDownArrow = false;
-            this.tsddBtnImport.Size = new System.Drawing.Size(72, 61);
-            this.tsddBtnImport.Text = "导入数据库";
-            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLblCompanyInfo});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 708);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // tlspBtnExport
+            // toolStripStatusLblCompanyInfo
             // 
-            this.tlspBtnExport.Image = global::FreightForwarder.Client.Properties.Resources.database_down;
-            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tlspBtnExport.Name = "tlspBtnExport";
-            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
-            this.tlspBtnExport.Text = "导出数据";
-            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
+            this.toolStripStatusLblCompanyInfo.Name = "toolStripStatusLblCompanyInfo";
+            this.toolStripStatusLblCompanyInfo.Size = new System.Drawing.Size(44, 17);
+            this.toolStripStatusLblCompanyInfo.Text = "公司名";
             // 
-            // 编辑ToolStripMenuItem
-            // 
-            this.编辑ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemRegCodeViewer});
-            this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
-            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.编辑ToolStripMenuItem.Text = "工具";
-            // 
-            // toolStripMenuItemRegCodeViewer
-            // 
-            this.toolStripMenuItemRegCodeViewer.Name = "toolStripMenuItemRegCodeViewer";
-            this.toolStripMenuItemRegCodeViewer.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemRegCodeViewer.Text = "注册码查看器";
-            this.toolStripMenuItemRegCodeViewer.Click += new System.EventHandler(this.toolStripMenuItemRegCodeViewer_Click);
-            // 
-            // ContainerForm
+            // FrmContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Name = "ContainerForm";
+            this.Name = "FrmContainer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "货代";
+            this.Text = "货代-客户端";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContainerForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ContainerForm_KeyDown);
@@ -238,6 +241,8 @@
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,8 +253,6 @@
         private System.Windows.Forms.ToolStripDropDownButton tsddBtnImport;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 打开ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
@@ -265,6 +268,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSoftInfo;
         private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRegCodeViewer;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLblCompanyInfo;
 
     }
 }

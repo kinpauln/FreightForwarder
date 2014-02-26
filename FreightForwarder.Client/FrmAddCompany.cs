@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace FreightForwarder.Client
 {
-    public partial class AddCompanyForm : Form
+    public partial class FrmAddCompany : Form
     {
-        public AddCompanyForm()
+        public FrmAddCompany()
         {
             InitializeComponent();
         }

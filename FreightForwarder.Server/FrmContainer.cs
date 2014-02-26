@@ -17,25 +17,25 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreightForwarder
+namespace FreightForwarder.Server
 {
-    public partial class ContainerForm : Form
+    public partial class FrmContainer : Form
     {
         FrmStart _load = null;
         FrmUnStateProgressBar formProgressBar;
-        private Server.Properties.Settings _defaultSettings;
+        private Properties.Settings _defaultSettings;
         private FreightForwarder.Server.FFWCF.FFServiceClient _service = new Server.FFWCF.FFServiceClient();
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ContainerForm()
+        public FrmContainer()
         {
             _load = new FrmStart();
             _load.TopMost = true;
             _load.Show();
 
             InitializeComponent();
-            _defaultSettings = Server.Properties.Settings.Default;
+            _defaultSettings = Properties.Settings.Default;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace FreightForwarder
             RegisterHotKey();
 
             //UserUtils.ShowError(dbconnString);
-            //FreightForwarder.Server.DBHelper.GetEntries();
+            //FreightForwarder.Client.DBHelper.GetEntries();
 
             Thread.Sleep(2000);
             if (_load != null)
@@ -54,24 +54,11 @@ namespace FreightForwarder
                 this.Focus();
             }
 
-            Thread validateThread = new Thread(new ThreadStart(asdfsafd));
+            Thread validateThread = new Thread(new ThreadStart(ValidateSoft));
             validateThread.IsBackground = true;
             validateThread.Start();
-            formProgressBar = new FrmUnStateProgressBar();
-            formProgressBar.ShowDialog();
 
-            //if (!ValidateSoft())
-            //{
-            //}
-            //else
-            //{
-            //    //panelContainer.Visible = true;
-            //    //panelContainer.SendToBack();
-            //    //ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
-            //}
-            //panelContainer.Visible = true;
-            //panelContainer.SendToBack();
-            //ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+            OpenProgressForm("正在验证软件信息，请耐心等待。。。", validateThread);
         }
 
         private void RegisterHotKey()
@@ -108,7 +95,7 @@ namespace FreightForwarder
             base.WndProc(ref m);
         }
 
-        private void asdfsafd()
+        private void ValidateSoft()
         {
             bool checkResult = true;
             string machineCode = CommonTool.GetMachineCode();
@@ -133,10 +120,11 @@ namespace FreightForwarder
                     State = rc.State
                 };
 
+                string errorString = string.Empty;
                 // 机器码不为空，但注册码为空，说明还未注册
                 if (string.IsNullOrEmpty(rc.RegCode))
                 {
-                    UserUtils.ShowWarning("您的软件尚未完成注册，请用软件商提供给您的注册码完成注册。如果忘记注册码，请向注册商提供机器码，重新获取直至完成注册。");
+                    errorString = "您的软件尚未完成注册，请用软件商提供给您的注册码完成注册。如果忘记注册码，请向注册商提供机器码，重新获取直至完成注册。";
                     checkResult = false;
                 }
 
@@ -144,91 +132,44 @@ namespace FreightForwarder
                 string trueRegCode = CommonTool.GetRegCode(machineCode);
                 if (trueRegCode != rc.RegCode)
                 {
-                    UserUtils.ShowWarning("您之前完成的注册，填写的注册码有问题，详情请联系软件供应商。");
+                    errorString = "您之前完成的注册，填写的注册码有问题，详情请联系软件供应商。";
                     checkResult = false;
                 }
 
                 RegCodeStates softSate = (RegCodeStates)rc.State;
                 if (softSate != RegCodeStates.Actived)
                 {
-                    UserUtils.ShowWarning(string.Format("您的软件尚且不能使用，现在处于【{0}】的状态。", softSate.GetDescription()));
+                    errorString = string.Format("您的软件尚且不能使用，现在处于【{0}】的状态。", softSate.GetDescription());
                     checkResult = false;
                 }
+
+                CloseProgressForm();
 
                 if (checkResult)
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        panelContainer.Visible = true;
-                        panelContainer.SendToBack();
-                        ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
-                    })
-                    );
+                    InitFormData();
                 }
                 else
                 {
-                }
-
-
-                if (formProgressBar != null)
-                {
+                    UserUtils.ShowWarning(errorString);
                     this.Invoke(new Action(() =>
                     {
-                        formProgressBar.Close();
-                    })
-                    );
+                        toolStripStatusLblCompanyInfo.Text = "未注册公司";
+                    }));
                 }
+
             }
         }
 
-        private bool ValidateSoft()
+        private void InitFormData()
         {
-            string machineCode = CommonTool.GetMachineCode();
-            RegisterCode rc = _service.IsRegistered(machineCode);
-            //RegisterCode entity = BusinessBase.IsRegistered(machineCode);
-            if (rc == null)
+            this.Invoke(new Action(() =>
             {
-                UserUtils.ShowWarning(string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。", machineCode));
-                return false;
-            }
-            else
-            {
-                //将注册码信息Session 
-                Session.CURRENT_SOFT = new RegisterCode()
-                {
-                    RegCode = rc.RegCode,
-                    MachineCode = machineCode,
-                    CompanyId = rc.Company.Id,
-                    Company = rc.Company,
-                    EndDate = rc.EndDate,
-                    CreatedDate = rc.CreatedDate,
-                    State = rc.State
-                };
-
-                // 机器码不为空，但注册码为空，说明还未注册
-                if (string.IsNullOrEmpty(rc.RegCode))
-                {
-                    UserUtils.ShowWarning("您的软件尚未完成注册，请用软件商提供给您的注册码完成注册。如果忘记注册码，请向注册商提供机器码，重新获取直至完成注册。");
-                    return false;
-                }
-
-                // 数据库中保存的注册码与实际注册码不一致
-                string trueRegCode = CommonTool.GetRegCode(machineCode);
-                if (trueRegCode != rc.RegCode)
-                {
-                    UserUtils.ShowWarning("您之前完成的注册，填写的注册码有问题，详情请联系软件供应商。");
-                    return false;
-                }
-
-                RegCodeStates softSate = (RegCodeStates)rc.State;
-                if (softSate != RegCodeStates.Actived)
-                {
-                    UserUtils.ShowWarning(string.Format("您的软件尚且不能使用，现在处于【{0}】的状态。", softSate.GetDescription()));
-                    return false;
-                }
-
-                return true;
-            }
+                panelContainer.Visible = true;
+                panelContainer.SendToBack();
+                ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
+                toolStripStatusLblCompanyInfo.Text = Session.CURRENT_SOFT.Company.Name;
+            }));
         }
 
         /// <summary>
@@ -264,14 +205,29 @@ namespace FreightForwarder
             openFileDialog1.Filter = "Excel Files(*.xls)|*.xls";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                theFile = openFileDialog1.FileName;
-                bool result = (new ServerBusinesses()).ImportExcelData(theFile);
-                UserUtils.ShowError(result.ToString());
+                Thread importThread = new Thread(new ThreadStart(new Action(() =>
+                {
+                    theFile = openFileDialog1.FileName;
+                    bool result = (new ServerBusinesses()).ImportExcelData(theFile);
+
+                    CloseProgressForm();
+
+                    if (result)
+                    {
+                        UserUtils.ShowInfo("导入成功！");
+                    }
+                    else
+                    {
+                        UserUtils.ShowError("导入失败！");
+                    }
+                })));
+                importThread.IsBackground = true;
+                importThread.Start();
+
+                OpenProgressForm("正在导入数据，请耐心等待。。。", importThread, true);
             }
         }
-        FormProgressBar frmProgress = new FormProgressBar();
-        delegate void dShowForm();
-        public SetProgessBarEventHandler frmSetProgressBar;
+
         private void tlspBtnExport_Click(object sender, EventArgs e)
         {
             //string localFilePath, fileNameExt, newFileName, FilePath;   
@@ -293,100 +249,70 @@ namespace FreightForwarder
                 //FilePath = localFilePath.Substring(0, localFilePath.LastIndexOf("\\"));
                 //System.IO.FileStream fs = (System.IO.FileStream)sfd.OpenFile();//输出文件 
 
-
-                //ProgressBarHelper pBarHelper = new ProgressBarHelper();
-                ////此处使用了一个匿名函数，当然也可以才要满足要求的函数(BindProgessBarEventHandler的实例)
-                //pBarHelper.BindProgressBar = new BindProgessBarEventHandler(new Action<SetProgessBarEventHandler>((esb) =>
-                //{
-                //    int maxVal = 9999;
-                //    int currentVal = 1;
-                //    string txt = "";
-                //    for (int i = 0; i < 10000; i++)
-                //    {
-                //        txt = String.Format("当前的值为：{0}", i);
-                //        ProgressBarUpdateEventArgs args = new ProgressBarUpdateEventArgs() { 
-                //            MaxValue = maxVal,
-                //            CurrentValue = currentVal++,
-                //            DisplayText = txt
-                //        };
-                //        esb.Invoke(args);
-                //    }
-                //})); 
-                //pBarHelper.Start();
-
-                Thread showFormThread = new Thread(new System.Threading.ThreadStart(ShowProgressForm));
-                showFormThread.IsBackground = true;
-                showFormThread.Start();
-
-                //Thread setBarThread = new System.Threading.Thread(new System.Threading.ThreadStart(new Action(() =>
-                //{
-                //    ClientBusinesses cb = new ClientBusinesses();
-                //    cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
-                //    {
-                //        frmProgress.SetProgressBar(args);
-                //    }));
-                //    cb.ExportExcel(localFilePath);
-                //})));
-                //setBarThread.IsBackground = true;
-                //setBarThread.Start();
-
-                ClientBusinesses cb = new ClientBusinesses();
-                cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+                Thread exportThread = new Thread(new ThreadStart(new Action(() =>
                 {
-                    frmProgress.SetProgressBar(args);
-                }));
-                cb.ExportExcel(localFilePath);
+                    ClientBusinesses cb = new ClientBusinesses();
+                    cb.ExportExcel(localFilePath, null);
+
+                    CloseProgressForm();
+
+                    UserUtils.ShowInfo("导出完毕，请查看到处的文件！");
+                })));
+                exportThread.IsBackground = true;
+                exportThread.Start();
+
+                OpenProgressForm("正在导出数据，请耐心等待。。。", exportThread, true);
             }
         }
 
-        // 控制进度 
-        void Export(string localFilePath)
+        private void OpenProgressForm(string displayInfo, Thread thread, bool showCancel = false)
         {
-            ClientBusinesses cb = new ClientBusinesses();
-            cb.UpdateProgessBarEvent += new SetProgessBarEventHandler(new Action<ProgressBarUpdateEventArgs>((args) =>
+            if (formProgressBar == null)
             {
-                frmProgress.SetProgressBar(args);
+                formProgressBar = new FrmUnStateProgressBar();
+            }
+
+            formProgressBar.DisplayInfo = displayInfo;
+            formProgressBar.ShowCancel = showCancel;
+            System.Windows.Forms.DialogResult dresult = formProgressBar.ShowDialog();
+            if (dresult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                thread.Abort();
+            }
+        }
+
+        private void CloseProgressForm()
+        {
+            this.Invoke(new Action(() =>
+            {
+                if (formProgressBar != null)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        formProgressBar.Close();
+                    })
+                    );
+                }
             }));
-            cb.ExportExcel(localFilePath);
-            UserUtils.ShowError("导出成功！");
-        }
-
-        // 控制进度 
-        void SetProgress(ProgressBarUpdateEventArgs e)
-        {
-            frmProgress.SetProgressBar(e);
-            System.Threading.Thread.Sleep(50);
-        }
-
-        void ShowProgressForm()
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new dShowForm(this.ShowProgressForm));
-            }
-            else
-            {
-                frmProgress.ShowDialog(this);
-            }
         }
 
         private void toolStripMenuItemSearch_Click(object sender, EventArgs e)
         {
-            ShowSingleWindow(typeof(MainForm), FormWindowState.Maximized);
+            ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
         }
 
         private void tsItemBtnAddCompany_Click(object sender, EventArgs e)
         {
-            //ShowSingleWindow(typeof(AddCompanyForm));
-            AddCompanyForm addForm = new AddCompanyForm();
+            //ShowSingleWindow(typeof(FrmAddCompany));
+            FrmAddCompany addForm = new FrmAddCompany();
             addForm.StartPosition = FormStartPosition.CenterParent;
             addForm.ShowDialog(this);
         }
 
         private void tsItemBtnRegCode_Click(object sender, EventArgs e)
         {
-            //ShowSingleWindow(typeof(RegCodeForm));
-            RegCodeForm regForm = new RegCodeForm();
+            //ShowSingleWindow(typeof(FrmRegCode));
+            FrmRegCode regForm = new FrmRegCode();
             regForm.StartPosition = FormStartPosition.CenterParent;
             DialogResult dresult = regForm.ShowDialog(this);
         }
@@ -417,7 +343,6 @@ namespace FreightForwarder
             }
         }
     }
-
 
     class HotKey
     {

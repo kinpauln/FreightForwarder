@@ -1,6 +1,6 @@
-﻿namespace FreightForwarder.Client
+﻿namespace FreightForwarder.Server
 {
-    partial class MainForm
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -304,7 +304,7 @@
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
             // 
-            // MainForm
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -312,7 +312,7 @@
             this.Controls.Add(this.gvRoutItems);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "MainForm";
+            this.Name = "FrmMain";
             this.ShowIcon = false;
             this.Text = "查询";
             this.panel1.ResumeLayout(false);

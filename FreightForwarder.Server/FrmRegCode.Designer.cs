@@ -1,6 +1,6 @@
 ﻿namespace FreightForwarder.Server
 {
-    partial class RegCodeForm
+    partial class FrmRegCode
     {
         /// <summary>
         /// Required designer variable.
@@ -112,7 +112,7 @@
             this.btnCopy.Visible = false;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // RegCodeForm
+            // FrmRegCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,7 +128,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "RegCodeForm";
+            this.Name = "FrmRegCode";
             this.ShowIcon = false;
             this.Text = "注册码";
             this.Load += new System.EventHandler(this.RegCodeForm_Load);

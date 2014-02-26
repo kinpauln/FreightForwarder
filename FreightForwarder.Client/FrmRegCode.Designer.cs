@@ -1,6 +1,6 @@
 ﻿namespace FreightForwarder.Client
 {
-    partial class RegCodeForm
+    partial class FrmRegCode
     {
         /// <summary>
         /// Required designer variable.

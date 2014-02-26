@@ -32,9 +32,6 @@ namespace FreightForwarder.Business
 
             IList<RouteInformationItem> rlist = dt.ToRoutItemList();
 
-            IList<RouteInformationItem> insertlist = rlist.Where(ri=>ri.Id == 0).ToList();
-            IList<RouteInformationItem> updatelist = rlist.Where(ri => ri.Id != 0).ToList();
-
             // bool result = DBHelper.AddRouteInformationItems(importlist);
             bool result = DBHelper.ImportRouteInformationItems(rlist);
 

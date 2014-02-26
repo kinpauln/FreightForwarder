@@ -35,15 +35,8 @@ namespace FreightForwarder.Common
 
         public NPOIHelper(string filetemplatepath)
         {
-            if (!string.IsNullOrEmpty(filetemplatepath))
-            {
-                workbook = (HSSFWorkbook)LoadFromFile(filetemplatepath);
-            }
-        }
+            workbook = (HSSFWorkbook)LoadFromFile(filetemplatepath);
 
-        public NPOIHelper()
-            : this(null)
-        {
         }
 
         /// <summary>
@@ -129,7 +122,7 @@ namespace FreightForwarder.Common
         #region add by pcitdbt 2013/11/11
 
         #region 将DataTable的数据读取成MemoryStream
-        public MemoryStream RenderToExcel(DataTable dt)
+        public static MemoryStream RenderToExcel(DataTable dt)
         {
             MemoryStream ms = new MemoryStream();
             using (dt)
@@ -205,12 +198,7 @@ namespace FreightForwarder.Common
                     }
 
                     //循环一行后i的值自增1
-                    //OnSetProgessBar(new ProgressBarUpdateEventArgs()
-                    //{
-                    //    MaxValue = dt.Rows.Count,
-                    //    CurrentValue = rowIndex++,
-                    //    DisplayText = ""
-                    //});
+                    rowIndex++;
                 }
 
                 book.Write(ms);

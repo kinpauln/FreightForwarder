@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace FreightForwarder.Server
 {
-    public partial class RegCodeForm : Form
+    public partial class FrmRegCode : Form
     {
         private FreightForwarder.Server.FFWCF.FFServiceClient _service = new Server.FFWCF.FFServiceClient();
 
-        public RegCodeForm()
+        public FrmRegCode()
         {
             InitializeComponent();
         }

@@ -31,7 +31,7 @@ namespace FreightForwarder
                 #region 应用程序的主入口点
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new ContainerForm());
+                Application.Run(new FrmContainer());
                 #endregion
             }
             catch (Exception ex)

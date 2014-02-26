@@ -1,6 +1,6 @@
-﻿namespace FreightForwarder.Server
+﻿namespace FreightForwarder.Client
 {
-    partial class MainForm
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.

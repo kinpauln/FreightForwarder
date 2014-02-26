@@ -124,7 +124,7 @@ namespace FreightForwarder.Data
                                 dbitem.Remarks = item.Remarks;
                                 dbitem.IsSingleContainer = item.IsSingleContainer;
 
-                                item.UpdateDate = DateTime.Now;
+                                dbitem.UpdateDate = DateTime.Now;
                             }
 
                             // 参与重新导入的所有企业ID
@@ -161,17 +161,20 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static IList<RouteInformationItem> GetRouteInformationItems(string companyCode)
+        public static IList<RouteInformationItem> GetRouteInformationItems(int? companyId)
         {
-
             using (FFDBContext context = new FFDBContext())
             {
                 try
                 {
-                    return context.RouteItems
+                    var query = context.RouteItems
                         .Include(ri => ri.Company) //预先加载
-                        .Where(ri => !ri.IsDeleted)
-                        .ToList();
+                        .Where(ri => !ri.IsDeleted);
+                    if (companyId.HasValue)
+                    {
+                        query = query.Where(ri => ri.CompanyId == companyId.Value);
+                    }
+                    return query.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -266,7 +269,7 @@ namespace FreightForwarder.Data
             {
                 try
                 {
-                    return context.RegisterCodes.Where(rc => rc.MachineCode.Equals(machineCode) && rc.CompanyId.Equals(companyId)).Count()>0?true:false;
+                    return context.RegisterCodes.Where(rc => rc.MachineCode.Equals(machineCode) && rc.CompanyId.Equals(companyId)).Count() > 0 ? true : false;
                 }
                 catch (Exception ex)
                 {
@@ -304,7 +307,8 @@ namespace FreightForwarder.Data
             {
                 try
                 {
-                    context.RegisterCodes.Add(new RegisterCode() { 
+                    context.RegisterCodes.Add(new RegisterCode()
+                    {
                         MachineCode = machineCode,
                         RegCode = regCode,
                         CompanyId = companyId,
