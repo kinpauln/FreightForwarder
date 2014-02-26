@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}</ProjectGuid>
+    <ProjectGuid>{C512713F-E53C-4130-94F0-9B53D0765FDF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FreightForwarder.Server</RootNamespace>

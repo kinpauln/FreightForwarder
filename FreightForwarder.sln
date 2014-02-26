@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Server", "FreightForwarder.Server\FreightForwarder.Server.csproj", "{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Client", "FreightForwarder.Client\FreightForwarder.Client.csproj", "{DD6BB18B-25AB-4F8E-A8DF-AACBB3DEF6C7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{2C5BDB5B-F595-4619-99F9-031B0173EBC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Domain", "FreightForwarder.Domain\FreightForwarder.Domain.csproj", "{164335DD-3C80-4B92-B99F-AAD5CD7F8567}"
@@ -17,20 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Business",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.WCF", "FrightForwarder.WCF\FreightForwarder.WCF.csproj", "{B787C1D0-0089-49DC-BFFC-8F1C0E9134D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Client", "FreightForwarder.Client\FreightForwarder.Client.csproj", "{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Server", "FreightForwarder.Server\FreightForwarder.Server.csproj", "{C512713F-E53C-4130-94F0-9B53D0765FDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD6BB18B-25AB-4F8E-A8DF-AACBB3DEF6C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD6BB18B-25AB-4F8E-A8DF-AACBB3DEF6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD6BB18B-25AB-4F8E-A8DF-AACBB3DEF6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD6BB18B-25AB-4F8E-A8DF-AACBB3DEF6C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{164335DD-3C80-4B92-B99F-AAD5CD7F8567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{164335DD-3C80-4B92-B99F-AAD5CD7F8567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{164335DD-3C80-4B92-B99F-AAD5CD7F8567}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,12 +43,20 @@ Global
 		{B787C1D0-0089-49DC-BFFC-8F1C0E9134D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B787C1D0-0089-49DC-BFFC-8F1C0E9134D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B787C1D0-0089-49DC-BFFC-8F1C0E9134D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{DD6BB18B-25AB-4F8E-A8DF-AACBB3DEF6C7} = {2C5BDB5B-F595-4619-99F9-031B0173EBC0}
 		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A} = {2C5BDB5B-F595-4619-99F9-031B0173EBC0}
+		{C512713F-E53C-4130-94F0-9B53D0765FDF} = {2C5BDB5B-F595-4619-99F9-031B0173EBC0}
 	EndGlobalSection
 EndGlobal
