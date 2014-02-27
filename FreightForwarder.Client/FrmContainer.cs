@@ -1,5 +1,5 @@
-﻿//#define ServerVersion
-#define ClientVersion
+﻿#define ServerVersion
+//#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
@@ -67,6 +67,7 @@ namespace FreightForwarder.Client
 
                 this.Text = "货代Mini-客户端";
                 toolStripStatusLblCompanyInfo.Text = Session.CURRENT_SOFT.Company.Name;
+                toolStripSeparator1.Visible = false;
 #endif
 
 #if ServerVersion
@@ -384,6 +385,17 @@ namespace FreightForwarder.Client
                     break;
             }
             base.WndProc(ref m);
+        }
+
+        private void menuStrip1_ItemAdded(object sender, ToolStripItemEventArgs e)
+        {
+            if (e.Item.Text.Length == 0 
+                //|| e.Item.Text == "还原(&R)" 
+                //|| e.Item.Text == "最小化(&N)"
+                )
+            {
+                e.Item.Visible = false;
+            } 
         }
     }
 
