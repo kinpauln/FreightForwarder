@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmContainer));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRegCodeViewer = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +47,8 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLblCompanyInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -68,31 +68,10 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // tsddBtnImport
-            // 
-            this.tsddBtnImport.Image = global::FreightForwarder.Client.Properties.Resources.database_up;
-            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsddBtnImport.Name = "tsddBtnImport";
-            this.tsddBtnImport.ShowDropDownArrow = false;
-            this.tsddBtnImport.Size = new System.Drawing.Size(60, 61);
-            this.tsddBtnImport.Text = "导入数据";
-            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 64);
-            // 
-            // tlspBtnExport
-            // 
-            this.tlspBtnExport.Image = global::FreightForwarder.Client.Properties.Resources.database_down;
-            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tlspBtnExport.Name = "tlspBtnExport";
-            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
-            this.tlspBtnExport.Text = "导出数据";
-            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
             // 
             // menuStrip1
             // 
@@ -212,14 +191,37 @@
             this.toolStripStatusLblCompanyInfo.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLblCompanyInfo.Text = "公司名";
             // 
+            // tsddBtnImport
+            // 
+            this.tsddBtnImport.Image = global::FreightForwarder.Client.Properties.Resources.database_up;
+            this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddBtnImport.Name = "tsddBtnImport";
+            this.tsddBtnImport.ShowDropDownArrow = false;
+            this.tsddBtnImport.Size = new System.Drawing.Size(60, 61);
+            this.tsddBtnImport.Text = "导入数据";
+            this.tsddBtnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsddBtnImport.Click += new System.EventHandler(this.tsddBtnImport_Click);
+            // 
+            // tlspBtnExport
+            // 
+            this.tlspBtnExport.Image = global::FreightForwarder.Client.Properties.Resources.database_down;
+            this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlspBtnExport.Name = "tlspBtnExport";
+            this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);
+            this.tlspBtnExport.Text = "导出数据";
+            this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
+            // 
             // FrmContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -228,6 +230,7 @@
             this.Text = "货代Mini-客户端";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContainerForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.MdiChildActivate += new System.EventHandler(this.FrmContainer_MdiChildActivate);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ContainerForm_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

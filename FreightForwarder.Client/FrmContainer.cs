@@ -75,7 +75,55 @@ namespace FreightForwarder.Client
             toolStripStatusLblCompanyInfo.Text = "服务端";
             InitFormData();
 #endif
+
             this.WindowState = FormWindowState.Maximized;
+            ShowBackForm();
+        }
+        private System.Windows.Forms.MdiClient mdiClient;
+        private void ShowBackForm() {
+            //显示背景
+            FrmBack frmb = new FrmBack();
+            frmb.MdiParent = this;
+            //(frmb, true);
+            frmb.Dock = DockStyle.Fill;
+            frmb.Show();
+
+            //MdiClient ctlMDI;
+            //// Loop through all of the form's controls looking
+            //// for the control of type MdiClient.
+            //foreach (Control ctl in this.Controls)
+            //{
+            //    try
+            //    {
+            //        // Attempt to cast the control to type MdiClient.
+            //        ctlMDI = (MdiClient)ctl;
+
+            //        // Set the BackColor of the MdiClient control.
+            //        ctlMDI.BackColor = this.BackColor;
+            //    }
+            //    catch (InvalidCastException exc)
+            //    {
+            //        // Catch and ignore the error if casting failed.
+            //    }
+            //}
+            //
+
+            //int iCnt = this.Controls.Count;
+            //for (int i = 0; i < this.Controls.Count; i++)
+            //{
+            //    if (this.Controls[i].GetType().ToString() == "System.Windows.Forms.MdiClient")
+            //    {
+            //        this.mdiClient = (System.Windows.Forms.MdiClient)this.Controls[i];
+            //        break;
+            //    }
+            //}
+            //string fbImage = Application.StartupPath + "\\Images\\backGround.png";
+            //if (File.Exists(fbImage))
+            //{
+            //    Bitmap bm = new Bitmap(fbImage);
+            //    this.mdiClient.BackgroundImage = bm;
+            //    mdiClient.BackgroundImageLayout = ImageLayout.Stretch; 
+            //}
         }
 
         private void RegisterHotKey()
@@ -398,6 +446,13 @@ namespace FreightForwarder.Client
             {
                 e.Item.Visible = false;
             }
+        }
+
+        private void FrmContainer_MdiChildActivate(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild.Name == "FrmBack")
+                foreach (Form f in this.MdiChildren)
+                    if (f.Name != "FrmBack") f.Activate();//或f.BringToFront();
         }
     }
 
