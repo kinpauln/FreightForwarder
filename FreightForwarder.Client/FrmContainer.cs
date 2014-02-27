@@ -1,4 +1,6 @@
-﻿using FreightForwarder.Business;
+﻿#define ServerVersion
+#define ClientVersion
+using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
 using FreightForwarder.Domain.Entities;
@@ -54,13 +56,15 @@ namespace FreightForwarder.Client
                 this.Focus();
             }
 
-            Thread validateThread = new Thread(new ThreadStart(ValidateSoft));
-            validateThread.IsBackground = true;
-            validateThread.Start();
+            #if ClientVersion
+                Thread validateThread = new Thread(new ThreadStart(ValidateSoft));
+                validateThread.IsBackground = true;
+                validateThread.Start();
 
-            OpenProgressForm("正在验证软件信息，请耐心等待。。。", validateThread);
+                OpenProgressForm("正在验证软件信息，请耐心等待。。。", validateThread);
 
-            InitClientUI();
+                InitClientUI();
+            #endif
         }
 
         private void RegisterHotKey()
@@ -268,7 +272,8 @@ namespace FreightForwarder.Client
             formProgressBar.DisplayInfo = displayInfo;
             formProgressBar.ShowCancel = showCancel;
             System.Windows.Forms.DialogResult dresult = formProgressBar.ShowDialog();
-            if (dresult == System.Windows.Forms.DialogResult.Cancel) {
+            if (dresult == System.Windows.Forms.DialogResult.Cancel)
+            {
                 thread.Abort();
             }
         }
