@@ -25,6 +25,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("获取所有货代公司失败", ex);
                     return null;
                 }
             }
@@ -47,6 +48,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("添加货代公司失败", ex);
                     return false;
                 }
             }
@@ -157,6 +159,7 @@ namespace FreightForwarder.Data
                 {
                     // 回滚事务
                     tran.Rollback();
+                    Logger.Error("批量更新数据失败", ex);
                     return false;
                 }
             }
@@ -179,6 +182,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("根据货代公司ID检索记录失败", ex);
                     return null;
                 }
             }
@@ -231,6 +235,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("模糊查询失败", ex);
                     return null;
                 }
             }
@@ -259,6 +264,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("服务端关联公司ID和机器码失败", ex);
                     return false;
                 }
             }
@@ -274,6 +280,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("根据ID和机器码判断是否已存在失败", ex);
                     return true;
                 }
             }
@@ -297,6 +304,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("关联机器码和货代公司ID失败", ex);
                     return false;
                 }
             }
@@ -321,6 +329,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("添加注册码失败", ex);
                     return false;
                 }
             }
@@ -339,6 +348,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("判断机器码是否在数据库中已经注册失败", ex);
                     return null;
                 }
             }
