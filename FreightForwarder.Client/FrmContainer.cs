@@ -82,34 +82,6 @@ namespace FreightForwarder.Client
             HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Alt | HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.F8);
         }
 
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_HOTKEY = 0x0312;
-            //按快捷键    
-            switch (m.Msg)
-            {
-                case WM_HOTKEY:
-                    switch (m.WParam.ToInt32())
-                    {
-                        case 100:    //按下的是Ctrl+Alt+Shift+F8
-                            FrmUserRegister formRegCode = new FrmUserRegister();
-                            formRegCode.StartPosition = FormStartPosition.CenterParent;
-                            DialogResult dresult = formRegCode.ShowDialog(this);
-                            if (dresult == System.Windows.Forms.DialogResult.Yes)
-                            {
-                                UserUtils.ShowInfo("注册成功！");
-                            }
-                            if (dresult == System.Windows.Forms.DialogResult.No)
-                            {
-                                UserUtils.ShowError("注册失败！");
-                            }
-                            break;
-                    }
-                    break;
-            }
-            base.WndProc(ref m);
-        }
-
         private void ValidateSoft()
         {
             bool checkResult = true;
@@ -384,6 +356,34 @@ namespace FreightForwarder.Client
         {
             FrmAboutUs form = new FrmAboutUs();
             form.ShowDialog(this);
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+            //按快捷键    
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    switch (m.WParam.ToInt32())
+                    {
+                        case 100:    //按下的是Ctrl+Alt+Shift+F8
+                            FrmUserRegister formRegCode = new FrmUserRegister();
+                            formRegCode.StartPosition = FormStartPosition.CenterParent;
+                            DialogResult dresult = formRegCode.ShowDialog(this);
+                            if (dresult == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                UserUtils.ShowInfo("注册成功！");
+                            }
+                            if (dresult == System.Windows.Forms.DialogResult.No)
+                            {
+                                UserUtils.ShowError("注册失败！");
+                            }
+                            break;
+                    }
+                    break;
+            }
+            base.WndProc(ref m);
         }
     }
 

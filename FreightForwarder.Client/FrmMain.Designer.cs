@@ -181,9 +181,6 @@
             // 
             this.gvRoutItems.AllowUserToAddRows = false;
             this.gvRoutItems.AllowUserToDeleteRows = false;
-            this.gvRoutItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvRoutItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvRoutItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ShipName,
@@ -200,6 +197,7 @@
             this.SailDayLength,
             this.ValidDate,
             this.Remarks});
+            this.gvRoutItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvRoutItems.Location = new System.Drawing.Point(0, 84);
             this.gvRoutItems.Name = "gvRoutItems";
             this.gvRoutItems.RowTemplate.Height = 23;
@@ -220,6 +218,7 @@
             this.StartPort.HeaderText = "起运港";
             this.StartPort.Name = "StartPort";
             this.StartPort.ReadOnly = true;
+            this.StartPort.Width = 70;
             // 
             // DestinationPort
             // 
@@ -234,6 +233,7 @@
             this.StartDay.HeaderText = "船期";
             this.StartDay.Name = "StartDay";
             this.StartDay.ReadOnly = true;
+            this.StartDay.Width = 60;
             // 
             // Price_20GP
             // 
@@ -241,6 +241,7 @@
             this.Price_20GP.HeaderText = "20GP";
             this.Price_20GP.Name = "Price_20GP";
             this.Price_20GP.ReadOnly = true;
+            this.Price_20GP.Width = 40;
             // 
             // Price_40GP
             // 
@@ -248,6 +249,7 @@
             this.Price_40GP.HeaderText = "40GP";
             this.Price_40GP.Name = "Price_40GP";
             this.Price_40GP.ReadOnly = true;
+            this.Price_40GP.Width = 40;
             // 
             // Price_40HQ
             // 
@@ -255,6 +257,7 @@
             this.Price_40HQ.HeaderText = "40HQ";
             this.Price_40HQ.Name = "Price_40HQ";
             this.Price_40HQ.ReadOnly = true;
+            this.Price_40HQ.Width = 40;
             // 
             // Nonstop
             // 
@@ -263,11 +266,13 @@
             this.Nonstop.Name = "Nonstop";
             this.Nonstop.ReadOnly = true;
             this.Nonstop.Visible = false;
+            this.Nonstop.Width = 20;
             // 
             // IsNostopString
             // 
             this.IsNostopString.HeaderText = "是否直达";
             this.IsNostopString.Name = "IsNostopString";
+            this.IsNostopString.Width = 80;
             // 
             // IsSingleContainer
             // 
@@ -276,11 +281,13 @@
             this.IsSingleContainer.Name = "IsSingleContainer";
             this.IsSingleContainer.ReadOnly = true;
             this.IsSingleContainer.Visible = false;
+            this.IsSingleContainer.Width = 30;
             // 
             // IsSingleContainerString
             // 
             this.IsSingleContainerString.HeaderText = "整柜/拼箱";
             this.IsSingleContainerString.Name = "IsSingleContainerString";
+            this.IsSingleContainerString.Width = 85;
             // 
             // SailDayLength
             // 
@@ -288,6 +295,7 @@
             this.SailDayLength.HeaderText = "航程";
             this.SailDayLength.Name = "SailDayLength";
             this.SailDayLength.ReadOnly = true;
+            this.SailDayLength.Width = 60;
             // 
             // ValidDate
             // 
@@ -304,7 +312,7 @@
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
             // 
-            // MainForm
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -312,9 +320,10 @@
             this.Controls.Add(this.gvRoutItems);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "MainForm";
+            this.Name = "FrmMain";
             this.ShowIcon = false;
             this.Text = "查询";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

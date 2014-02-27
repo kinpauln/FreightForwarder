@@ -17,6 +17,8 @@ namespace FreightForwarder.Client
     public partial class FrmMain : Form
     {
         private FreightForwarder.Client.FFWCF.FFServiceClient _service = null;
+        private FrmUnStateProgressBar formProgressBar = null;
+        private Thread threadSearch = null;
 
         public FrmMain()
         {
@@ -24,27 +26,75 @@ namespace FreightForwarder.Client
             _service = new Client.FFWCF.FFServiceClient();
         }
 
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            IList<RouteInformationItem> rlist = new List<RouteInformationItem>();
-
-            string shipName = txtShipName.Text.Trim();
-            string startPort = txtStartPort.Text.Trim();
-            string destinationPort = txtDestinationPort.Text.Trim();
-            bool? isSingleContainer = null;
-            if (rbtnIsNotSingleContainer.Checked)
+            threadSearch = new Thread(new ThreadStart(new Action(() =>
             {
-                isSingleContainer = false;
-            }
-            else if (rbtnIsSingleContainer.Checked)
+                IList<RouteInformationItem> rlist = new List<RouteInformationItem>();
+
+                string shipName = txtShipName.Text.Trim();
+                string startPort = txtStartPort.Text.Trim();
+                string destinationPort = txtDestinationPort.Text.Trim();
+                bool? isSingleContainer = null;
+                if (rbtnIsNotSingleContainer.Checked)
+                {
+                    isSingleContainer = false;
+                }
+                else if (rbtnIsSingleContainer.Checked)
+                {
+                    isSingleContainer = true;
+                }
+
+                rlist = _service.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+                //rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+
+                this.Invoke(new Action(() =>
+                {
+                    gvRoutItems.AutoGenerateColumns = false;
+                    gvRoutItems.DataSource = rlist;
+                }));
+
+                CloseProgressForm();
+            })));
+            threadSearch.IsBackground = true;
+            threadSearch.Start();
+
+            OpenProgressForm("正在检索，耐心等待。。。", threadSearch, true);
+        }
+
+        private void OpenProgressForm(string displayInfo, Thread thread, bool showCancel = false)
+        {
+            if (formProgressBar == null)
             {
-                isSingleContainer = true;
+                formProgressBar = new FrmUnStateProgressBar();
             }
 
-            rlist = _service.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
-            //rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
-            gvRoutItems.AutoGenerateColumns = false;
-            gvRoutItems.DataSource = rlist;
+            formProgressBar.DisplayInfo = displayInfo;
+            formProgressBar.ShowCancel = showCancel;
+            System.Windows.Forms.DialogResult dresult = formProgressBar.ShowDialog();
+            if (dresult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                thread.Abort();
+            }
+        }
+
+        private void CloseProgressForm()
+        {
+            this.Invoke(new Action(() =>
+            {
+                if (formProgressBar != null)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        formProgressBar.Close();
+                    })
+                    );
+                }
+            }));
         }
 
         private void gvRoutItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -90,7 +140,8 @@ namespace FreightForwarder.Client
                 e.Value = isSingleContainerEnumValue.GetDescription();
 
                 DataGridViewCell thecell = therow.Cells["IsSingleContainerString"];
-                switch (isSingleContainerEnumValue) { 
+                switch (isSingleContainerEnumValue)
+                {
                     case IsSingleContainerValues.Yes:
                         thecell.Style = new DataGridViewCellStyle()
                         {
@@ -174,7 +225,7 @@ namespace FreightForwarder.Client
              * 将导致使用 this.Invoke 调用 m_ctrlProgresIncrease 委托时页面无限等待
              */
             Thread.Sleep(1000);
-        } 
+        }
         #endregion
 
         /// <summary>
