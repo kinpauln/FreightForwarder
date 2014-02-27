@@ -225,7 +225,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmContainer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "货代-客户端";
+            this.Text = "货代Mini-客户端";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContainerForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ContainerForm_KeyDown);

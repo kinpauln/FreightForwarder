@@ -75,6 +75,7 @@ namespace FreightForwarder.Client
             toolStripStatusLblCompanyInfo.Text = "服务端";
             InitFormData();
 #endif
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void RegisterHotKey()
@@ -155,7 +156,7 @@ namespace FreightForwarder.Client
             this.Invoke(new Action(() =>
             {
 #endif
-                ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
+            ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
 #if ClientVersion    
         }));
 #endif
@@ -258,9 +259,9 @@ namespace FreightForwarder.Client
 
                     int? companyId = null;
 
-                    #if ClientVersion
+#if ClientVersion
                     companyId = Session.CURRENT_SOFT.Company.Id;
-                    #endif
+#endif
 
                     cb.ExportExcel(localFilePath, companyId);
 
@@ -389,13 +390,14 @@ namespace FreightForwarder.Client
 
         private void menuStrip1_ItemAdded(object sender, ToolStripItemEventArgs e)
         {
-            if (e.Item.Text.Length == 0 
-                //|| e.Item.Text == "还原(&R)" 
-                //|| e.Item.Text == "最小化(&N)"
+            if (e.Item.Text.Length == 0         //隐藏子窗体图标         
+                //|| e.Item.Text == "最小化(&N)"  //隐藏最小化按钮         
+                //|| e.Item.Text == "还原(&R)"  //隐藏还原按钮         
+                //|| e.Item.Text == "关闭(&C)" //隐藏最关闭按钮
                 )
             {
                 e.Item.Visible = false;
-            } 
+            }
         }
     }
 
