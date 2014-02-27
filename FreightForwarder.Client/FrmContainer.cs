@@ -70,6 +70,7 @@ namespace FreightForwarder.Client
 
 #if ServerVersion
             this.Text = "货代Mini-服务端";
+            toolStripStatusLblCompanyInfo.Text = "服务端";
 #endif
         }
 
