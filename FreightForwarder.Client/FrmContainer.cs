@@ -1,4 +1,4 @@
-﻿#define ServerVersion
+﻿//#define ServerVersion
 #define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
@@ -56,7 +56,7 @@ namespace FreightForwarder.Client
                 this.Focus();
             }
 
-            #if ClientVersion
+#if ClientVersion
                 Thread validateThread = new Thread(new ThreadStart(ValidateSoft));
                 validateThread.IsBackground = true;
                 validateThread.Start();
@@ -64,7 +64,13 @@ namespace FreightForwarder.Client
                 OpenProgressForm("正在验证软件信息，请耐心等待。。。", validateThread);
 
                 InitClientUI();
-            #endif
+
+                this.Text = "货代Mini-客户端";
+#endif
+
+#if ServerVersion
+            this.Text = "货代Mini-服务端";
+#endif
         }
 
         private void RegisterHotKey()
@@ -212,6 +218,9 @@ namespace FreightForwarder.Client
             frm.Show();
         }
 
+        /// <summary>
+        /// 导入
+        /// </summary>
         private void tsddBtnImport_Click(object sender, EventArgs e)
         {
             string theFile;
@@ -225,6 +234,9 @@ namespace FreightForwarder.Client
             }
         }
 
+        /// <summary>
+        /// 导出
+        /// </summary>
         private void tlspBtnExport_Click(object sender, EventArgs e)
         {
             //string localFilePath, fileNameExt, newFileName, FilePath;   
@@ -249,7 +261,14 @@ namespace FreightForwarder.Client
                 Thread exportThread = new Thread(new ThreadStart(new Action(() =>
                 {
                     ClientBusinesses cb = new ClientBusinesses();
-                    cb.ExportExcel(localFilePath, Session.CURRENT_SOFT.Company.Id);
+
+                    int? companyId = null;
+
+                    #if ClientVersion
+                    companyId = Session.CURRENT_SOFT.Company.Id;
+                    #endif
+
+                    cb.ExportExcel(localFilePath, companyId);
 
                     CloseProgressForm();
 
