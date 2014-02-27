@@ -66,11 +66,13 @@ namespace FreightForwarder.Client
                 InitClientUI();
 
                 this.Text = "货代Mini-客户端";
+                toolStripStatusLblCompanyInfo.Text = Session.CURRENT_SOFT.Company.Name;
 #endif
 
 #if ServerVersion
             this.Text = "货代Mini-服务端";
             toolStripStatusLblCompanyInfo.Text = "服务端";
+            InitFormData();
 #endif
         }
 
@@ -176,13 +178,14 @@ namespace FreightForwarder.Client
 
         private void InitFormData()
         {
+#if ClientVersion
             this.Invoke(new Action(() =>
             {
-                panelContainer.Visible = true;
-                panelContainer.SendToBack();
+#endif
                 ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
-                toolStripStatusLblCompanyInfo.Text = Session.CURRENT_SOFT.Company.Name;
-            }));
+#if ClientVersion    
+        }));
+#endif
         }
 
         private void InitClientUI()
@@ -229,9 +232,26 @@ namespace FreightForwarder.Client
             openFileDialog1.Filter = "Excel Files(*.xls)|*.xls";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                theFile = openFileDialog1.FileName;
-                bool result = (new ServerBusinesses()).ImportExcelData(theFile);
-                UserUtils.ShowError(result.ToString());
+                Thread importThread = new Thread(new ThreadStart(new Action(() =>
+                {
+                    theFile = openFileDialog1.FileName;
+                    bool result = (new ServerBusinesses()).ImportExcelData(theFile);
+
+                    CloseProgressForm();
+
+                    if (result)
+                    {
+                        UserUtils.ShowInfo("导入成功！");
+                    }
+                    else
+                    {
+                        UserUtils.ShowError("导入失败！");
+                    }
+                })));
+                importThread.IsBackground = true;
+                importThread.Start();
+
+                OpenProgressForm("正在导入数据，请耐心等待。。。", importThread, true);
             }
         }
 
@@ -273,7 +293,7 @@ namespace FreightForwarder.Client
 
                     CloseProgressForm();
 
-                    UserUtils.ShowInfo("导出完毕，请查看到处的文件！");
+                    UserUtils.ShowInfo("导出完毕，请查看导出的文件！");
                 })));
                 exportThread.IsBackground = true;
                 exportThread.Start();
@@ -358,6 +378,12 @@ namespace FreightForwarder.Client
             if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F8)         //Ctrl+Shift+Alt+F8
             {
             }
+        }
+
+        private void toolStripMenuItemAboutUs_Click(object sender, EventArgs e)
+        {
+            FrmAboutUs form = new FrmAboutUs();
+            form.ShowDialog(this);
         }
     }
 

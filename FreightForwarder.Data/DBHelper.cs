@@ -71,6 +71,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("向数据库中添加新纪录失败", ex);
                     return false;
                 }
             }

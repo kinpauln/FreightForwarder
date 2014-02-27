@@ -5,5 +5,17 @@
     <Setting Name="ServiceEmail" Type="System.String" Scope="User">
       <Value Profile="(Default)">kinpauln@126.com</Value>
     </Setting>
+    <Setting Name="AboutUs_Email" Type="System.String" Scope="User">
+      <Value Profile="(Default)">657237151@qq.com</Value>
+    </Setting>
+    <Setting Name="AboutUs_QQGroup" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123456</Value>
+    </Setting>
+    <Setting Name="AboutUs_QQ" Type="System.String" Scope="User">
+      <Value Profile="(Default)">657237151</Value>
+    </Setting>
+    <Setting Name="AboutUs_Telephone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1333454355</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

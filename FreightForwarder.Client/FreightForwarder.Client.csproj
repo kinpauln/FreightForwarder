@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAboutUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAboutUs.Designer.cs">
+      <DependentUpon>FrmAboutUs.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddCompany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Session.cs" />
+    <EmbeddedResource Include="FrmAboutUs.resx">
+      <DependentUpon>FrmAboutUs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAddCompany.resx">
       <DependentUpon>FrmAddCompany.cs</DependentUpon>
     </EmbeddedResource>
