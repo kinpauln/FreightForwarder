@@ -11,7 +11,7 @@ namespace FreightForwarder.Business
     public class CompanyBusiness
     {
         public static Dictionary<string, int> GetAllCompanies() {
-            IEnumerable<Company> companies = DBHelper.GetAllCompanies();
+            IEnumerable<Company> companies = (new DBHelper()).GetAllCompanies();
 
             Dictionary<string, int> results = new Dictionary<string, int>();
 

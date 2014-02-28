@@ -26,25 +26,37 @@ namespace FreightForwarder.Server
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            IList<RouteInformationItem> rlist = new List<RouteInformationItem>();
+            picLoading.Visible = true;
 
-            string shipName = txtShipName.Text.Trim();
-            string startPort = txtStartPort.Text.Trim();
-            string destinationPort = txtDestinationPort.Text.Trim();
-            bool? isSingleContainer = null;
-            if (rbtnIsNotSingleContainer.Checked)
+            Thread threadQuery = new Thread(() =>
             {
-                isSingleContainer = false;
-            }
-            else if (rbtnIsSingleContainer.Checked)
-            {
-                isSingleContainer = true;
-            }
+                IList<RouteInformationItem> rlist = new List<RouteInformationItem>();
 
-            rlist = _service.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
-            //rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
-            gvRoutItems.AutoGenerateColumns = false;
-            gvRoutItems.DataSource = rlist;
+                this.Invoke(new Action(() =>
+                {
+                    string shipName = txtShipName.Text.Trim();
+                    string startPort = txtStartPort.Text.Trim();
+                    string destinationPort = txtDestinationPort.Text.Trim();
+                    bool? isSingleContainer = null;
+                    if (rbtnIsNotSingleContainer.Checked)
+                    {
+                        isSingleContainer = false;
+                    }
+                    else if (rbtnIsSingleContainer.Checked)
+                    {
+                        isSingleContainer = true;
+                    }
+
+                    rlist = _service.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+                    //rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+                    gvRoutItems.AutoGenerateColumns = false;
+                    gvRoutItems.DataSource = rlist;
+
+                    picLoading.Visible = false;
+                }));
+            });
+            threadQuery.IsBackground = true;
+            threadQuery.Start();
         }
 
         private void gvRoutItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -90,7 +102,8 @@ namespace FreightForwarder.Server
                 e.Value = isSingleContainerEnumValue.GetDescription();
 
                 DataGridViewCell thecell = therow.Cells["IsSingleContainerString"];
-                switch (isSingleContainerEnumValue) { 
+                switch (isSingleContainerEnumValue)
+                {
                     case IsSingleContainerValues.Yes:
                         thecell.Style = new DataGridViewCellStyle()
                         {
@@ -174,7 +187,7 @@ namespace FreightForwarder.Server
              * 将导致使用 this.Invoke 调用 m_ctrlProgresIncrease 委托时页面无限等待
              */
             Thread.Sleep(1000);
-        } 
+        }
         #endregion
 
         /// <summary>

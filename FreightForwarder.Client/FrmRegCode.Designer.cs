@@ -36,6 +36,7 @@
             this.cbBoxCompanies = new System.Windows.Forms.ComboBox();
             this.lblRegCode = new System.Windows.Forms.Label();
             this.btnCopy = new System.Windows.Forms.Button();
+            this.lblCompanyInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -93,13 +94,13 @@
             // lblRegCode
             // 
             this.lblRegCode.AutoSize = true;
-            this.lblRegCode.Font = new System.Drawing.Font("SimSun", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblRegCode.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblRegCode.ForeColor = System.Drawing.Color.Red;
             this.lblRegCode.Location = new System.Drawing.Point(106, 92);
             this.lblRegCode.Name = "lblRegCode";
-            this.lblRegCode.Size = new System.Drawing.Size(156, 20);
+            this.lblRegCode.Size = new System.Drawing.Size(177, 20);
             this.lblRegCode.TabIndex = 0;
-            this.lblRegCode.Text = "等待生成中……";
+            this.lblRegCode.Text = "等待生成中。。。";
             // 
             // btnCopy
             // 
@@ -112,11 +113,23 @@
             this.btnCopy.Visible = false;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // RegCodeForm
+            // lblCompanyInfo
+            // 
+            this.lblCompanyInfo.AutoSize = true;
+            this.lblCompanyInfo.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCompanyInfo.ForeColor = System.Drawing.Color.Red;
+            this.lblCompanyInfo.Location = new System.Drawing.Point(244, 65);
+            this.lblCompanyInfo.Name = "lblCompanyInfo";
+            this.lblCompanyInfo.Size = new System.Drawing.Size(187, 12);
+            this.lblCompanyInfo.TabIndex = 4;
+            this.lblCompanyInfo.Text = "正在初始化货代公司信息。。。";
+            // 
+            // FrmRegCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 191);
+            this.Controls.Add(this.lblCompanyInfo);
             this.Controls.Add(this.cbBoxCompanies);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnRegCode);
@@ -128,7 +141,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "RegCodeForm";
+            this.Name = "FrmRegCode";
             this.ShowIcon = false;
             this.Text = "注册码";
             this.Load += new System.EventHandler(this.RegCodeForm_Load);
@@ -147,5 +160,6 @@
         private System.Windows.Forms.ComboBox cbBoxCompanies;
         private System.Windows.Forms.Label lblRegCode;
         private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.Label lblCompanyInfo;
     }
 }

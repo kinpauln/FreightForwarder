@@ -15,7 +15,7 @@ namespace FreightForwarder.Data
     public class DBHelper
     {
         #region Company
-        public static IEnumerable<Company> GetAllCompanies()
+        public IEnumerable<Company> GetAllCompanies()
         {
             using (FFDBContext context = new FFDBContext())
             {
@@ -31,7 +31,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static bool AddCompany(string companyName, string companyCode)
+        public bool AddCompany(string companyName, string companyCode)
         {
 
             using (FFDBContext context = new FFDBContext())
@@ -56,7 +56,7 @@ namespace FreightForwarder.Data
         #endregion
 
         #region RouteInformationItems
-        public static bool AddRouteInformationItems(IEnumerable<RouteInformationItem> rlist)
+        public bool AddRouteInformationItems(IEnumerable<RouteInformationItem> rlist)
         {
 
             using (FFDBContext context = new FFDBContext())
@@ -79,7 +79,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static bool ImportRouteInformationItems(IEnumerable<RouteInformationItem> importlist)
+        public bool ImportRouteInformationItems(IEnumerable<RouteInformationItem> importlist)
         {
             // insert列表
             IList<RouteInformationItem> insertlist = importlist.Where(ri => ri.Id == 0).ToList();
@@ -165,7 +165,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static IList<RouteInformationItem> GetRouteInformationItems(int? companyId)
+        public IList<RouteInformationItem> GetRouteInformationItems(int? companyId)
         {
             using (FFDBContext context = new FFDBContext())
             {
@@ -188,7 +188,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static IList<RouteInformationItem> GetRouteInformationItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer)
+        public IList<RouteInformationItem> GetRouteInformationItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer)
         {
 
             using (FFDBContext context = new FFDBContext())
@@ -244,7 +244,7 @@ namespace FreightForwarder.Data
 
         #region RegCodes
 
-        public static bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId)
+        public bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId)
         {
             using (FFDBContext context = new FFDBContext())
             {
@@ -270,7 +270,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static bool ExistedEntity(string machineCode, int companyId)
+        public bool ExistedEntity(string machineCode, int companyId)
         {
             using (FFDBContext context = new FFDBContext())
             {
@@ -286,7 +286,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static bool AddMachineCode(string machineCode, int companyId)
+        public bool AddMachineCode(string machineCode, int companyId)
         {
             using (FFDBContext context = new FFDBContext())
             {
@@ -310,7 +310,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public static bool AddRegCode(string machineCode, string regCode, int companyId)
+        public bool AddRegCode(string machineCode, string regCode, int companyId)
         {
             using (FFDBContext context = new FFDBContext())
             {
@@ -336,7 +336,7 @@ namespace FreightForwarder.Data
         }
         #endregion
 
-        public static RegisterCode SoftwareIsRegistered(string machineCode)
+        public RegisterCode SoftwareIsRegistered(string machineCode)
         {
             using (FFDBContext context = new FFDBContext())
             {

@@ -18,7 +18,7 @@ namespace FreightForwarder.Business
         public void ExportExcel(string filePath, int? companyId)
         {
             //要导出的列表
-            IList<RouteInformationItem> rlist = DBHelper.GetRouteInformationItems(companyId);
+            IList<RouteInformationItem> rlist = (new DBHelper()).GetRouteInformationItems(companyId);
             DataTable rdt = rlist.ToDataTable();
 
             MemoryStream ms = NPOIHelper.RenderToExcel(rdt);
@@ -26,14 +26,14 @@ namespace FreightForwarder.Business
         }
 
         public static IList<RouteInformationItem> GetRoutItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer) {
-            IList<RouteInformationItem> rlist = DBHelper.GetRouteInformationItems(shipName, startPort, destinationPort, isSingleContainer);
+            IList<RouteInformationItem> rlist = (new DBHelper()).GetRouteInformationItems(shipName, startPort, destinationPort, isSingleContainer);
 
             return rlist;
         }
 
         public static RegisterCode IsRegistered(string machineCode)
         {
-            return DBHelper.SoftwareIsRegistered(machineCode);
+            return (new DBHelper()).SoftwareIsRegistered(machineCode);
         }
     }
 }

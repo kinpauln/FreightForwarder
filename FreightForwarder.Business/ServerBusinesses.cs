@@ -15,16 +15,16 @@ namespace FreightForwarder.Business
     {
         public bool ExistedEntity(string machineCode, int companyId)
         {
-            return DBHelper.ExistedEntity(machineCode, companyId);
+            return (new DBHelper()).ExistedEntity(machineCode, companyId);
         }
 
         public bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId)
         {
-            return DBHelper.AssociatMachineAndRegCode(machineCode, regcode, companyId);
+            return (new DBHelper()).AssociatMachineAndRegCode(machineCode, regcode, companyId);
         }
 
         public bool AddMachineCode(string machineCode, int companyId) {
-            return DBHelper.AddMachineCode(machineCode, companyId);
+            return (new DBHelper()).AddMachineCode(machineCode, companyId);
         }
 
         public bool ImportExcelData(Stream stream) {
@@ -33,7 +33,7 @@ namespace FreightForwarder.Business
             IList<RouteInformationItem> rlist = dt.ToRoutItemList();
 
             // bool result = DBHelper.AddRouteInformationItems(importlist);
-            bool result = DBHelper.ImportRouteInformationItems(rlist);
+            bool result = (new DBHelper()).ImportRouteInformationItems(rlist);
 
             return result;
         }
@@ -61,18 +61,18 @@ namespace FreightForwarder.Business
         }
 
         public bool AddCompany(string companyName, string companyCode) {
-            bool result = DBHelper.AddCompany(companyName, companyCode);
+            bool result = (new DBHelper()).AddCompany(companyName, companyCode);
             return result;
         }
 
         public bool RegCode(string machineCode, string regCode, int companyId)
         {
-            bool result = DBHelper.AddRegCode(machineCode, regCode, companyId);
+            bool result = (new DBHelper()).AddRegCode(machineCode, regCode, companyId);
             return result;
         }
 
         public IEnumerable<Company> GetAllCompanies() {
-            return DBHelper.GetAllCompanies();
+            return (new DBHelper()).GetAllCompanies();
         }
     }
 }
