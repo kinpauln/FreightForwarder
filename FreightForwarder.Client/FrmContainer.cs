@@ -1,5 +1,5 @@
-﻿#define ServerVersion
-//#define ClientVersion
+﻿//#define ServerVersion
+#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Remoting.Messaging;
 
 namespace FreightForwarder.Client
 {
@@ -57,30 +58,27 @@ namespace FreightForwarder.Client
             }
 
 #if ClientVersion
-                Thread validateThread = new Thread(new ThreadStart(ValidateSoft));
-                validateThread.IsBackground = true;
-                validateThread.Start();
+            //Thread validateThread = new Thread(new ParameterizedThreadStart(ValidateSoft));
+            //validateThread.IsBackground = true;
+            //validateThread.Start();
+            ValidateSoftHandler vsh = new ValidateSoftHandler(ValidateSoft);
+            vsh.BeginInvoke(new AsyncCallback(ValidateSoftComplete), null);
 
-                OpenProgressForm("正在验证软件信息，请耐心等待。。。", validateThread);
-
-                InitClientUI();
-
-                this.Text = "货代Mini-客户端";
-                toolStripStatusLblCompanyInfo.Text = Session.CURRENT_SOFT.Company.Name;
-                toolStripSeparator1.Visible = false;
+            OpenProgressForm("正在验证软件信息，请耐心等待。。。", null);
 #endif
 
 #if ServerVersion
-            this.Text = "货代Mini-服务端";
-            toolStripStatusLblCompanyInfo.Text = "服务端";
-            InitFormData();
+                        this.Text = "货代Mini-服务端";
+                        toolStripStatusLblCompanyInfo.Text = "服务端";
+                        InitFormData();
 #endif
 
             this.WindowState = FormWindowState.Maximized;
             ShowBackForm();
         }
         private System.Windows.Forms.MdiClient mdiClient;
-        private void ShowBackForm() {
+        private void ShowBackForm()
+        {
             //显示背景
             FrmBack frmb = new FrmBack();
             frmb.MdiParent = this;
@@ -132,15 +130,23 @@ namespace FreightForwarder.Client
             HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Alt | HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.F8);
         }
 
-        private void ValidateSoft()
+        struct ValidateSoftInfoStruct
+        {
+            public bool isValidSoft;
+            public string errorString;
+        }
+
+        private ValidateSoftInfoStruct ValidateSoft()
         {
             bool checkResult = true;
             string machineCode = CommonTool.GetMachineCode();
             RegisterCode rc = _service.IsRegistered(machineCode);
             //RegisterCode entity = BusinessBase.IsRegistered(machineCode);
+
+            string errorString = string.Empty;
             if (rc == null)
             {
-                UserUtils.ShowWarning(string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。", machineCode));
+                errorString = string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。", machineCode);
                 checkResult = false;
             }
             else
@@ -157,7 +163,6 @@ namespace FreightForwarder.Client
                     State = rc.State
                 };
 
-                string errorString = string.Empty;
                 // 机器码不为空，但注册码为空，说明还未注册
                 if (string.IsNullOrEmpty(rc.RegCode))
                 {
@@ -180,34 +185,60 @@ namespace FreightForwarder.Client
                     checkResult = false;
                 }
 
-                CloseProgressForm();
 
                 if (checkResult)
                 {
-                    InitFormData();
+                    this.Invoke(new Action(() =>
+                    {
+                        InitFormData();
+                    }));
                 }
                 else
                 {
-                    UserUtils.ShowWarning(errorString);
                     this.Invoke(new Action(() =>
                     {
                         toolStripStatusLblCompanyInfo.Text = "未注册公司";
                     }));
                 }
-
             }
+
+            return new ValidateSoftInfoStruct() { isValidSoft = checkResult, errorString = errorString };
+
+            //new Func<bool>(() => {
+            //    return false;
+            //}).BeginInvoke(new AsyncCallback(ValidateSoftComplete),null);
+        }
+
+        private delegate ValidateSoftInfoStruct ValidateSoftHandler();
+        void ValidateSoftComplete(IAsyncResult result)
+        {
+
+            ValidateSoftHandler handler = (ValidateSoftHandler)((AsyncResult)result).AsyncDelegate;
+            ValidateSoftInfoStruct vsis = (ValidateSoftInfoStruct)handler.EndInvoke(result);
+
+            if (vsis.isValidSoft)
+            {
+                InitClientUI();
+                this.Text = "货代Mini-客户端";
+                toolStripStatusLblCompanyInfo.Text = (Session.CURRENT_SOFT != null && Session.CURRENT_SOFT.Company != null) ? Session.CURRENT_SOFT.Company.Name : "未注册";
+                toolStripSeparator1.Visible = false;
+                CloseProgressForm();
+            }
+            else
+            {
+                UserUtils.ShowInfo(vsis.errorString);
+                CloseProgressForm();
+                //彻底退出程序
+                System.Environment.Exit(0);
+            }
+
+            //MessageBox.Show(handler.EndInvoke(result));
+            //MessageBox.Show(result.AsyncState);
         }
 
         private void InitFormData()
         {
-#if ClientVersion
-            this.Invoke(new Action(() =>
-            {
-#endif
             ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
-#if ClientVersion    
-        }));
-#endif
         }
 
         private void InitClientUI()
@@ -336,7 +367,10 @@ namespace FreightForwarder.Client
             System.Windows.Forms.DialogResult dresult = formProgressBar.ShowDialog();
             if (dresult == System.Windows.Forms.DialogResult.Cancel)
             {
-                thread.Abort();
+                if (thread != null)
+                {
+                    thread.Abort();
+                }
             }
         }
 
