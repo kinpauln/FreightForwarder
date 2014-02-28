@@ -1,5 +1,5 @@
-﻿//#define ServerVersion
-#define ClientVersion
+﻿#define ServerVersion
+//#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
@@ -24,11 +24,11 @@ namespace FreightForwarder.Client
 {
     public partial class FrmContainer : Form
     {
-        FrmStart _load = null;
-        FrmUnStateProgressBar formProgressBar;
+        private FrmStart _load = null;
+        private FrmUnStateProgressBar formProgressBar;
+        private delegate ValidateSoftInfoStruct ValidateSoftHandler();
         private Properties.Settings _defaultSettings;
         private FreightForwarder.Client.FFWCF.FFServiceClient _service = new Client.FFWCF.FFServiceClient();
-
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public FrmContainer()
@@ -45,6 +45,7 @@ namespace FreightForwarder.Client
         {
             this.StartPosition = FormStartPosition.CenterParent;
             this.KeyPreview = true;
+
             RegisterHotKey();
 
             //UserUtils.ShowError(dbconnString);
@@ -70,7 +71,7 @@ namespace FreightForwarder.Client
 #if ServerVersion
                         this.Text = "货代Mini-服务端";
                         toolStripStatusLblCompanyInfo.Text = "服务端";
-                        InitFormData();
+                        ShowQueryForm();
 #endif
 
             this.WindowState = FormWindowState.Maximized;
@@ -190,7 +191,7 @@ namespace FreightForwarder.Client
                 {
                     this.Invoke(new Action(() =>
                     {
-                        InitFormData();
+                        ShowQueryForm();
                     }));
                 }
                 else
@@ -209,7 +210,6 @@ namespace FreightForwarder.Client
             //}).BeginInvoke(new AsyncCallback(ValidateSoftComplete),null);
         }
 
-        private delegate ValidateSoftInfoStruct ValidateSoftHandler();
         void ValidateSoftComplete(IAsyncResult result)
         {
 
@@ -236,7 +236,7 @@ namespace FreightForwarder.Client
             //MessageBox.Show(result.AsyncState);
         }
 
-        private void InitFormData()
+        private void ShowQueryForm()
         {
             ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
         }
