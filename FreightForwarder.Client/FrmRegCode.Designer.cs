@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegCode));
             this.label1 = new System.Windows.Forms.Label();
             this.txtMachineCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -94,7 +95,7 @@
             // lblRegCode
             // 
             this.lblRegCode.AutoSize = true;
-            this.lblRegCode.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblRegCode.Font = new System.Drawing.Font("SimSun", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblRegCode.ForeColor = System.Drawing.Color.Red;
             this.lblRegCode.Location = new System.Drawing.Point(106, 92);
             this.lblRegCode.Name = "lblRegCode";
@@ -116,7 +117,7 @@
             // lblCompanyInfo
             // 
             this.lblCompanyInfo.AutoSize = true;
-            this.lblCompanyInfo.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCompanyInfo.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblCompanyInfo.ForeColor = System.Drawing.Color.Red;
             this.lblCompanyInfo.Location = new System.Drawing.Point(244, 65);
             this.lblCompanyInfo.Name = "lblCompanyInfo";
@@ -139,6 +140,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmRegCode";

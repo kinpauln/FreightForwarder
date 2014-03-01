@@ -90,12 +90,6 @@
     <Compile Include="FormProgressBar.Designer.cs">
       <DependentUpon>FormProgressBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProgres.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmProgres.Designer.cs">
-      <DependentUpon>FrmProgres.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmUnStateProgressBar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,9 +156,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProgressBar.resx">
       <DependentUpon>FormProgressBar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmProgres.resx">
-      <DependentUpon>FrmProgres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUnStateProgressBar.resx">
       <DependentUpon>FrmUnStateProgressBar.cs</DependentUpon>
