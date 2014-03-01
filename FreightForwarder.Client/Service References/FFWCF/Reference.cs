@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FreightForwarder.Client.FFWCF {
+namespace FreightForwarder.UI.Winform.FFWCF {
     using System.Runtime.Serialization;
     using System;
     
@@ -115,19 +115,19 @@ namespace FreightForwarder.Client.FFWCF {
         System.Threading.Tasks.Task<bool> AddCompanyAsync(string companyName, string companyCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IFFService/GetDataUsingDataContractResponse")]
-        FreightForwarder.Client.FFWCF.CompositeType GetDataUsingDataContract(FreightForwarder.Client.FFWCF.CompositeType composite);
+        FreightForwarder.UI.Winform.FFWCF.CompositeType GetDataUsingDataContract(FreightForwarder.UI.Winform.FFWCF.CompositeType composite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IFFService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<FreightForwarder.Client.FFWCF.CompositeType> GetDataUsingDataContractAsync(FreightForwarder.Client.FFWCF.CompositeType composite);
+        System.Threading.Tasks.Task<FreightForwarder.UI.Winform.FFWCF.CompositeType> GetDataUsingDataContractAsync(FreightForwarder.UI.Winform.FFWCF.CompositeType composite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IFFServiceChannel : FreightForwarder.Client.FFWCF.IFFService, System.ServiceModel.IClientChannel {
+    public interface IFFServiceChannel : FreightForwarder.UI.Winform.FFWCF.IFFService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class FFServiceClient : System.ServiceModel.ClientBase<FreightForwarder.Client.FFWCF.IFFService>, FreightForwarder.Client.FFWCF.IFFService {
+    public partial class FFServiceClient : System.ServiceModel.ClientBase<FreightForwarder.UI.Winform.FFWCF.IFFService>, FreightForwarder.UI.Winform.FFWCF.IFFService {
         
         public FFServiceClient() {
         }
@@ -196,11 +196,11 @@ namespace FreightForwarder.Client.FFWCF {
             return base.Channel.AddCompanyAsync(companyName, companyCode);
         }
         
-        public FreightForwarder.Client.FFWCF.CompositeType GetDataUsingDataContract(FreightForwarder.Client.FFWCF.CompositeType composite) {
+        public FreightForwarder.UI.Winform.FFWCF.CompositeType GetDataUsingDataContract(FreightForwarder.UI.Winform.FFWCF.CompositeType composite) {
             return base.Channel.GetDataUsingDataContract(composite);
         }
         
-        public System.Threading.Tasks.Task<FreightForwarder.Client.FFWCF.CompositeType> GetDataUsingDataContractAsync(FreightForwarder.Client.FFWCF.CompositeType composite) {
+        public System.Threading.Tasks.Task<FreightForwarder.UI.Winform.FFWCF.CompositeType> GetDataUsingDataContractAsync(FreightForwarder.UI.Winform.FFWCF.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
     }

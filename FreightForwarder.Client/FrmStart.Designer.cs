@@ -1,4 +1,4 @@
-﻿namespace FreightForwarder.Client
+﻿namespace FreightForwarder.UI.Winform
 {
     partial class FrmStart
     {
@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::FreightForwarder.Client.Properties.Resources.青岛_small;
+            this.BackgroundImage = global::FreightForwarder.UI.Winform.Properties.Resources.青岛_small;
             this.ClientSize = new System.Drawing.Size(512, 280);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmStart";

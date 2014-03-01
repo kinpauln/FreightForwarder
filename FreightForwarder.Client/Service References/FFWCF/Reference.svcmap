@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="659bf723-6dc7-4a23-9f36-6642e0c8d04f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8baf854a-4996-467e-b0dc-f00c11b372a9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,12 @@
     <MetadataSource Address="http://localhost/FFService/FFService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FFService.xsd" MetadataType="Schema" ID="74640f9b-63bc-4f4c-9254-e6c01cbb1814" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd2" />
-    <MetadataFile FileName="FFService3.xsd" MetadataType="Schema" ID="54f62da0-37b4-4ded-9850-a0478bf5b09b" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd3" />
-    <MetadataFile FileName="FFService1.xsd" MetadataType="Schema" ID="36bd9642-27f8-40ba-8cfd-7611d5e18416" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd0" />
-    <MetadataFile FileName="FFService2.xsd" MetadataType="Schema" ID="dc4c7e36-b78b-4a79-9dd7-41833ab2171b" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd1" />
-    <MetadataFile FileName="FFService.wsdl" MetadataType="Wsdl" ID="31a0c84b-345f-4cb1-bda5-039d3c5bb7f8" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?wsdl" />
-    <MetadataFile FileName="FFService.disco" MetadataType="Disco" ID="c2ada7d0-2348-4474-905e-8e4da0081e0b" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?disco" />
+    <MetadataFile FileName="FFService.xsd" MetadataType="Schema" ID="dad9d7cc-8169-4593-9546-4080f9a41372" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd2" />
+    <MetadataFile FileName="FFService1.xsd" MetadataType="Schema" ID="6e5a574d-c069-4b84-9d41-565399e41e05" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd3" />
+    <MetadataFile FileName="FFService2.xsd" MetadataType="Schema" ID="e5eec71a-5453-4d6c-915a-05de9356e887" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd0" />
+    <MetadataFile FileName="FFService3.xsd" MetadataType="Schema" ID="ce5554d6-1e99-4969-87da-7ff689f9def1" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FFService.wsdl" MetadataType="Wsdl" ID="2360b5a5-9850-4e8e-abfc-9351e75feae6" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?wsdl" />
+    <MetadataFile FileName="FFService.disco" MetadataType="Disco" ID="5b93c191-f293-4224-8f44-8e4c8dd5ab08" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

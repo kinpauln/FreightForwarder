@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreightForwarder.Client
+namespace FreightForwarder.UI.Winform
 {
     public partial class FrmAddCompany : Form
     {

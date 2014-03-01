@@ -1,4 +1,4 @@
-﻿namespace FreightForwarder.Client
+﻿namespace FreightForwarder.UI.Winform
 {
     partial class FrmAddCompany
     {

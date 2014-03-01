@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreightForwarder.Client
+namespace FreightForwarder.UI.Winform
 {
     public partial class FrmAboutUs : Form
     {
@@ -19,7 +19,7 @@ namespace FreightForwarder.Client
 
         private void FrmAboutUs_Load(object sender, EventArgs e)
         {
-            Properties.Settings settings = FreightForwarder.Client.Properties.Settings.Default;
+            Properties.Settings settings = Properties.Settings.Default;
             lblEmail.Text = settings.AboutUs_Email;
             lblQQ.Text = settings.AboutUs_QQ;
             lblQQGroup.Text = settings.AboutUs_QQGroup;

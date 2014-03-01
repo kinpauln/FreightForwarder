@@ -1,4 +1,4 @@
-﻿namespace FreightForwarder.Client
+﻿namespace FreightForwarder.UI.Winform
 {
     partial class FrmContainer
     {
@@ -70,7 +70,7 @@
             // 
             // tsddBtnImport
             // 
-            this.tsddBtnImport.Image = global::FreightForwarder.Client.Properties.Resources.database_up;
+            this.tsddBtnImport.Image = global::FreightForwarder.UI.Winform.Properties.Resources.database_up;
             this.tsddBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsddBtnImport.Name = "tsddBtnImport";
             this.tsddBtnImport.ShowDropDownArrow = false;
@@ -86,7 +86,7 @@
             // 
             // tlspBtnExport
             // 
-            this.tlspBtnExport.Image = global::FreightForwarder.Client.Properties.Resources.database_down;
+            this.tlspBtnExport.Image = global::FreightForwarder.UI.Winform.Properties.Resources.database_down;
             this.tlspBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlspBtnExport.Name = "tlspBtnExport";
             this.tlspBtnExport.Size = new System.Drawing.Size(60, 61);

@@ -4,7 +4,7 @@ using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
 using FreightForwarder.Domain.Entities;
-using FreightForwarder.Client;
+using FreightForwarder.UI.Winform;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.Remoting.Messaging;
 
-namespace FreightForwarder.Client
+namespace FreightForwarder.UI.Winform
 {
     public partial class FrmContainer : Form
     {
@@ -28,7 +28,7 @@ namespace FreightForwarder.Client
         private FrmUnStateProgressBar formProgressBar;
         private delegate ValidateSoftInfoStruct ValidateSoftHandler();
         private Properties.Settings _defaultSettings;
-        private FreightForwarder.Client.FFWCF.FFServiceClient _service = new Client.FFWCF.FFServiceClient();
+        private FFWCF.FFServiceClient _service = new FFWCF.FFServiceClient();
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public FrmContainer()

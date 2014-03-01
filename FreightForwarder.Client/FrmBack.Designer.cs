@@ -1,4 +1,4 @@
-﻿namespace FreightForwarder.Client
+﻿namespace FreightForwarder.UI.Winform
 {
     partial class FrmBack
     {
@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::FreightForwarder.Client.Properties.Resources.青岛;
+            this.BackgroundImage = global::FreightForwarder.UI.Winform.Properties.Resources.青岛;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(651, 401);
             this.ControlBox = false;

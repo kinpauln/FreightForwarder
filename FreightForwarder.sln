@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Business",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.WCF", "FrightForwarder.WCF\FreightForwarder.WCF.csproj", "{B787C1D0-0089-49DC-BFFC-8F1C0E9134D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Client", "FreightForwarder.Client\FreightForwarder.Client.csproj", "{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.UI.Winform", "FreightForwarder.Client\FreightForwarder.UI.Winform.csproj", "{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

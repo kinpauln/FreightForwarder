@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreightForwarder.Client
+namespace FreightForwarder.UI.Winform
 {
     public class UserUtils
     {
@@ -117,7 +117,7 @@ namespace FreightForwarder.Client
             {
                 try
                 {
-                    string emailTo = FreightForwarder.Client.Properties.Settings.Default.ServiceEmail;
+                    string emailTo = FreightForwarder.UI.Winform.Properties.Settings.Default.ServiceEmail;
                     message.To.Add(emailTo); //收件人邮箱
                     message.Subject = subject;//邮件主题
                     message.Body = emailbody;  //邮件正文

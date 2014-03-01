@@ -11,11 +11,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreightForwarder.Client
+namespace FreightForwarder.UI.Winform
 {
     public partial class FrmRegCode : Form
     {
-        private FreightForwarder.Client.FFWCF.FFServiceClient _service = new Client.FFWCF.FFServiceClient();
+        private FFWCF.FFServiceClient _service = new FFWCF.FFServiceClient();
         private Thread _initialCompaniesThread = null;
         private Thread _regCodeThread = null;
 

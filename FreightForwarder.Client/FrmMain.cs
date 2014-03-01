@@ -12,18 +12,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreightForwarder.Client
+namespace FreightForwarder.UI.Winform
 {
     public partial class FrmMain : Form
     {
-        private FreightForwarder.Client.FFWCF.FFServiceClient _service = null;
+        private FFWCF.FFServiceClient _service = null;
         private FrmUnStateProgressBar formProgressBar = null;
         private Thread threadSearch = null;
 
         public FrmMain()
         {
             InitializeComponent();
-            _service = new Client.FFWCF.FFServiceClient();
+            _service = new FFWCF.FFServiceClient();
         }
 
         private void FrmMain_Load(object sender, EventArgs e)

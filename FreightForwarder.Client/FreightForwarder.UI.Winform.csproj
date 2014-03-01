@@ -7,8 +7,8 @@
     <ProjectGuid>{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FreightForwarder.Client</RootNamespace>
-    <AssemblyName>FreightForwarder.Client</AssemblyName>
+    <RootNamespace>FreightForwarder.UI.Winform</RootNamespace>
+    <AssemblyName>FreightForwarder</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -141,12 +141,12 @@
     <Compile Include="FrmRegCode.Designer.cs">
       <DependentUpon>FrmRegCode.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserUtils.cs" />
     <Compile Include="Service References\FFWCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="UserUtils.cs" />
     <Compile Include="Session.cs" />
     <EmbeddedResource Include="FrmAboutUs.resx">
       <DependentUpon>FrmAboutUs.cs</DependentUpon>
@@ -224,7 +224,7 @@
     <None Include="Service References\FFWCF\FFService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFWCF\FreightForwarder.Client.FFWCF.CompositeType.datasource">
+    <None Include="Service References\FFWCF\FreightForwarder.UI.Winform.FFWCF.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

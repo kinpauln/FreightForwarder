@@ -9,11 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreightForwarder.Client
+namespace FreightForwarder.UI.Winform
 {
     public partial class FrmUserRegister : Form
     {
-        private FreightForwarder.Client.FFWCF.FFServiceClient _service = new Client.FFWCF.FFServiceClient();
+        private FFWCF.FFServiceClient _service = new FFWCF.FFServiceClient();
         private Thread _registerThread = null;
 
         public FrmUserRegister()
