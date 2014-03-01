@@ -543,6 +543,11 @@ namespace FreightForwarder.UI.Winform
                 foreach (Form f in this.MdiChildren)
                     if (f.Name != "FrmBack") f.Activate();//或f.BringToFront();
         }
+
+        private void toolStripBtnQuery_Click(object sender, EventArgs e)
+        {
+            ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
+        }
     }
 
 

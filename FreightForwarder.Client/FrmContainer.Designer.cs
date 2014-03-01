@@ -49,6 +49,8 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLblCompanyInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnQuery = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -61,7 +63,9 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsddBtnImport,
             this.toolStripSeparator1,
-            this.tlspBtnExport});
+            this.tlspBtnExport,
+            this.toolStripSeparator2,
+            this.toolStripBtnQuery});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1008, 64);
@@ -118,7 +122,7 @@
             // toolStripMenuItemRegCodeViewer
             // 
             this.toolStripMenuItemRegCodeViewer.Name = "toolStripMenuItemRegCodeViewer";
-            this.toolStripMenuItemRegCodeViewer.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemRegCodeViewer.Size = new System.Drawing.Size(148, 22);
             this.toolStripMenuItemRegCodeViewer.Text = "注册码查看器";
             this.toolStripMenuItemRegCodeViewer.Click += new System.EventHandler(this.toolStripMenuItemRegCodeViewer_Click);
             // 
@@ -212,6 +216,22 @@
             this.toolStripStatusLblCompanyInfo.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLblCompanyInfo.Text = "公司名";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 64);
+            // 
+            // toolStripBtnQuery
+            // 
+            this.toolStripBtnQuery.Image = global::FreightForwarder.UI.Winform.Properties.Resources.database_search;
+            this.toolStripBtnQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnQuery.Name = "toolStripBtnQuery";
+            this.toolStripBtnQuery.Size = new System.Drawing.Size(44, 61);
+            this.toolStripBtnQuery.Text = "查询";
+            this.toolStripBtnQuery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripBtnQuery.ToolTipText = "    查询    ";
+            this.toolStripBtnQuery.Click += new System.EventHandler(this.toolStripBtnQuery_Click);
+            // 
             // FrmContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -264,6 +284,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRegCodeViewer;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLblCompanyInfo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripBtnQuery;
 
     }
 }

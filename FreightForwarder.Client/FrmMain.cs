@@ -32,6 +32,9 @@ namespace FreightForwarder.UI.Winform
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            picBoxLoading.Visible = true;
+            btnSearch.Enabled = false;
+
             threadSearch = new Thread(new ThreadStart(new Action(() =>
             {
                 IList<RouteInformationItem> rlist = new List<RouteInformationItem>();
@@ -51,11 +54,14 @@ namespace FreightForwarder.UI.Winform
 
                 rlist = _service.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
                 //rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
-
+                Thread.Sleep(5000);
                 this.Invoke(new Action(() =>
                 {
                     gvRoutItems.AutoGenerateColumns = false;
                     gvRoutItems.DataSource = rlist;
+
+                    picBoxLoading.Visible = false;
+                    btnSearch.Enabled = true;
                 }));
 
                 CloseProgressForm();

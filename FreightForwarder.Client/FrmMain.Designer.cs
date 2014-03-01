@@ -55,13 +55,16 @@
             this.SailDayLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picBoxLoading = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvRoutItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.picBoxLoading);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.txtDestinationPort);
@@ -312,6 +315,16 @@
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
             // 
+            // picBoxLoading
+            // 
+            this.picBoxLoading.Image = global::FreightForwarder.UI.Winform.Properties.Resources.ajax_loader;
+            this.picBoxLoading.Location = new System.Drawing.Point(543, 23);
+            this.picBoxLoading.Name = "picBoxLoading";
+            this.picBoxLoading.Size = new System.Drawing.Size(32, 32);
+            this.picBoxLoading.TabIndex = 7;
+            this.picBoxLoading.TabStop = false;
+            this.picBoxLoading.Visible = false;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -329,6 +342,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvRoutItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLoading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -362,5 +376,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SailDayLength;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValidDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
+        private System.Windows.Forms.PictureBox picBoxLoading;
     }
 }
