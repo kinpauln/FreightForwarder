@@ -16,6 +16,8 @@ namespace FreightForwarder.Client
     public partial class FrmRegCode : Form
     {
         private FreightForwarder.Client.FFWCF.FFServiceClient _service = new Client.FFWCF.FFServiceClient();
+        private Thread _initialCompaniesThread = null;
+        private Thread _regCodeThread = null;
 
         public FrmRegCode()
         {
@@ -24,18 +26,46 @@ namespace FreightForwarder.Client
 
         private void btnRegCode_Click(object sender, EventArgs e)
         {
-            string mcode = CommonTool.GetMachineCode();
-            string regCode = CommonTool.GetRegCode(mcode);
-            int companyId = (int)cbBoxCompanies.SelectedValue;
-
-            if (_service.AddMachineCode(mcode, companyId))
+            string mcode = txtMachineCode.Text.Trim();
+            if (string.IsNullOrEmpty(mcode))
             {
-                lblRegCode.Text = regCode;
-                btnCopy.Visible = true;
+                UserUtils.ShowError("机器码不能为空");
+                return;
             }
-            else
-                UserUtils.ShowError("生成注册码失败");
 
+            if (mcode.Length != 24)
+            {
+                UserUtils.ShowError("请输入合法的机器码");
+                return;
+            }
+
+            _regCodeThread = new Thread(() =>
+            {
+                this.Invoke(new Action(() =>
+                {
+                    btnRegCode.Enabled = false;
+                    string regCode = CommonTool.GetRegCode(mcode);
+                    int companyId = (int)cbBoxCompanies.SelectedValue;
+                    if (_service.AddMachineCode(mcode, companyId))
+                    {
+                        lblRegCode.Text = regCode;
+                        btnCopy.Visible = true;
+                        //if (lblRegCode.InvokeRequired && btnCopy.InvokeRequired)
+                        //{
+                        //    lblRegCode.Text = regCode;
+                        //    btnCopy.Visible = true;
+                        //}
+                    }
+                    else
+                    {
+                        UserUtils.ShowError("生成注册码失败");
+                    }
+
+                    btnRegCode.Enabled = true;
+                }));
+            });
+            _regCodeThread.IsBackground = true;
+            _regCodeThread.Start();
         }
 
         private void RegCodeForm_Load(object sender, EventArgs e)
@@ -43,24 +73,27 @@ namespace FreightForwarder.Client
             btnCopy.Visible = false;
             lblCompanyInfo.Text = "正在初始化货代公司信息。。。";
             btnRegCode.Enabled = false;
-            
-            Thread initialCompaniesThread = new Thread(() =>
+
+            _initialCompaniesThread = new Thread(() =>
             {
                 ServerBusinesses sb = new ServerBusinesses();
                 IEnumerable<Company> companies = sb.GetAllCompanies();
-                this.Invoke(new Action(() =>
+                if (cbBoxCompanies.InvokeRequired && lblCompanyInfo.InvokeRequired && btnRegCode.InvokeRequired)
                 {
-                    cbBoxCompanies.DataSource = companies;
-                    cbBoxCompanies.ValueMember = "ID";
-                    cbBoxCompanies.DisplayMember = "Name";
+                    this.Invoke(new Action(() =>
+                    {
+                        cbBoxCompanies.DataSource = companies;
+                        cbBoxCompanies.ValueMember = "ID";
+                        cbBoxCompanies.DisplayMember = "Name";
 
-                    lblCompanyInfo.Text = string.Empty;
-                    lblCompanyInfo.Visible = false;
-                    btnRegCode.Enabled = true;
-                }));
+                        lblCompanyInfo.Text = string.Empty;
+                        lblCompanyInfo.Visible = false;
+                        btnRegCode.Enabled = true;
+                    }));
+                }
             });
-            initialCompaniesThread.IsBackground = true;
-            initialCompaniesThread.Start();
+            _initialCompaniesThread.IsBackground = true;
+            _initialCompaniesThread.Start();
         }
 
         private void btnCopy_Click(object sender, EventArgs e)

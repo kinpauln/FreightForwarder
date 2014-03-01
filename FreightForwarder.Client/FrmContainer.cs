@@ -1,5 +1,5 @@
-﻿#define ServerVersion
-//#define ClientVersion
+﻿//#define ServerVersion
+#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
@@ -77,6 +77,7 @@ namespace FreightForwarder.Client
             this.WindowState = FormWindowState.Maximized;
             ShowBackForm();
         }
+
         private System.Windows.Forms.MdiClient mdiClient;
         private void ShowBackForm()
         {
@@ -135,11 +136,13 @@ namespace FreightForwarder.Client
         {
             public bool isValidSoft;
             public string errorString;
+            public SoftState softState;
         }
 
         private ValidateSoftInfoStruct ValidateSoft()
         {
             bool checkResult = true;
+            SoftState softState = SoftState.RegisterdAndActived;
             string machineCode = CommonTool.GetMachineCode();
             RegisterCode rc = _service.IsRegistered(machineCode);
             //RegisterCode entity = BusinessBase.IsRegistered(machineCode);
@@ -149,6 +152,7 @@ namespace FreightForwarder.Client
             {
                 errorString = string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。", machineCode);
                 checkResult = false;
+                softState = SoftState.UnRegisterd;
             }
             else
             {
@@ -169,14 +173,16 @@ namespace FreightForwarder.Client
                 {
                     errorString = "您的软件尚未完成注册，请用软件商提供给您的注册码完成注册。如果忘记注册码，请向注册商提供机器码，重新获取直至完成注册。";
                     checkResult = false;
+                    softState = SoftState.Registering;
                 }
 
                 // 数据库中保存的注册码与实际注册码不一致
                 string trueRegCode = CommonTool.GetRegCode(machineCode);
-                if (trueRegCode != rc.RegCode)
+                if (trueRegCode != rc.RegCode && !string.IsNullOrEmpty(rc.RegCode))
                 {
                     errorString = "您之前完成的注册，填写的注册码有问题，详情请联系软件供应商。";
                     checkResult = false;
+                    softState = SoftState.UnmatchedRegistered;
                 }
 
                 RegCodeStates softSate = (RegCodeStates)rc.State;
@@ -184,6 +190,7 @@ namespace FreightForwarder.Client
                 {
                     errorString = string.Format("您的软件尚且不能使用，现在处于【{0}】的状态。", softSate.GetDescription());
                     checkResult = false;
+                    softState = SoftState.RegisterdButUnactived;
                 }
 
 
@@ -203,14 +210,14 @@ namespace FreightForwarder.Client
                 }
             }
 
-            return new ValidateSoftInfoStruct() { isValidSoft = checkResult, errorString = errorString };
+            return new ValidateSoftInfoStruct() { isValidSoft = checkResult, errorString = errorString, softState = softState };
 
             //new Func<bool>(() => {
             //    return false;
             //}).BeginInvoke(new AsyncCallback(ValidateSoftComplete),null);
         }
 
-        void ValidateSoftComplete(IAsyncResult result)
+        private void ValidateSoftComplete(IAsyncResult result)
         {
 
             ValidateSoftHandler handler = (ValidateSoftHandler)((AsyncResult)result).AsyncDelegate;
@@ -218,22 +225,59 @@ namespace FreightForwarder.Client
 
             if (vsis.isValidSoft)
             {
-                InitClientUI();
-                this.Text = "货代Mini-客户端";
-                toolStripStatusLblCompanyInfo.Text = (Session.CURRENT_SOFT != null && Session.CURRENT_SOFT.Company != null) ? Session.CURRENT_SOFT.Company.Name : "未注册";
-                toolStripSeparator1.Visible = false;
+                this.Invoke(new Action(() =>
+                {
+                    InitClientUI();
+                }));
                 CloseProgressForm();
             }
             else
             {
                 UserUtils.ShowInfo(vsis.errorString);
                 CloseProgressForm();
-                //彻底退出程序
-                System.Environment.Exit(0);
+
+                if (vsis.softState != SoftState.Registering)
+                {
+                    //彻底退出程序
+                    System.Environment.Exit(0);
+                }
+                else
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        InitClientUI(true);
+                    }));
+                }
             }
 
             //MessageBox.Show(handler.EndInvoke(result));
             //MessageBox.Show(result.AsyncState);
+        }
+
+        private void DisableMenuBar(MenuStrip menu, bool disable)
+        {
+            foreach (ToolStripMenuItem curritem in menu.Items)
+            {
+                curritem.Enabled = !disable;
+                DisableSubMenu(curritem,disable);
+            }
+        }
+
+        private void DisableSubMenu(ToolStripMenuItem submenu, bool disable)
+        {
+            foreach (ToolStripMenuItem curritem in submenu.DropDownItems)
+            {
+                curritem.Enabled = !disable;
+                DisableSubMenu(curritem, disable);
+            }
+        }
+
+        private void DisableToolBar(ToolStrip toolbar, bool disable)
+        {
+            foreach (ToolStripItem curritem in toolbar.Items)
+            {
+                curritem.Enabled = !disable;
+            }
         }
 
         private void ShowQueryForm()
@@ -241,12 +285,21 @@ namespace FreightForwarder.Client
             ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
         }
 
-        private void InitClientUI()
+        private void InitClientUI(bool disable = false)
         {
+            this.Text = "货代Mini-客户端";
+
+            toolStripMenuItemTool.Visible = false;
             tsddBtnImport.Visible = false;
             toolStripMenuItemRegCodeViewer.Visible = false;
             tsItemBtnRegCode.Visible = false;
             tsItemBtnAddCompany.Visible = false;
+
+            toolStripStatusLblCompanyInfo.Text = (Session.CURRENT_SOFT != null && Session.CURRENT_SOFT.Company != null) ? Session.CURRENT_SOFT.Company.Name : "未注册";
+            toolStripSeparator1.Visible = false;
+
+            DisableMenuBar(menuStrip1, disable);
+            DisableToolBar(toolStrip1, disable);
         }
 
         /// <summary>
@@ -458,6 +511,8 @@ namespace FreightForwarder.Client
                             if (dresult == System.Windows.Forms.DialogResult.Yes)
                             {
                                 UserUtils.ShowInfo("注册成功！");
+                                InitClientUI();
+                                Session.CURRENT_SOFT.RegCode = CommonTool.GetRegCode(Session.CURRENT_SOFT.MachineCode);
                             }
                             if (dresult == System.Windows.Forms.DialogResult.No)
                             {
@@ -519,5 +574,19 @@ namespace FreightForwarder.Client
             Shift = 4,
             WindowsKey = 8
         }
+    }
+
+    public enum SoftState
+    {
+        [Description("已注册且已激活")]
+        RegisterdAndActived = 1,
+        [Description("已注册但未激活")]
+        RegisterdButUnactived = 2,
+        [Description("尚未注册")]
+        UnRegisterd = 3,
+        [Description("尚未注册")]
+        Registering = 4,
+        [Description("机器码与注册码不匹配")]
+        UnmatchedRegistered = 5
     }
 }

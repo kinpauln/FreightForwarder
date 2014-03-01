@@ -100,7 +100,7 @@
             this.btnCancel.Location = new System.Drawing.Point(430, 62);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -110,7 +110,7 @@
             this.btnReg.Location = new System.Drawing.Point(349, 62);
             this.btnReg.Name = "btnReg";
             this.btnReg.Size = new System.Drawing.Size(75, 23);
-            this.btnReg.TabIndex = 2;
+            this.btnReg.TabIndex = 4;
             this.btnReg.Text = "注册";
             this.btnReg.UseVisualStyleBackColor = true;
             this.btnReg.Click += new System.EventHandler(this.btnReg_Click);

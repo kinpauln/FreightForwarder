@@ -297,7 +297,7 @@ namespace FreightForwarder.Data
                         MachineCode = machineCode,
                         CreatedDate = DateTime.Now,
                         CompanyId = companyId,
-                        State = (int)RegCodeStates.UnActived
+                        State = (int)RegCodeStates.Actived
                     });
                     context.SaveChanges();
                     return true;

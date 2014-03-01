@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.WCF", "Fri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Client", "FreightForwarder.Client\FreightForwarder.Client.csproj", "{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.Server", "FreightForwarder.Server\FreightForwarder.Server.csproj", "{C512713F-E53C-4130-94F0-9B53D0765FDF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,16 +45,11 @@ Global
 		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C512713F-E53C-4130-94F0-9B53D0765FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A} = {2C5BDB5B-F595-4619-99F9-031B0173EBC0}
-		{C512713F-E53C-4130-94F0-9B53D0765FDF} = {2C5BDB5B-F595-4619-99F9-031B0173EBC0}
 	EndGlobalSection
 EndGlobal
