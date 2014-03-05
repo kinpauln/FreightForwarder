@@ -15,14 +15,24 @@ namespace FreightForwarder.Business
 {
     public class BusinessBase : AbstractProgressBar
     {
-        public void ExportExcel(string filePath, int? companyId)
+        /// <summary>
+        ///  导出文件
+        /// </summary>
+        /// <param name="filePath">文件路径</param>
+        /// <param name="companyId">公司ID</param>
+        /// <param name="rlist">要导出的列表</param>
+        public void ExportExcel(string filePath, IList<RouteInformationItem> rlist)
         {
-            //要导出的列表
-            IList<RouteInformationItem> rlist = (new DBHelper()).GetRouteInformationItems(companyId);
             DataTable rdt = rlist.ToDataTable();
 
             MemoryStream ms = NPOIHelper.RenderToExcel(rdt);
             NPOIHelper.SaveToFile(ms, filePath);
+        }
+
+        public IList<RouteInformationItem> GetRouteInformationItems(int? companyId)
+        {
+            IList<RouteInformationItem> rlist = (new DBHelper()).GetRouteInformationItems(companyId);
+            return rlist;
         }
 
         public static IList<RouteInformationItem> GetRoutItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer) {

@@ -4,11 +4,23 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" />
+      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" />
+      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IFFService_GetRouteInformationItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRouteInformationItems" />
+  </wsdl:message>
+  <wsdl:message name="IFFService_GetRouteInformationItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRouteInformationItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFFService_GetAllCompanyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompanyList" />
+  </wsdl:message>
+  <wsdl:message name="IFFService_GetAllCompanyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompanyListResponse" />
+  </wsdl:message>
   <wsdl:message name="IFFService_GetAllCompanies_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCompanies" />
   </wsdl:message>
@@ -64,6 +76,14 @@
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
   <wsdl:portType name="IFFService">
+    <wsdl:operation name="GetRouteInformationItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetRouteInformationItems" message="tns:IFFService_GetRouteInformationItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetRouteInformationItemsResponse" message="tns:IFFService_GetRouteInformationItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompanyList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetAllCompanyList" message="tns:IFFService_GetAllCompanyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetAllCompanyListResponse" message="tns:IFFService_GetAllCompanyList_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllCompanies">
       <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetAllCompanies" message="tns:IFFService_GetAllCompanies_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetAllCompaniesResponse" message="tns:IFFService_GetAllCompanies_OutputMessage" />
@@ -103,6 +123,24 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IFFService" type="tns:IFFService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRouteInformationItems">
+      <soap:operation soapAction="http://tempuri.org/IFFService/GetRouteInformationItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompanyList">
+      <soap:operation soapAction="http://tempuri.org/IFFService/GetAllCompanyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllCompanies">
       <soap:operation soapAction="http://tempuri.org/IFFService/GetAllCompanies" style="document" />
       <wsdl:input>

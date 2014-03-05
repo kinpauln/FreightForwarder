@@ -14,6 +14,12 @@ namespace FrightForwarder.WCF
     public interface IFFService
     {
         [OperationContract]
+        IList<RouteInformationItem> GetRouteInformationItems(int? companyId);
+
+        [OperationContract]
+        IEnumerable<Company> GetAllCompanyList();
+
+        [OperationContract]
         Dictionary<string, int> GetAllCompanies();
 
         [OperationContract]

@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" />
+  <xs:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" />
+  <xs:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" />
+  <xs:element name="GetRouteInformationItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="companyId" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRouteInformationItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="GetRouteInformationItemsResult" nillable="true" type="q1:ArrayOfRouteInformationItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCompanyList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCompanyListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="GetAllCompanyListResult" nillable="true" type="q2:ArrayOfCompany" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAllCompanies">
     <xs:complexType>
       <xs:sequence />
@@ -11,14 +37,14 @@
   <xs:element name="GetAllCompaniesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllCompaniesResult" nillable="true" type="q1:ArrayOfKeyValueOfstringint" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllCompaniesResult" nillable="true" type="q3:ArrayOfKeyValueOfstringint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImportRouteInformationItems">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="rlist" nillable="true" type="q2:ArrayOfRouteInformationItem" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="rlist" nillable="true" type="q4:ArrayOfRouteInformationItem" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -42,7 +68,7 @@
   <xs:element name="GetRoutItemsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="GetRoutItemsResult" nillable="true" type="q3:ArrayOfRouteInformationItem" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="GetRoutItemsResult" nillable="true" type="q5:ArrayOfRouteInformationItem" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -87,7 +113,7 @@
   <xs:element name="IsRegisteredResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="IsRegisteredResult" nillable="true" type="q4:RegisterCode" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" minOccurs="0" name="IsRegisteredResult" nillable="true" type="q6:RegisterCode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -123,14 +149,14 @@
   <xs:element name="GetDataUsingDataContract">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" minOccurs="0" name="composite" nillable="true" type="q5:CompositeType" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" minOccurs="0" name="composite" nillable="true" type="q7:CompositeType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetDataUsingDataContractResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q6:CompositeType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q8:CompositeType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

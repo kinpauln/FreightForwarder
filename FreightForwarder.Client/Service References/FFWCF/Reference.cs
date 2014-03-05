@@ -78,6 +78,18 @@ namespace FreightForwarder.UI.Winform.FFWCF {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FFWCF.IFFService")]
     public interface IFFService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/GetRouteInformationItemsResponse")]
+        FreightForwarder.Domain.Entities.RouteInformationItem[] GetRouteInformationItems(System.Nullable<int> companyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/GetRouteInformationItemsResponse")]
+        System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RouteInformationItem[]> GetRouteInformationItemsAsync(System.Nullable<int> companyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanyList", ReplyAction="http://tempuri.org/IFFService/GetAllCompanyListResponse")]
+        FreightForwarder.Domain.Entities.Company[] GetAllCompanyList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanyList", ReplyAction="http://tempuri.org/IFFService/GetAllCompanyListResponse")]
+        System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.Company[]> GetAllCompanyListAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanies", ReplyAction="http://tempuri.org/IFFService/GetAllCompaniesResponse")]
         System.Collections.Generic.Dictionary<string, int> GetAllCompanies();
         
@@ -158,6 +170,22 @@ namespace FreightForwarder.UI.Winform.FFWCF {
         
         public FFServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public FreightForwarder.Domain.Entities.RouteInformationItem[] GetRouteInformationItems(System.Nullable<int> companyId) {
+            return base.Channel.GetRouteInformationItems(companyId);
+        }
+        
+        public System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RouteInformationItem[]> GetRouteInformationItemsAsync(System.Nullable<int> companyId) {
+            return base.Channel.GetRouteInformationItemsAsync(companyId);
+        }
+        
+        public FreightForwarder.Domain.Entities.Company[] GetAllCompanyList() {
+            return base.Channel.GetAllCompanyList();
+        }
+        
+        public System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.Company[]> GetAllCompanyListAsync() {
+            return base.Channel.GetAllCompanyListAsync();
         }
         
         public System.Collections.Generic.Dictionary<string, int> GetAllCompanies() {

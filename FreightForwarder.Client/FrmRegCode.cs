@@ -76,8 +76,7 @@ namespace FreightForwarder.UI.Winform
 
             _initialCompaniesThread = new Thread(() =>
             {
-                ServerBusinesses sb = new ServerBusinesses();
-                IEnumerable<Company> companies = sb.GetAllCompanies();
+                IEnumerable<Company> companies = _service.GetAllCompanyList();
                 if (cbBoxCompanies.InvokeRequired && lblCompanyInfo.InvokeRequired && btnRegCode.InvokeRequired)
                 {
                     this.Invoke(new Action(() =>

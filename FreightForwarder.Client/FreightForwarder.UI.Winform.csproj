@@ -192,6 +192,7 @@
       <DependentUpon>FrmRegCode.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.Company.datasource" />
     <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RegisterCode.datasource" />
     <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RegisterCode1.datasource" />
     <None Include="Properties\DataSources\FreightForwarder.Domain.Entities.RouteInformationItem.datasource" />

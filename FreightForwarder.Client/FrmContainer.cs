@@ -423,8 +423,13 @@ namespace FreightForwarder.UI.Winform
 #if ClientVersion
                     companyId = Session.CURRENT_SOFT.Company.Id;
 #endif
-
-                    cb.ExportExcel(localFilePath, companyId);
+                    IList<RouteInformationItem> exportList = _service.GetRouteInformationItems(companyId);
+                    if (exportList == null) {
+                        CloseProgressForm();
+                        UserUtils.ShowInfo("没有要导出的数据！");
+                        return;
+                    }
+                    cb.ExportExcel(localFilePath, exportList);
 
                     CloseProgressForm();
 
