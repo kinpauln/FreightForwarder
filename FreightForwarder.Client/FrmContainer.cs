@@ -1,5 +1,5 @@
-﻿#define ServerVersion
-//#define ClientVersion
+﻿//#define ServerVersion
+#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
@@ -46,7 +46,9 @@ namespace FreightForwarder.UI.Winform
             this.StartPosition = FormStartPosition.CenterParent;
             this.KeyPreview = true;
 
+#if ClientVersion
             RegisterHotKey();
+#endif
 
             //UserUtils.ShowError(dbconnString);
             //FreightForwarder.Client.DBHelper.GetEntries();
@@ -71,6 +73,7 @@ namespace FreightForwarder.UI.Winform
 #if ServerVersion
                         this.Text = "货代Mini-服务端";
                         toolStripStatusLblCompanyInfo.Text = "服务端";
+                        toolStripMenuItemSoftInfo.Visible = false;
                         ShowQueryForm();
 #endif
 
@@ -238,7 +241,10 @@ namespace FreightForwarder.UI.Winform
             else
             {
                 CloseProgressForm();
-                UserUtils.ShowInfo(vsis.errorString);
+                this.Invoke(new Action(() =>
+                {
+                    UserUtils.ShowInfo(vsis.errorString);
+                }));
 
                 if (vsis.softState != SoftState.Registering && vsis.softState != SoftState.UnRegisterd)
                 {
@@ -355,13 +361,19 @@ namespace FreightForwarder.UI.Winform
                     {
                         log.Error("读取Excel文件失败", ex);
                         CloseProgressForm();
-                        UserUtils.ShowInfo("读取Excel文件失败");
+                        this.Invoke(new Action(() =>
+                        {
+                            UserUtils.ShowInfo("读取Excel文件失败");
+                        }));
                         return;
                     }
 
                     if (rlist == null)
                     {
-                        UserUtils.ShowInfo("文件为空");
+                        this.Invoke(new Action(() =>
+                        {
+                            UserUtils.ShowInfo("文件为空");
+                        }));
                         CloseProgressForm();
                         return;
                     }
@@ -379,7 +391,8 @@ namespace FreightForwarder.UI.Winform
                     {
                         info = "导入失败！";
                     }
-                    this.Invoke(new Action(() => {
+                    this.Invoke(new Action(() =>
+                    {
                         UserUtils.ShowInfo(info);
                     }));
                 })));
@@ -424,16 +437,23 @@ namespace FreightForwarder.UI.Winform
                     companyId = Session.CURRENT_SOFT.Company.Id;
 #endif
                     IList<RouteInformationItem> exportList = _service.GetRouteInformationItems(companyId);
-                    if (exportList == null) {
+                    if (exportList == null)
+                    {
                         CloseProgressForm();
-                        UserUtils.ShowInfo("没有要导出的数据！");
+                        this.Invoke(new Action(() =>
+                        {
+                            UserUtils.ShowInfo("没有要导出的数据！");
+                        }));
                         return;
                     }
                     cb.ExportExcel(localFilePath, exportList);
 
                     CloseProgressForm();
 
-                    UserUtils.ShowInfo("导出完毕，请查看导出的文件！");
+                    this.Invoke(new Action(() =>
+                    {
+                        UserUtils.ShowInfo("导出完毕，请查看导出的文件！");
+                    }));
                 })));
                 exportThread.IsBackground = true;
                 exportThread.Start();
@@ -539,6 +559,10 @@ namespace FreightForwarder.UI.Winform
                     switch (m.WParam.ToInt32())
                     {
                         case 100:    //按下的是Ctrl+Alt+Shift+F8
+                            if (Session.CURRENT_SOFT == null)
+                                return;
+                            if (!string.IsNullOrEmpty(Session.CURRENT_SOFT.RegCode))
+                                return;
                             FrmUserRegister formRegCode = new FrmUserRegister();
                             formRegCode.StartPosition = FormStartPosition.CenterParent;
                             DialogResult dresult = formRegCode.ShowDialog(this);
