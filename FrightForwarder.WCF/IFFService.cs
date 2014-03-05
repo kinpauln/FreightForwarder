@@ -14,6 +14,12 @@ namespace FrightForwarder.WCF
     public interface IFFService
     {
         [OperationContract]
+        Dictionary<string, int> GetAllCompanies();
+
+        [OperationContract]
+        bool ImportRouteInformationItems(IList<RouteInformationItem> rlist);
+
+        [OperationContract]
         IList<RouteInformationItem> GetRoutItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer);
 
         [OperationContract]

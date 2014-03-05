@@ -32,8 +32,8 @@ namespace FreightForwarder.UI.Winform
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            picBoxLoading.Visible = true;
-            btnSearch.Enabled = false;
+            //picBoxLoading.Visible = true;
+            //btnSearch.Enabled = false;
 
             threadSearch = new Thread(new ThreadStart(new Action(() =>
             {

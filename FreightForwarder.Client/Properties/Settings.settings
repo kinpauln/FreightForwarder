@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FreightForwarder.Client.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FreightForwarder.UI.Winform.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="ServiceEmail" Type="System.String" Scope="User">
@@ -16,6 +16,9 @@
     </Setting>
     <Setting Name="AboutUs_Telephone" Type="System.String" Scope="User">
       <Value Profile="(Default)">1333454355</Value>
+    </Setting>
+    <Setting Name="SendErrorEmail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">true</Value>
     </Setting>
   </Settings>
 </SettingsFile>

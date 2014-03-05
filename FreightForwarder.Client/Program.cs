@@ -12,6 +12,7 @@ namespace FreightForwarder
     static class Program
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static bool _sendErrorEmail = bool.Parse(FreightForwarder.UI.Winform.Properties.Settings.Default.SendErrorEmail);
 
         /// <summary>
         /// The main entry point for the application.
@@ -39,7 +40,8 @@ namespace FreightForwarder
                 string str = GetExceptionMsg(ex, string.Empty);
                 //MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                UserUtils.SendEmail("错误日志", str);
+                if (_sendErrorEmail)
+                    UserUtils.SendEmail("错误日志", str);
                 log.Error(str);
             }
         }
@@ -49,7 +51,8 @@ namespace FreightForwarder
             string str = GetExceptionMsg(e.Exception, e.ToString());
             //MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            UserUtils.SendEmail("错误日志", str);
+            if (_sendErrorEmail)
+                UserUtils.SendEmail("错误日志", str);
             //LogManager.WriteLog(str);
             log.Error(str);
         }
@@ -59,7 +62,8 @@ namespace FreightForwarder
             string str = GetExceptionMsg(e.ExceptionObject as Exception, e.ToString());
             //MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            UserUtils.SendEmail("错误日志", str);
+            if (_sendErrorEmail)
+                UserUtils.SendEmail("错误日志", str);
             //LogManager.WriteLog(str);
             log.Error(str);
         }
@@ -88,10 +92,11 @@ namespace FreightForwarder
                 sb.AppendLine("【未处理异常】：" + backStr);
             }
 
-            if(sessionEntity!=null && sessionEntity.Company!=null){
+            if (sessionEntity != null && sessionEntity.Company != null)
+            {
                 sb.AppendLine("【用户信息】：");
-                sb.AppendLine("公司ID："+sessionEntity.Company.Id);
-                sb.AppendLine("公司名称："+sessionEntity.Company.Name);
+                sb.AppendLine("公司ID：" + sessionEntity.Company.Id);
+                sb.AppendLine("公司名称：" + sessionEntity.Company.Name);
                 sb.AppendLine("公司编码：" + sessionEntity.Company.Code);
                 sb.AppendLine("注册码：" + sessionEntity.RegCode);
                 sb.AppendLine("机器码：" + sessionEntity.MachineCode);

@@ -1,5 +1,5 @@
-﻿//#define ServerVersion
-#define ClientVersion
+﻿#define ServerVersion
+//#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
@@ -130,6 +130,9 @@ namespace FreightForwarder.UI.Winform
         {
             //注册热键Ctrl+Alt+Shift+F8，Id号为100。HotKey.KeyModifiers.Alt也可以直接使用数字1来表示。   
             HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Alt | HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.F8);
+
+            //注册热键Ctrl+Alt+Shift+F8，Id号为100。HotKey.KeyModifiers.Alt也可以直接使用数字1来表示。   
+            HotKey.RegisterHotKey(Handle, 101, HotKey.KeyModifiers.Alt | HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.F9);
         }
 
         struct ValidateSoftInfoStruct
@@ -150,9 +153,10 @@ namespace FreightForwarder.UI.Winform
             string errorString = string.Empty;
             if (rc == null)
             {
-                errorString = string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。", machineCode);
+                errorString = string.Format("还没注册，请联系软件供应商，并提供您的机器码 {0}，购买注册码后才能使用。", machineCode);
                 checkResult = false;
                 softState = SoftState.UnRegisterd;
+
             }
             else
             {
@@ -233,10 +237,10 @@ namespace FreightForwarder.UI.Winform
             }
             else
             {
-                UserUtils.ShowInfo(vsis.errorString);
                 CloseProgressForm();
+                UserUtils.ShowInfo(vsis.errorString);
 
-                if (vsis.softState != SoftState.Registering)
+                if (vsis.softState != SoftState.Registering && vsis.softState != SoftState.UnRegisterd)
                 {
                     //彻底退出程序
                     System.Environment.Exit(0);
@@ -259,7 +263,7 @@ namespace FreightForwarder.UI.Winform
             foreach (ToolStripMenuItem curritem in menu.Items)
             {
                 curritem.Enabled = !disable;
-                DisableSubMenu(curritem,disable);
+                DisableSubMenu(curritem, disable);
             }
         }
 
@@ -341,18 +345,43 @@ namespace FreightForwarder.UI.Winform
                 Thread importThread = new Thread(new ThreadStart(new Action(() =>
                 {
                     theFile = openFileDialog1.FileName;
-                    bool result = (new ServerBusinesses()).ImportExcelData(theFile);
+                    IList<RouteInformationItem> rlist = null;
+                    try
+                    {
+                        Dictionary<string, int> dicCompanies = _service.GetAllCompanies();
+                        rlist = (new ServerBusinesses()).GetExcelData(theFile, dicCompanies);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error("读取Excel文件失败", ex);
+                        CloseProgressForm();
+                        UserUtils.ShowInfo("读取Excel文件失败");
+                        return;
+                    }
+
+                    if (rlist == null)
+                    {
+                        UserUtils.ShowInfo("文件为空");
+                        CloseProgressForm();
+                        return;
+                    }
+
+                    bool result = _service.ImportRouteInformationItems(rlist.ToArray());
 
                     CloseProgressForm();
 
+                    string info = string.Empty;
                     if (result)
                     {
-                        UserUtils.ShowInfo("导入成功！");
+                        info = "导入成功！";
                     }
                     else
                     {
-                        UserUtils.ShowError("导入失败！");
+                        info = "导入失败！";
                     }
+                    this.Invoke(new Action(() => {
+                        UserUtils.ShowInfo(info);
+                    }));
                 })));
                 importThread.IsBackground = true;
                 importThread.Start();
@@ -518,6 +547,11 @@ namespace FreightForwarder.UI.Winform
                             {
                                 UserUtils.ShowError("注册失败！");
                             }
+                            break;
+                        case 101:    //按下的是Ctrl+Alt+Shift+F9
+                            FrmSoftInfo formInstance = new FrmSoftInfo();
+                            formInstance.StartPosition = FormStartPosition.CenterParent;
+                            formInstance.ShowDialog(this);
                             break;
                     }
                     break;

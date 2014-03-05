@@ -11,10 +11,8 @@ namespace FreightForwarder.Business
 {
     public static class Extentions
     {
-        public static IList<RouteInformationItem> ToRoutItemList(this DataTable dt)
+        public static IList<RouteInformationItem> ToRoutItemList(this DataTable dt, Dictionary<string, int> dicCompanies)
         {
-            Dictionary<string, int> dicCompanies = CompanyBusiness.GetAllCompanies();
-
             IList<RouteInformationItem> rlist = new List<RouteInformationItem>();
             foreach (DataRow row in dt.Rows)
             {

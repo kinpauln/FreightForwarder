@@ -78,6 +78,18 @@ namespace FreightForwarder.UI.Winform.FFWCF {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FFWCF.IFFService")]
     public interface IFFService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanies", ReplyAction="http://tempuri.org/IFFService/GetAllCompaniesResponse")]
+        System.Collections.Generic.Dictionary<string, int> GetAllCompanies();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanies", ReplyAction="http://tempuri.org/IFFService/GetAllCompaniesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> GetAllCompaniesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/ImportRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/ImportRouteInformationItemsResponse")]
+        bool ImportRouteInformationItems(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/ImportRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/ImportRouteInformationItemsResponse")]
+        System.Threading.Tasks.Task<bool> ImportRouteInformationItemsAsync(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRoutItems", ReplyAction="http://tempuri.org/IFFService/GetRoutItemsResponse")]
         FreightForwarder.Domain.Entities.RouteInformationItem[] GetRoutItems(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer);
         
@@ -146,6 +158,22 @@ namespace FreightForwarder.UI.Winform.FFWCF {
         
         public FFServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public System.Collections.Generic.Dictionary<string, int> GetAllCompanies() {
+            return base.Channel.GetAllCompanies();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> GetAllCompaniesAsync() {
+            return base.Channel.GetAllCompaniesAsync();
+        }
+        
+        public bool ImportRouteInformationItems(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist) {
+            return base.Channel.ImportRouteInformationItems(rlist);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ImportRouteInformationItemsAsync(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist) {
+            return base.Channel.ImportRouteInformationItemsAsync(rlist);
         }
         
         public FreightForwarder.Domain.Entities.RouteInformationItem[] GetRoutItems(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer) {

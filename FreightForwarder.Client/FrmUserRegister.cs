@@ -28,6 +28,13 @@ namespace FreightForwarder.UI.Winform
 
         private void btnReg_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(txtPart1.Text.Trim()) ||
+                    string.IsNullOrEmpty(txtPart2.Text.Trim()) ||
+                    string.IsNullOrEmpty(txtPart3.Text.Trim()) ||
+                    string.IsNullOrEmpty(txtPart4.Text.Trim())){
+                        UserUtils.ShowWarning("您输入的注册码不完整，请重新输入");
+                        return;
+            }
             _registerThread = new Thread(() =>
             {
                 this.Invoke(new Action(() =>

@@ -82,5 +82,17 @@ namespace FreightForwarder.UI.Winform.Properties {
                 this["AboutUs_Telephone"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public string SendErrorEmail {
+            get {
+                return ((string)(this["SendErrorEmail"]));
+            }
+            set {
+                this["SendErrorEmail"] = value;
+            }
+        }
     }
 }

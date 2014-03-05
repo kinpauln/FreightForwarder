@@ -27,18 +27,15 @@ namespace FreightForwarder.Business
             return (new DBHelper()).AddMachineCode(machineCode, companyId);
         }
 
-        public bool ImportExcelData(Stream stream) {
+        public IList<RouteInformationItem> ImportExcelData(Stream stream, Dictionary<string, int> dicCompanies)
+        {
             DataTable dt = NPOIHelper.ReadFromExcel(stream);
-
-            IList<RouteInformationItem> rlist = dt.ToRoutItemList();
-
-            // bool result = DBHelper.AddRouteInformationItems(importlist);
-            bool result = (new DBHelper()).ImportRouteInformationItems(rlist);
-
-            return result;
+            IList<RouteInformationItem> rlist = dt.ToRoutItemList(dicCompanies);
+            
+            return rlist;
         }
 
-        public bool ImportExcelData(string filepath)
+        public IList<RouteInformationItem> GetExcelData(string filepath, Dictionary<string, int> companies)
         {
             StreamReader reader = null;
             FileStream fs = null;
@@ -46,12 +43,11 @@ namespace FreightForwarder.Business
             {
                 fs = new FileStream(filepath, FileMode.Open);
                 reader = new StreamReader(fs);
-                return ImportExcelData(fs);
+                return ImportExcelData(fs, companies);
             }
             catch (Exception excep)
             {
-                //MessageBox.Show(excep.Message);
-                return false;
+                throw excep;
             }
             finally
             {
@@ -62,6 +58,11 @@ namespace FreightForwarder.Business
 
         public bool AddCompany(string companyName, string companyCode) {
             bool result = (new DBHelper()).AddCompany(companyName, companyCode);
+            return result;
+        }
+
+        public bool ImportRouteInformationItems(IList<RouteInformationItem> rlist) {
+            bool result = (new DBHelper()).ImportRouteInformationItems(rlist);
             return result;
         }
 
