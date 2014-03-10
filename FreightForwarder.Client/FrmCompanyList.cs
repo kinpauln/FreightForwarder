@@ -28,11 +28,12 @@ namespace FreightForwarder.UI.Winform
             {
                 this.Invoke(new Action(() =>
                 {
+                    dgvCompanies.AutoGenerateColumns = false;
                     dgvCompanies.DataSource = _service.GetAllCompanyList();
                 }));
             });
-            _regCodeThread.IsBackground = true;
-            _regCodeThread.Start();
+            _initialCompaniesThread.IsBackground = true;
+            _initialCompaniesThread.Start();
         }
     }
 }

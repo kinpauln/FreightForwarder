@@ -36,11 +36,7 @@
             this.rbtnIsNotSingleContainer = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtDestinationPort = new System.Windows.Forms.TextBox();
-            this.txtStartPort = new System.Windows.Forms.TextBox();
-            this.txtShipName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.gvRoutItems = new System.Windows.Forms.DataGridView();
             this.ShipName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,28 +52,21 @@
             this.SailDayLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picBoxLoading = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvRoutItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.picBoxLoading);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.txtDestinationPort);
-            this.panel1.Controls.Add(this.txtStartPort);
-            this.panel1.Controls.Add(this.txtShipName);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(900, 84);
+            this.panel1.Size = new System.Drawing.Size(900, 64);
             this.panel1.TabIndex = 0;
             // 
             // panel2
@@ -85,7 +74,7 @@
             this.panel2.Controls.Add(this.rbtnIsSingleContainer);
             this.panel2.Controls.Add(this.rbtnAll);
             this.panel2.Controls.Add(this.rbtnIsNotSingleContainer);
-            this.panel2.Location = new System.Drawing.Point(277, 15);
+            this.panel2.Location = new System.Drawing.Point(293, 23);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(180, 21);
             this.panel2.TabIndex = 6;
@@ -125,7 +114,7 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(813, 15);
+            this.btnSearch.Location = new System.Drawing.Point(813, 5);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 50);
             this.btnSearch.TabIndex = 2;
@@ -135,51 +124,19 @@
             // 
             // txtDestinationPort
             // 
-            this.txtDestinationPort.Location = new System.Drawing.Point(328, 47);
+            this.txtDestinationPort.Location = new System.Drawing.Point(89, 23);
             this.txtDestinationPort.Name = "txtDestinationPort";
             this.txtDestinationPort.Size = new System.Drawing.Size(186, 21);
             this.txtDestinationPort.TabIndex = 1;
             // 
-            // txtStartPort
-            // 
-            this.txtStartPort.Location = new System.Drawing.Point(71, 47);
-            this.txtStartPort.Name = "txtStartPort";
-            this.txtStartPort.Size = new System.Drawing.Size(186, 21);
-            this.txtStartPort.TabIndex = 1;
-            // 
-            // txtShipName
-            // 
-            this.txtShipName.Location = new System.Drawing.Point(71, 15);
-            this.txtShipName.Name = "txtShipName";
-            this.txtShipName.Size = new System.Drawing.Size(186, 21);
-            this.txtShipName.TabIndex = 1;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(281, 50);
+            this.label3.Location = new System.Drawing.Point(26, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 0;
-            this.label3.Text = "目的港";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "起运港";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "船名";
+            this.label3.Text = "目的港：";
             // 
             // gvRoutItems
             // 
@@ -202,10 +159,10 @@
             this.ValidDate,
             this.Remarks});
             this.gvRoutItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvRoutItems.Location = new System.Drawing.Point(0, 84);
+            this.gvRoutItems.Location = new System.Drawing.Point(0, 64);
             this.gvRoutItems.Name = "gvRoutItems";
             this.gvRoutItems.RowTemplate.Height = 23;
-            this.gvRoutItems.Size = new System.Drawing.Size(900, 321);
+            this.gvRoutItems.Size = new System.Drawing.Size(900, 341);
             this.gvRoutItems.TabIndex = 1;
             this.gvRoutItems.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvRoutItems_CellFormatting);
             // 
@@ -316,16 +273,6 @@
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
             // 
-            // picBoxLoading
-            // 
-            this.picBoxLoading.Image = global::FreightForwarder.UI.Winform.Properties.Resources.ajax_loader;
-            this.picBoxLoading.Location = new System.Drawing.Point(543, 23);
-            this.picBoxLoading.Name = "picBoxLoading";
-            this.picBoxLoading.Size = new System.Drawing.Size(32, 32);
-            this.picBoxLoading.TabIndex = 7;
-            this.picBoxLoading.TabStop = false;
-            this.picBoxLoading.Visible = false;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -344,7 +291,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvRoutItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxLoading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -354,11 +300,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtDestinationPort;
-        private System.Windows.Forms.TextBox txtStartPort;
-        private System.Windows.Forms.TextBox txtShipName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton rbtnIsSingleContainer;
         private System.Windows.Forms.RadioButton rbtnIsNotSingleContainer;
@@ -378,6 +320,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SailDayLength;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValidDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
-        private System.Windows.Forms.PictureBox picBoxLoading;
     }
 }

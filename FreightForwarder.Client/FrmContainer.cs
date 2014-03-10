@@ -614,7 +614,9 @@ namespace FreightForwarder.UI.Winform
 
         private void toolStripMenuItemCompanyMgr_Click(object sender, EventArgs e)
         {
-            ShowSingleWindow(typeof(FrmCompanyList), FormWindowState.Maximized);
+            FrmCompanyList regForm = new FrmCompanyList();
+            regForm.StartPosition = FormStartPosition.CenterParent;
+            DialogResult dresult = regForm.ShowDialog(this);
         }
     }
 

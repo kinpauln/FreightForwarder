@@ -39,8 +39,6 @@ namespace FreightForwarder.UI.Winform
             {
                 IList<RouteInformationItem> rlist = new List<RouteInformationItem>();
 
-                string shipName = txtShipName.Text.Trim();
-                string startPort = txtStartPort.Text.Trim();
                 string destinationPort = txtDestinationPort.Text.Trim();
                 bool? isSingleContainer = null;
                 if (rbtnIsNotSingleContainer.Checked)
@@ -52,15 +50,13 @@ namespace FreightForwarder.UI.Winform
                     isSingleContainer = true;
                 }
 
-                rlist = _service.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
-                //rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+                rlist = _service.GetRoutItems(null, null, destinationPort, isSingleContainer);
                 Thread.Sleep(5000);
                 this.Invoke(new Action(() =>
                 {
                     gvRoutItems.AutoGenerateColumns = false;
                     gvRoutItems.DataSource = rlist;
 
-                    picBoxLoading.Visible = false;
                     btnSearch.Enabled = true;
                 }));
 

@@ -31,8 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvCompanies = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompanies)).BeginInit();
             this.SuspendLayout();
@@ -58,8 +58,8 @@
             // 
             this.dgvCompanies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompanies.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
-            this.Code});
+            this.Code,
+            this.Name});
             this.dgvCompanies.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCompanies.Location = new System.Drawing.Point(0, 25);
             this.dgvCompanies.Name = "dgvCompanies";
@@ -67,15 +67,18 @@
             this.dgvCompanies.Size = new System.Drawing.Size(401, 314);
             this.dgvCompanies.TabIndex = 1;
             // 
-            // Name
-            // 
-            this.Name.HeaderText = "公司名";
-            this.Name.Name = "Name";
-            // 
             // Code
             // 
+            this.Code.DataPropertyName = "Code";
             this.Code.HeaderText = "代码";
             this.Code.Name = "Code";
+            // 
+            // Name
+            // 
+            this.Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Name.DataPropertyName = "Name";
+            this.Name.HeaderText = "公司名";
+            this.Name.Name = "Name";
             // 
             // FrmCompanyList
             // 
@@ -103,7 +106,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEdit;
         private System.Windows.Forms.DataGridView dgvCompanies;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
     }
 }
