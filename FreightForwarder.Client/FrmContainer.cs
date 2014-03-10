@@ -611,6 +611,11 @@ namespace FreightForwarder.UI.Winform
         {
             ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
         }
+
+        private void toolStripMenuItemCompanyMgr_Click(object sender, EventArgs e)
+        {
+            ShowSingleWindow(typeof(FrmCompanyList), FormWindowState.Maximized);
+        }
     }
 
 

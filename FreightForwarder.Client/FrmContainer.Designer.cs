@@ -34,6 +34,8 @@
             this.tsddBtnImport = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tlspBtnExport = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnQuery = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemTool = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRegCodeViewer = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,8 +51,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLblCompanyInfo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnQuery = new System.Windows.Forms.ToolStripButton();
+            this.toolStripMenuItemCompanyMgr = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -98,6 +99,22 @@
             this.tlspBtnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tlspBtnExport.Click += new System.EventHandler(this.tlspBtnExport_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 64);
+            // 
+            // toolStripBtnQuery
+            // 
+            this.toolStripBtnQuery.Image = global::FreightForwarder.UI.Winform.Properties.Resources.database_search;
+            this.toolStripBtnQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnQuery.Name = "toolStripBtnQuery";
+            this.toolStripBtnQuery.Size = new System.Drawing.Size(44, 61);
+            this.toolStripBtnQuery.Text = "查询";
+            this.toolStripBtnQuery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripBtnQuery.ToolTipText = "    查询    ";
+            this.toolStripBtnQuery.Click += new System.EventHandler(this.toolStripBtnQuery_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -131,6 +148,7 @@
             this.工具ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemSearch,
             this.tsItemBtnAddCompany,
+            this.toolStripMenuItemCompanyMgr,
             this.tsItemBtnRegCode});
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
             this.工具ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
@@ -139,21 +157,21 @@
             // toolStripMenuItemSearch
             // 
             this.toolStripMenuItemSearch.Name = "toolStripMenuItemSearch";
-            this.toolStripMenuItemSearch.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItemSearch.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItemSearch.Text = "查询";
             this.toolStripMenuItemSearch.Click += new System.EventHandler(this.toolStripMenuItemSearch_Click);
             // 
             // tsItemBtnAddCompany
             // 
             this.tsItemBtnAddCompany.Name = "tsItemBtnAddCompany";
-            this.tsItemBtnAddCompany.Size = new System.Drawing.Size(136, 22);
+            this.tsItemBtnAddCompany.Size = new System.Drawing.Size(152, 22);
             this.tsItemBtnAddCompany.Text = "添加公司";
             this.tsItemBtnAddCompany.Click += new System.EventHandler(this.tsItemBtnAddCompany_Click);
             // 
             // tsItemBtnRegCode
             // 
             this.tsItemBtnRegCode.Name = "tsItemBtnRegCode";
-            this.tsItemBtnRegCode.Size = new System.Drawing.Size(136, 22);
+            this.tsItemBtnRegCode.Size = new System.Drawing.Size(152, 22);
             this.tsItemBtnRegCode.Text = "注册机器码";
             this.tsItemBtnRegCode.Click += new System.EventHandler(this.tsItemBtnRegCode_Click);
             // 
@@ -216,21 +234,12 @@
             this.toolStripStatusLblCompanyInfo.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLblCompanyInfo.Text = "公司名";
             // 
-            // toolStripSeparator2
+            // toolStripMenuItemCompanyMgr
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 64);
-            // 
-            // toolStripBtnQuery
-            // 
-            this.toolStripBtnQuery.Image = global::FreightForwarder.UI.Winform.Properties.Resources.database_search;
-            this.toolStripBtnQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnQuery.Name = "toolStripBtnQuery";
-            this.toolStripBtnQuery.Size = new System.Drawing.Size(44, 61);
-            this.toolStripBtnQuery.Text = "查询";
-            this.toolStripBtnQuery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripBtnQuery.ToolTipText = "    查询    ";
-            this.toolStripBtnQuery.Click += new System.EventHandler(this.toolStripBtnQuery_Click);
+            this.toolStripMenuItemCompanyMgr.Name = "toolStripMenuItemCompanyMgr";
+            this.toolStripMenuItemCompanyMgr.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemCompanyMgr.Text = "公司管理";
+            this.toolStripMenuItemCompanyMgr.Click += new System.EventHandler(this.toolStripMenuItemCompanyMgr_Click);
             // 
             // FrmContainer
             // 
@@ -286,6 +295,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLblCompanyInfo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripBtnQuery;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCompanyMgr;
 
     }
 }
