@@ -286,6 +286,22 @@ namespace FreightForwarder.Data
             }
         }
 
+        public bool ExistedEntity(string machineCode)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    return context.RegisterCodes.Where(rc => rc.MachineCode.Equals(machineCode)).Count() > 0 ? true : false;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("根据机器码判断是否已存在失败", ex);
+                    return true;
+                }
+            }
+        }
+
         public bool AddMachineCode(string machineCode, int companyId)
         {
             using (FFDBContext context = new FFDBContext())

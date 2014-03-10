@@ -1,5 +1,5 @@
-﻿//#define ServerVersion
-#define ClientVersion
+﻿#define ServerVersion
+//#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;

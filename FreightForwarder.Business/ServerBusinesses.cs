@@ -13,6 +13,11 @@ namespace FreightForwarder.Business
 {
     public class ServerBusinesses : BusinessBase
     {
+        public bool ExistedEntity(string machineCode)
+        {
+            return (new DBHelper()).ExistedEntity(machineCode);
+        }
+
         public bool ExistedEntity(string machineCode, int companyId)
         {
             return (new DBHelper()).ExistedEntity(machineCode, companyId);

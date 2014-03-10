@@ -43,7 +43,7 @@ namespace FrightForwarder.WCF
         public bool AddMachineCode(string machineCode, int companyId)
         {
             // 机器码数据库中已经存在
-            if ((new ServerBusinesses()).ExistedEntity(machineCode, companyId)) {
+            if ((new ServerBusinesses()).ExistedEntity(machineCode)) {
                 return false;
             }
             return (new ServerBusinesses()).AddMachineCode(machineCode, companyId);
