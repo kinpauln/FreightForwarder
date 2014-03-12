@@ -225,7 +225,7 @@
   </wsdl:binding>
   <wsdl:service name="FFService">
     <wsdl:port name="BasicHttpBinding_IFFService" binding="tns:BasicHttpBinding_IFFService">
-      <soap:address location="http://localhost/FFService/FFService.svc" />
+      <soap:address location="http://localhost/FFService/FFService.svc/basic" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
