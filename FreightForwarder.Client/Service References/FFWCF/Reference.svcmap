@@ -23,6 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="FFService4.xsd" MetadataType="Schema" ID="7c572c45-e8dc-42f9-9de6-7e9e12e14e5e" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd4" />
+    <MetadataFile FileName="FFService1.wsdl" MetadataType="Wsdl" ID="41fb838b-7e32-4586-acf4-b2c05ef31079" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?wsdl=wsdl0" />
     <MetadataFile FileName="FFService.xsd" MetadataType="Schema" ID="dad9d7cc-8169-4593-9546-4080f9a41372" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd2" />
     <MetadataFile FileName="FFService1.xsd" MetadataType="Schema" ID="6e5a574d-c069-4b84-9d41-565399e41e05" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd3" />
     <MetadataFile FileName="FFService2.xsd" MetadataType="Schema" ID="e5eec71a-5453-4d6c-915a-05de9356e887" SourceId="1" SourceUrl="http://localhost/FFService/FFService.svc?xsd=xsd0" />

@@ -75,73 +75,73 @@ namespace FreightForwarder.UI.Winform.FFWCF {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FFWCF.IFFService")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="FrightForwarder", ConfigurationName="FFWCF.IFFService")]
     public interface IFFService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/GetRouteInformationItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRouteInformationItems", ReplyAction="FrightForwarder/IFFService/GetRouteInformationItemsResponse")]
         FreightForwarder.Domain.Entities.RouteInformationItem[] GetRouteInformationItems(System.Nullable<int> companyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/GetRouteInformationItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRouteInformationItems", ReplyAction="FrightForwarder/IFFService/GetRouteInformationItemsResponse")]
         System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RouteInformationItem[]> GetRouteInformationItemsAsync(System.Nullable<int> companyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanyList", ReplyAction="http://tempuri.org/IFFService/GetAllCompanyListResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanyList", ReplyAction="FrightForwarder/IFFService/GetAllCompanyListResponse")]
         FreightForwarder.Domain.Entities.Company[] GetAllCompanyList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanyList", ReplyAction="http://tempuri.org/IFFService/GetAllCompanyListResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanyList", ReplyAction="FrightForwarder/IFFService/GetAllCompanyListResponse")]
         System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.Company[]> GetAllCompanyListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanies", ReplyAction="http://tempuri.org/IFFService/GetAllCompaniesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanies", ReplyAction="FrightForwarder/IFFService/GetAllCompaniesResponse")]
         System.Collections.Generic.Dictionary<string, int> GetAllCompanies();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetAllCompanies", ReplyAction="http://tempuri.org/IFFService/GetAllCompaniesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanies", ReplyAction="FrightForwarder/IFFService/GetAllCompaniesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> GetAllCompaniesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/ImportRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/ImportRouteInformationItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/ImportRouteInformationItems", ReplyAction="FrightForwarder/IFFService/ImportRouteInformationItemsResponse")]
         bool ImportRouteInformationItems(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/ImportRouteInformationItems", ReplyAction="http://tempuri.org/IFFService/ImportRouteInformationItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/ImportRouteInformationItems", ReplyAction="FrightForwarder/IFFService/ImportRouteInformationItemsResponse")]
         System.Threading.Tasks.Task<bool> ImportRouteInformationItemsAsync(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRoutItems", ReplyAction="http://tempuri.org/IFFService/GetRoutItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRoutItems", ReplyAction="FrightForwarder/IFFService/GetRoutItemsResponse")]
         FreightForwarder.Domain.Entities.RouteInformationItem[] GetRoutItems(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetRoutItems", ReplyAction="http://tempuri.org/IFFService/GetRoutItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRoutItems", ReplyAction="FrightForwarder/IFFService/GetRoutItemsResponse")]
         System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RouteInformationItem[]> GetRoutItemsAsync(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/AssociatMachineAndRegCode", ReplyAction="http://tempuri.org/IFFService/AssociatMachineAndRegCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AssociatMachineAndRegCode", ReplyAction="FrightForwarder/IFFService/AssociatMachineAndRegCodeResponse")]
         bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/AssociatMachineAndRegCode", ReplyAction="http://tempuri.org/IFFService/AssociatMachineAndRegCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AssociatMachineAndRegCode", ReplyAction="FrightForwarder/IFFService/AssociatMachineAndRegCodeResponse")]
         System.Threading.Tasks.Task<bool> AssociatMachineAndRegCodeAsync(string machineCode, string regcode, int companyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/AddMachineCode", ReplyAction="http://tempuri.org/IFFService/AddMachineCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AddMachineCode", ReplyAction="FrightForwarder/IFFService/AddMachineCodeResponse")]
         bool AddMachineCode(string machineCode, int companyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/AddMachineCode", ReplyAction="http://tempuri.org/IFFService/AddMachineCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AddMachineCode", ReplyAction="FrightForwarder/IFFService/AddMachineCodeResponse")]
         System.Threading.Tasks.Task<bool> AddMachineCodeAsync(string machineCode, int companyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/IsRegistered", ReplyAction="http://tempuri.org/IFFService/IsRegisteredResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/IsRegistered", ReplyAction="FrightForwarder/IFFService/IsRegisteredResponse")]
         FreightForwarder.Domain.Entities.RegisterCode IsRegistered(string machineCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/IsRegistered", ReplyAction="http://tempuri.org/IFFService/IsRegisteredResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/IsRegistered", ReplyAction="FrightForwarder/IFFService/IsRegisteredResponse")]
         System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RegisterCode> IsRegisteredAsync(string machineCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/ValidateMachineCode", ReplyAction="http://tempuri.org/IFFService/ValidateMachineCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/ValidateMachineCode", ReplyAction="FrightForwarder/IFFService/ValidateMachineCodeResponse")]
         bool ValidateMachineCode(string machineCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/ValidateMachineCode", ReplyAction="http://tempuri.org/IFFService/ValidateMachineCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/ValidateMachineCode", ReplyAction="FrightForwarder/IFFService/ValidateMachineCodeResponse")]
         System.Threading.Tasks.Task<bool> ValidateMachineCodeAsync(string machineCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/AddCompany", ReplyAction="http://tempuri.org/IFFService/AddCompanyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AddCompany", ReplyAction="FrightForwarder/IFFService/AddCompanyResponse")]
         bool AddCompany(string companyName, string companyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/AddCompany", ReplyAction="http://tempuri.org/IFFService/AddCompanyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AddCompany", ReplyAction="FrightForwarder/IFFService/AddCompanyResponse")]
         System.Threading.Tasks.Task<bool> AddCompanyAsync(string companyName, string companyCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IFFService/GetDataUsingDataContractResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetDataUsingDataContract", ReplyAction="FrightForwarder/IFFService/GetDataUsingDataContractResponse")]
         FreightForwarder.UI.Winform.FFWCF.CompositeType GetDataUsingDataContract(FreightForwarder.UI.Winform.FFWCF.CompositeType composite);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IFFService/GetDataUsingDataContractResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetDataUsingDataContract", ReplyAction="FrightForwarder/IFFService/GetDataUsingDataContractResponse")]
         System.Threading.Tasks.Task<FreightForwarder.UI.Winform.FFWCF.CompositeType> GetDataUsingDataContractAsync(FreightForwarder.UI.Winform.FFWCF.CompositeType composite);
     }
     

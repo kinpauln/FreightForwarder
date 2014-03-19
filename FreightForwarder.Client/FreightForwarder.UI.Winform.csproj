@@ -219,6 +219,7 @@
     <None Include="Service References\FFWCF\FFService.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\FFWCF\FFService1.wsdl" />
     <None Include="Service References\FFWCF\FFService1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -236,7 +237,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FreightForwarder.Business\FreightForwarder.Business.csproj">

@@ -35,6 +35,13 @@ namespace FrightForwarder.WCF
             return BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
         }
 
+        //public byte[] GetRoutItems(string shipName, string startPort, string destinationPort, bool? isSingleContainer)
+        //{
+        //    IList<RouteInformationItem> rlist = BusinessBase.GetRoutItems(shipName, startPort, destinationPort, isSingleContainer);
+        //    byte[] rbytes = null;
+        //        return rbytes;
+        //}
+
         public bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId)
         {
             return (new ServerBusinesses()).AssociatMachineAndRegCode(machineCode, regcode, companyId);

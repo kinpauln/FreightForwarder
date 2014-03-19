@@ -1,130 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FFService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types>
-    <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FreightForwarder.Domain.Entities" />
-      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost/FFService/FFService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF" />
-    </xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="IFFService_GetRouteInformationItems_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetRouteInformationItems" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetRouteInformationItems_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetRouteInformationItemsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetAllCompanyList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCompanyList" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetAllCompanyList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCompanyListResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetAllCompanies_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCompanies" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetAllCompanies_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCompaniesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_ImportRouteInformationItems_InputMessage">
-    <wsdl:part name="parameters" element="tns:ImportRouteInformationItems" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_ImportRouteInformationItems_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ImportRouteInformationItemsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetRoutItems_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetRoutItems" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetRoutItems_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetRoutItemsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_AssociatMachineAndRegCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:AssociatMachineAndRegCode" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_AssociatMachineAndRegCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AssociatMachineAndRegCodeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_AddMachineCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddMachineCode" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_AddMachineCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddMachineCodeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_IsRegistered_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsRegistered" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_IsRegistered_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsRegisteredResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_ValidateMachineCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMachineCode" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_ValidateMachineCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ValidateMachineCodeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_AddCompany_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddCompany" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_AddCompany_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddCompanyResponse" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
-  </wsdl:message>
-  <wsdl:message name="IFFService_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
-  </wsdl:message>
-  <wsdl:portType name="IFFService">
-    <wsdl:operation name="GetRouteInformationItems">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetRouteInformationItems" message="tns:IFFService_GetRouteInformationItems_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetRouteInformationItemsResponse" message="tns:IFFService_GetRouteInformationItems_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllCompanyList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetAllCompanyList" message="tns:IFFService_GetAllCompanyList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetAllCompanyListResponse" message="tns:IFFService_GetAllCompanyList_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllCompanies">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetAllCompanies" message="tns:IFFService_GetAllCompanies_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetAllCompaniesResponse" message="tns:IFFService_GetAllCompanies_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ImportRouteInformationItems">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/ImportRouteInformationItems" message="tns:IFFService_ImportRouteInformationItems_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/ImportRouteInformationItemsResponse" message="tns:IFFService_ImportRouteInformationItems_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetRoutItems">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetRoutItems" message="tns:IFFService_GetRoutItems_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetRoutItemsResponse" message="tns:IFFService_GetRoutItems_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AssociatMachineAndRegCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/AssociatMachineAndRegCode" message="tns:IFFService_AssociatMachineAndRegCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/AssociatMachineAndRegCodeResponse" message="tns:IFFService_AssociatMachineAndRegCode_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddMachineCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/AddMachineCode" message="tns:IFFService_AddMachineCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/AddMachineCodeResponse" message="tns:IFFService_AddMachineCode_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="IsRegistered">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/IsRegistered" message="tns:IFFService_IsRegistered_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/IsRegisteredResponse" message="tns:IFFService_IsRegistered_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ValidateMachineCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/ValidateMachineCode" message="tns:IFFService_ValidateMachineCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/ValidateMachineCodeResponse" message="tns:IFFService_ValidateMachineCode_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddCompany">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/AddCompany" message="tns:IFFService_AddCompany_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/AddCompanyResponse" message="tns:IFFService_AddCompany_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFFService/GetDataUsingDataContract" message="tns:IFFService_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFFService/GetDataUsingDataContractResponse" message="tns:IFFService_GetDataUsingDataContract_OutputMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IFFService" type="tns:IFFService">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="FrightForwarder" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FFService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="FrightForwarder" location="http://localhost/FFService/FFService.svc?wsdl=wsdl0" />
+  <wsdl:types />
+  <wsdl:binding name="BasicHttpBinding_IFFService" type="i0:IFFService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetRouteInformationItems">
-      <soap:operation soapAction="http://tempuri.org/IFFService/GetRouteInformationItems" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/GetRouteInformationItems" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -133,7 +14,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllCompanyList">
-      <soap:operation soapAction="http://tempuri.org/IFFService/GetAllCompanyList" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/GetAllCompanyList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -142,7 +23,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAllCompanies">
-      <soap:operation soapAction="http://tempuri.org/IFFService/GetAllCompanies" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/GetAllCompanies" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -151,7 +32,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ImportRouteInformationItems">
-      <soap:operation soapAction="http://tempuri.org/IFFService/ImportRouteInformationItems" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/ImportRouteInformationItems" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -160,7 +41,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetRoutItems">
-      <soap:operation soapAction="http://tempuri.org/IFFService/GetRoutItems" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/GetRoutItems" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -169,7 +50,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AssociatMachineAndRegCode">
-      <soap:operation soapAction="http://tempuri.org/IFFService/AssociatMachineAndRegCode" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/AssociatMachineAndRegCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -178,7 +59,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddMachineCode">
-      <soap:operation soapAction="http://tempuri.org/IFFService/AddMachineCode" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/AddMachineCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -187,7 +68,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="IsRegistered">
-      <soap:operation soapAction="http://tempuri.org/IFFService/IsRegistered" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/IsRegistered" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -196,7 +77,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ValidateMachineCode">
-      <soap:operation soapAction="http://tempuri.org/IFFService/ValidateMachineCode" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/ValidateMachineCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -205,7 +86,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddCompany">
-      <soap:operation soapAction="http://tempuri.org/IFFService/AddCompany" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/AddCompany" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -214,7 +95,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetDataUsingDataContract">
-      <soap:operation soapAction="http://tempuri.org/IFFService/GetDataUsingDataContract" style="document" />
+      <soap:operation soapAction="FrightForwarder/IFFService/GetDataUsingDataContract" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
