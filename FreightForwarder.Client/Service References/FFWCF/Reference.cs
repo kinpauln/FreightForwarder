@@ -79,18 +79,21 @@ namespace FreightForwarder.UI.Winform.FFWCF {
     public interface IFFService {
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRouteInformationItems", ReplyAction="FrightForwarder/IFFService/GetRouteInformationItemsResponse")]
+        [FreightForwarder.MessageCompression.CompressionOperationBehavior]
         FreightForwarder.Domain.Entities.RouteInformationItem[] GetRouteInformationItems(System.Nullable<int> companyId);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRouteInformationItems", ReplyAction="FrightForwarder/IFFService/GetRouteInformationItemsResponse")]
         System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.RouteInformationItem[]> GetRouteInformationItemsAsync(System.Nullable<int> companyId);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanyList", ReplyAction="FrightForwarder/IFFService/GetAllCompanyListResponse")]
+        [FreightForwarder.MessageCompression.CompressionOperationBehavior]
         FreightForwarder.Domain.Entities.Company[] GetAllCompanyList();
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanyList", ReplyAction="FrightForwarder/IFFService/GetAllCompanyListResponse")]
         System.Threading.Tasks.Task<FreightForwarder.Domain.Entities.Company[]> GetAllCompanyListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanies", ReplyAction="FrightForwarder/IFFService/GetAllCompaniesResponse")]
+        [FreightForwarder.MessageCompression.CompressionOperationBehavior]
         System.Collections.Generic.Dictionary<string, int> GetAllCompanies();
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetAllCompanies", ReplyAction="FrightForwarder/IFFService/GetAllCompaniesResponse")]
@@ -103,6 +106,7 @@ namespace FreightForwarder.UI.Winform.FFWCF {
         System.Threading.Tasks.Task<bool> ImportRouteInformationItemsAsync(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRoutItems", ReplyAction="FrightForwarder/IFFService/GetRoutItemsResponse")]
+        [FreightForwarder.MessageCompression.CompressionOperationBehavior]
         FreightForwarder.Domain.Entities.RouteInformationItem[] GetRoutItems(string shipName, string startPort, string destinationPort, System.Nullable<bool> isSingleContainer);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetRoutItems", ReplyAction="FrightForwarder/IFFService/GetRoutItemsResponse")]

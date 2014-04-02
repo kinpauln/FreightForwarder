@@ -250,6 +250,10 @@
       <Project>{e8e1c397-1f15-45d2-8050-fcc454395a57}</Project>
       <Name>FreightForwarder.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FreightForwarder.Compression\FreightForwarder.Compression.csproj">
+      <Project>{4ced4230-5fe3-4451-9e22-dfc0cbd5f288}</Project>
+      <Name>FreightForwarder.Compression</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FreightForwarder.Data\FreightForwarder.Data.csproj">
       <Project>{9e909f78-4151-49a9-9405-314074e98159}</Project>
       <Name>FreightForwarder.Data</Name>
