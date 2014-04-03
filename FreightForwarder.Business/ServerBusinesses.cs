@@ -13,6 +13,16 @@ namespace FreightForwarder.Business
 {
     public class ServerBusinesses : BusinessBase
     {
+        public int GetUpgradePackageCount()
+        {
+            return (new DBHelper()).GetUpgradePackageCount();
+        }
+
+        public bool AddUpgradePackage(UpgradePackage entity)
+        {
+            return (new DBHelper()).AddUpgradePackage(entity);
+        }
+
         public IEnumerable<UpgradePackage> GetUpgradePackages()
         {
             return (new DBHelper()).GetUpgradePackages();

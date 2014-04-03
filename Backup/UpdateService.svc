@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="BigzoneBusinessCenterService.UpdateService" CodeBehind="UpdateService.svc.cs" %>

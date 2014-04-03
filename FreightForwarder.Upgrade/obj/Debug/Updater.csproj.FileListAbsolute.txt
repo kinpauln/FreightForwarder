@@ -1,0 +1,4 @@
+E:\Sync\Git\FreightForwarder\FreightForwarder.Upgrade\obj\Debug\Updater.csprojResolveAssemblyReference.cache
+E:\Sync\Git\FreightForwarder\FreightForwarder.Upgrade\obj\Debug\TransPadUpdater.MainForm.resources
+E:\Sync\Git\FreightForwarder\FreightForwarder.Upgrade\obj\Debug\TransPadUpdater.Properties.Resources.resources
+E:\Sync\Git\FreightForwarder\FreightForwarder.Upgrade\obj\Debug\Updater.csproj.GenerateResource.Cache

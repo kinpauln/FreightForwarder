@@ -1,0 +1,52 @@
+﻿html{
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+body
+{
+    margin:10px;
+    font-size:14px;
+    font-family:Tahoma, 宋体;
+    line-height:1.8em;
+}
+
+.textbox{
+    border:solid 1px #89B5E9;
+    padding:5px;
+}
+
+.button{
+    padding:3px;
+}
+
+.top{
+    padding:10px 0;
+}
+
+.top span{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.search{
+    padding:10px 0;
+    border-top:solid 3px #89B5E9;
+    border-bottom:solid 1px #89B5E9;
+    text-align:center;
+    background:#EFF5FB;
+}
+
+.main{
+    margin:5px 0;
+    border:solid 1px #89B5E9;
+}
+
+.main-nav{
+    width:200px;
+    float:left;
+}
+
+.main-body{
+    float:left;
+}

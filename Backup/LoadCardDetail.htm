@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title></title>
+    <style type="text/css">
+        body{
+            font-family:Tahoma, 宋体;
+            font-size:12px;
+            margin:0;
+            padding:5px 2px;
+        }
+        .welcome{
+            border:solid 1px Silver;
+            background:#F8F8F8;
+            padding:10px;
+            text-align:center;
+        }       
+        .loading{
+            border:solid 1px Silver;
+            background:#F8F8F8;
+            padding:15px;
+            text-align:center;
+            color:Green;
+            font-weight:normal;
+            display:none;
+        }
+        .error{
+            border:solid 1px Orange;
+            background:#F8F8F8;
+            padding:10px;
+            text-align:center;
+            color:Red;
+            font-weight:bold;
+            display:none;
+        }
+        .data{
+            display:none;
+        }
+        .hidden{
+            display:none;
+        }
+        img{
+            /*background:transparent url(Image/inner-no-image.gif) no-repeat;
+            src:url(Image/inner-no-image.gif);*/
+        }
+        table{
+            border-collapse:collapse;
+            border:solid 1px #CECFCE;
+        }
+        td{
+            border:solid 1px #CECFCE;
+            padding:4px 2px;
+        }
+        tr{
+            border:solid 1px #CECFCE;
+        }
+        .list_headrig{
+            background:#E7F7FF;
+            text-align:right;
+        }
+        #divDataSign{
+            display:none;
+        }
+    </style>
+    <script type="text/javascript" src="Script/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript">
+
+        //取Url参数
+        function getQueryValue(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return unescape(r[2]);
+            return "";
+        }
+
+		//去年空格
+        String.prototype.Trim = function() {
+            return this.replace(/(^\s*)|(\s*$)/g, "");
+        }
+
+        $(function() {
+            var hpzl = getQueryValue("hpzl");
+            var hphm = getQueryValue("hphm");
+            var hphmt = getQueryValue("hphmt");
+            var yzm = getQueryValue("yzm");
+
+            var url = "http://10.231.24.26/baseweb/vehquery.tmri?method=vehdetail&hpzl=" + hpzl + "&hphm=" + hphm + "&hphmt=" + hphmt + "&yzm=" + yzm;
+            var spliter = '<script language="JavaScript" type="text/javascript">result_query()</' + 'script>';
+            var sp2 = '<span id=fun_menuhide title=点击查看详细业务说明 style="DISPLAY: block; CURSOR: pointer">';
+            var result = "没有检索到数据！";
+
+            var car_no_data_text1 = '<td align="center" class="list_body_out" >未查询到记录</td>';
+            var card_no_data_text = '在查询库中没有检索到信息';     //车牌业务，如果没有查找到该车牌信息会有这个提示
+
+            if (hpzl == undefined || hpzl.Trim().length == 0 ||
+                hphm == undefined || hphm.Trim().length == 0 ||
+                hphmt == undefined || hphmt.Trim().length == 0 ||
+                yzm == undefined || yzm.Trim().length == 0) {
+                return;
+            }
+
+//            $.post(url, {}, function(data) {
+//                if (data.toString().length > 0) {
+//                    var items = data.split(spliter);
+//                    $(".welcome").hide();
+//                    
+//                    //判断是不是出错了
+//                    if (data.toString().indexOf("验证码错误") > 0) {
+//                        $(".error").html("验证码错误，请确保输入验证码正确！");
+//                        $("#divDataSign").html('0');
+//                        $(".error").show();
+//                        return;
+//                    }
+//                    else if (data.toString().indexOf(card_no_data_text) > 0 || data.toString().indexOf(car_no_data_text1) > 0) {
+//                        $(".error").html("没有查询到该牌号相关记录！");
+//                        $("#divDataSign").html('0');
+//                        $(".error").show();
+//                        return;
+//                    }
+//                    else {
+//                        if (items.length > 1) {
+//                            var its = items[1].split(sp2);
+//                            result = its[0];
+//                        }
+//                        else {
+//                            result = items[1];
+//                        }
+//                    }
+//                }
+//                $(".data").html(result);
+//                $(".data").show();
+//                //$("#txtSource").val(result);
+//            });
+
+
+            $.ajax({
+                type: "post",
+                url: url,
+                datatype: "html",
+                async: true,
+                timeout: 3000000, //50分钟
+                beforeSend: function() {
+                    $(".welcome").hide();
+                    $(".loading").show();
+                },
+                complete: function() {
+                    $(".loading").hide();
+                },
+                error: function(XmlHttpRequest, textStatus, errorThrown) {
+                    $(".loading").hide();
+                    //alert("XmlHttpRequest.status:" + XmlHttpRequest.status);
+                    //alert("responseText:" + XmlHttpRequest.responseText);
+
+                    //textStatus可能取值：timeout,error,notmodified,parsererror
+                    if (textStatus == "timeout") {
+                        $(".error").html("请求超时，可能由于网速过慢导致，请在网速正常时再做相关操作！");
+                        $(".error").show();
+                    }
+                },
+                success: function(data) {
+                    if (data.toString().length > 0) {
+                        var items = data.split(spliter);
+                        $(".welcome").hide();
+
+                        //判断是不是出错了
+                        if (data.toString().indexOf("验证码错误") > 0) {
+                            $(".error").html("验证码错误，请确保输入验证码正确！");
+                            $("#divDataSign").html('0');
+                            $(".error").show();
+                            return;
+                        }
+                        else if (data.toString().indexOf(card_no_data_text) > 0 || data.toString().indexOf(car_no_data_text1) > 0) {
+                            $(".error").html("没有查询到该牌号相关记录！");
+                            $("#divDataSign").html('0');
+                            $(".error").show();
+                            return;
+                        }
+                        else {
+                            if (items.length > 1) {
+                                var its = items[1].split(sp2);
+                                result = its[0];
+                            }
+                            else {
+                                result = items[1];
+                            }
+                        }
+                    }
+                    $(".data").html(result);
+                    $(".data").show();
+                    //$("#txtSource").val(result);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="welcome">填写完成车牌号和验证码后，数据将出现在这里！</div>
+    <div class="error">错误：</div>
+    <div class="loading">
+        正在读取车辆信息库数据，速度较慢，请耐心等待……<br /><br />
+        <img src="loading.gif" /></div>
+    <div class="data"></div>
+    <div id="divDataSign">1</div>
+    <textarea id="txtSource" rows="100" cols="5" style="display:none;"></textarea>
+</body>
+</html>

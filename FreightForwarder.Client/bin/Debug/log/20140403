@@ -1,0 +1,41 @@
+2014-04-03 11:39:01,052 [12] ERROR FreightForwarder.Program - ****************************异常文本****************************
+【出现时间】：2014/4/3 11:38:59
+【异常类型】：ActionNotSupportedException
+【异常信息】：由于 ContractFilter 在 EndpointDispatcher 不匹配，因此 Action 为“FrightForwarder/IFFService/GetRoutItems”的消息无法在接收方处理。这可能是由于协定不匹配(发送方和接收方 Action 不匹配)或发送方和接收方绑定/安全不匹配。请检查发送方和接收方是否具有相同的协定和绑定(包括安全要求，如 Message、Transport、None)。
+【堆栈调用】：
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.ThrowIfFaultUnderstood(Message reply, MessageFault fault, String action, MessageVersion version, FaultConverter faultConverter)
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 FreightForwarder.UI.Winform.FFWCF.IFFService.GetRoutItems(String shipName, String startPort, String destinationPort, Nullable`1 isSingleContainer)
+   在 FreightForwarder.UI.Winform.FFWCF.FFServiceClient.GetRoutItems(String shipName, String startPort, String destinationPort, Nullable`1 isSingleContainer) 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Client\Service References\FFWCF\Reference.cs:行号 212
+   在 FreightForwarder.UI.Winform.FrmMain.<btnSearch_Click>b__0() 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Client\FrmMain.cs:行号 53
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+***************************************************************
+
+2014-04-03 16:36:46,512 [10] ERROR FreightForwarder.Common.Logger - 
+****************************异常文本****************************
+【出现时间】：2014/4/3 16:36:46
+【异常类型】：InvalidOperationException
+【异常信息】：No connection string named 'FFDBContext' could be found in the application config file.
+【堆栈调用】：   在 System.Data.Entity.Internal.LazyInternalConnection.get_ConnectionHasModel()
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   在 System.Data.Entity.Internal.InternalContext.Initialize()
+   在 System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   在 System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   在 System.Data.Entity.QueryableExtensions.Include[T](IQueryable`1 source, String path)
+   在 System.Data.Entity.QueryableExtensions.Include[T,TProperty](IQueryable`1 source, Expression`1 path)
+   在 FreightForwarder.Data.DBHelper.GetRouteInformationItems(Nullable`1 companyId) 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Data\DBHelper.cs:行号 174
+***************************************************************
+

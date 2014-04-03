@@ -1,0 +1,42 @@
+﻿html{
+	overflow-x:hidden;
+	overflow-y:auto;
+	font-family:Tahoma;
+}
+body{
+	margin:0;
+	padding:10px;
+	font-size:14px;
+	text-align:center;
+}
+table{
+	width:100%;
+	border-collapse:collapse;
+}
+td{
+	border:solid 1px #CCCCCC;
+	padding:5px;
+	text-align:left;
+}
+
+.field{
+	width:100px;
+	height:30px;
+}
+
+.button{
+    padding:3px 5px;
+}
+input[type='file']{
+    padding:5px;
+}
+.spliter{
+    margin:10px 0;
+    border-bottom:dashed 1px Silver;
+}
+
+.Cause content{
+    text-align:left;
+    padding:5px;
+    margin:5px 0;
+}

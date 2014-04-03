@@ -14,6 +14,39 @@ namespace FreightForwarder.Data
 {
     public class DBHelper
     {
+        public int GetUpgradePackageCount()
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    return context.UpgradePackages.Count();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("获取升级包个数", ex);
+                    return 0;
+                }
+            }
+        }
+
+        public bool AddUpgradePackage(UpgradePackage entity)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    context.UpgradePackages.Add(entity);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("发布升级包失败", ex);
+                    return false;
+                }
+            }
+        }
         public IEnumerable<UpgradePackage> GetUpgradePackages()
         {
             using (FFDBContext context = new FFDBContext())

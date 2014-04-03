@@ -1,0 +1,50 @@
+﻿html{
+	font-size:12px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	font-family:Tahoma;
+}
+
+body{
+	margin:0;
+	padding:0;
+}
+
+.nav-frame{
+	padding:15px 10px;
+}
+
+.step{
+	border:dotted 1px Silver;
+	padding:15px 5px;
+	width:120px;
+	float:left;
+	text-align:center;
+	margin:3px 24px !important;
+	margin:3px 13px;
+	line-height:1.4em;
+	color:Silver;
+}
+
+.done{
+	font-weight:bold;
+	background:url(../image/done.gif) no-repeat scroll bottom right;
+	color:Black;
+	border:solid 1px Silver;
+}
+
+.done span{
+    font-weight:normal;
+    color:green;
+}
+
+.now{
+    background:#F9F9F9;
+	border:solid 2px #FF9900;
+	font-weight:bold;
+	color:Black;
+}
+
+.now-n{
+    background:#F9F9F9 url(../image/now.gif) no-repeat scroll bottom right;
+}

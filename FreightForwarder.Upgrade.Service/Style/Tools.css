@@ -1,0 +1,14 @@
+﻿body{
+    margin:0;
+    padding:5px;
+    font-family:Tahoma;
+    line-height:1.8em;
+    font-family:Tahoma, 宋体;
+}
+
+.frame{
+    text-align:left;
+    border:solid 1px Silver;
+    background:#F8F8F8;
+    padding:20px;
+}
