@@ -48,6 +48,7 @@
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\RegisterCode.cs" />
     <Compile Include="Entities\RouteItemInformation.cs" />
+    <Compile Include="Entities\UpgradePackage.cs" />
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

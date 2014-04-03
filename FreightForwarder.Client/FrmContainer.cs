@@ -49,6 +49,8 @@ namespace FreightForwarder.UI.Winform
             //UserUtils.ShowError(dbconnString);
             //FreightForwarder.Client.DBHelper.GetEntries();
 
+            //(new FreightForwarder.Business.BusinessBase()).GetRouteInformationItems(null);
+
             Thread.Sleep(2000);
             if (_load != null)
             {

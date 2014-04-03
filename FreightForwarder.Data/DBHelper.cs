@@ -14,6 +14,22 @@ namespace FreightForwarder.Data
 {
     public class DBHelper
     {
+        public IEnumerable<UpgradePackage> GetUpgradePackages()
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    return context.UpgradePackages.ToList();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("获取升级包失败", ex);
+                    return null;
+                }
+            }
+        }
+
         #region Company
         public IEnumerable<Company> GetAllCompanies()
         {
@@ -58,7 +74,6 @@ namespace FreightForwarder.Data
         #region RouteInformationItems
         public bool AddRouteInformationItems(IEnumerable<RouteInformationItem> rlist)
         {
-
             using (FFDBContext context = new FFDBContext())
             {
                 try
