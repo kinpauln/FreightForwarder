@@ -1,5 +1,5 @@
-﻿#define ServerVersion
-//#define ClientVersion
+﻿//#define ServerVersion
+#define ClientVersion
 using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
@@ -45,10 +45,6 @@ namespace FreightForwarder.UI.Winform
         {
             this.StartPosition = FormStartPosition.CenterParent;
             this.KeyPreview = true;
-
-#if ClientVersion
-            RegisterHotKey();
-#endif
 
             //UserUtils.ShowError(dbconnString);
             //FreightForwarder.Client.DBHelper.GetEntries();
@@ -129,15 +125,6 @@ namespace FreightForwarder.UI.Winform
             //}
         }
 
-        private void RegisterHotKey()
-        {
-            //注册热键Ctrl+Alt+Shift+F8，Id号为100。HotKey.KeyModifiers.Alt也可以直接使用数字1来表示。   
-            HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Alt | HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.F8);
-
-            //注册热键Ctrl+Alt+Shift+F8，Id号为100。HotKey.KeyModifiers.Alt也可以直接使用数字1来表示。   
-            HotKey.RegisterHotKey(Handle, 101, HotKey.KeyModifiers.Alt | HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Shift, Keys.F9);
-        }
-
         struct ValidateSoftInfoStruct
         {
             public bool isValidSoft;
@@ -156,7 +143,7 @@ namespace FreightForwarder.UI.Winform
             string errorString = string.Empty;
             if (rc == null)
             {
-                errorString = string.Format("还没注册，请联系软件供应商，并提供您的机器码 {0}，购买注册码后才能使用。", machineCode);
+                errorString = string.Format("还没注册，请联系软件供应商，并提供您的机器码，购买注册码后才能使用。");
                 checkResult = false;
                 softState = SoftState.UnRegisterd;
 
@@ -243,6 +230,7 @@ namespace FreightForwarder.UI.Winform
                 CloseProgressForm();
                 this.Invoke(new Action(() =>
                 {
+                    InitClientUI(true);
                     UserUtils.ShowInfo(vsis.errorString);
                 }));
 
@@ -250,13 +238,6 @@ namespace FreightForwarder.UI.Winform
                 {
                     //彻底退出程序
                     System.Environment.Exit(0);
-                }
-                else
-                {
-                    this.Invoke(new Action(() =>
-                    {
-                        InitClientUI(true);
-                    }));
                 }
             }
 
@@ -537,55 +518,42 @@ namespace FreightForwarder.UI.Winform
 
         private void ContainerForm_KeyDown(object sender, KeyEventArgs e)
         {
-            // 组合键
-            if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F8)         //Ctrl+Shift+Alt+F8
+#if ClientVersion
+            // 注册机器码
+            if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F8) //Ctrl+Shift+Alt+F8
             {
+                if (Session.CURRENT_SOFT == null)
+                    return;
+                if (!string.IsNullOrEmpty(Session.CURRENT_SOFT.RegCode))
+                    return;
+                FrmUserRegister formRegCode = new FrmUserRegister();
+                formRegCode.StartPosition = FormStartPosition.CenterParent;
+                DialogResult dresult = formRegCode.ShowDialog(this);
+                if (dresult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    UserUtils.ShowInfo("注册成功！");
+                    InitClientUI();
+                    Session.CURRENT_SOFT.RegCode = CommonTool.GetRegCode(Session.CURRENT_SOFT.MachineCode);
+                }
+                if (dresult == System.Windows.Forms.DialogResult.No)
+                {
+                    UserUtils.ShowError("注册失败！");
+                }
             }
+            // 查看机器码
+            if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F9) //Ctrl+Shift+Alt+F9
+            {
+                FrmSoftInfo formInstance = new FrmSoftInfo();
+                formInstance.StartPosition = FormStartPosition.CenterParent;
+                formInstance.ShowDialog(this);
+            }
+#endif
         }
 
         private void toolStripMenuItemAboutUs_Click(object sender, EventArgs e)
         {
             FrmAboutUs form = new FrmAboutUs();
             form.ShowDialog(this);
-        }
-
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_HOTKEY = 0x0312;
-            //按快捷键    
-            switch (m.Msg)
-            {
-                case WM_HOTKEY:
-                    switch (m.WParam.ToInt32())
-                    {
-                        case 100:    //按下的是Ctrl+Alt+Shift+F8
-                            if (Session.CURRENT_SOFT == null)
-                                return;
-                            if (!string.IsNullOrEmpty(Session.CURRENT_SOFT.RegCode))
-                                return;
-                            FrmUserRegister formRegCode = new FrmUserRegister();
-                            formRegCode.StartPosition = FormStartPosition.CenterParent;
-                            DialogResult dresult = formRegCode.ShowDialog(this);
-                            if (dresult == System.Windows.Forms.DialogResult.Yes)
-                            {
-                                UserUtils.ShowInfo("注册成功！");
-                                InitClientUI();
-                                Session.CURRENT_SOFT.RegCode = CommonTool.GetRegCode(Session.CURRENT_SOFT.MachineCode);
-                            }
-                            if (dresult == System.Windows.Forms.DialogResult.No)
-                            {
-                                UserUtils.ShowError("注册失败！");
-                            }
-                            break;
-                        case 101:    //按下的是Ctrl+Alt+Shift+F9
-                            FrmSoftInfo formInstance = new FrmSoftInfo();
-                            formInstance.StartPosition = FormStartPosition.CenterParent;
-                            formInstance.ShowDialog(this);
-                            break;
-                    }
-                    break;
-            }
-            base.WndProc(ref m);
         }
 
         private void menuStrip1_ItemAdded(object sender, ToolStripItemEventArgs e)
@@ -620,44 +588,13 @@ namespace FreightForwarder.UI.Winform
         }
     }
 
-
-    class HotKey
-    {
-        //如果函数执行成功，返回值不为0。            
-        //如果函数执行失败，返回值为0。要得到扩展错误信息，调用GetLastError。
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool RegisterHotKey(
-            IntPtr hWnd,                //要定义热键的窗口的句柄
-            int id,                     //定义热键ID（不能与其它ID重复）           
-            KeyModifiers fsModifiers,   //标识热键是否在按Alt、Ctrl、Shift、Windows等键时才会生效
-            Keys vk                     //定义热键的内容
-            );
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool UnregisterHotKey(
-            IntPtr hWnd,                //要取消热键的窗口的句柄
-            int id                      //要取消热键的ID
-            );
-
-        //定义了辅助键的名称（将数字转变为字符以便于记忆，也可去除此枚举而直接使用数值）
-        [Flags()]
-        public enum KeyModifiers
-        {
-            None = 0,
-            Alt = 1,
-            Ctrl = 2,
-            Shift = 4,
-            WindowsKey = 8
-        }
-    }
-
     public enum SoftState
     {
         [Description("已注册且已激活")]
         RegisterdAndActived = 1,
         [Description("已注册但未激活")]
         RegisterdButUnactived = 2,
-        [Description("尚未注册")]
+        [Description("尚未完成注册")]
         UnRegisterd = 3,
         [Description("尚未注册")]
         Registering = 4,

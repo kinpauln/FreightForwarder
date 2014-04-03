@@ -28,12 +28,13 @@ namespace FreightForwarder.UI.Winform
 
         private void btnReg_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtPart1.Text.Trim()) ||
+            if (string.IsNullOrEmpty(txtPart1.Text.Trim()) ||
                     string.IsNullOrEmpty(txtPart2.Text.Trim()) ||
                     string.IsNullOrEmpty(txtPart3.Text.Trim()) ||
-                    string.IsNullOrEmpty(txtPart4.Text.Trim())){
-                        UserUtils.ShowWarning("您输入的注册码不完整，请重新输入");
-                        return;
+                    string.IsNullOrEmpty(txtPart4.Text.Trim()))
+            {
+                UserUtils.ShowWarning("您输入的注册码不完整，请重新输入");
+                return;
             }
             _registerThread = new Thread(() =>
             {
@@ -70,14 +71,22 @@ namespace FreightForwarder.UI.Winform
 
         private void txtPart1_KeyDown(object sender, KeyEventArgs e)
         {
-            //// 组合键
-            //if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         //Ctrl+F1
-            //{
-            //    string clipboardContent = GetContextFromClipboard();
-            //    if (string.IsNullOrEmpty(clipboardContent)) return;
-            //    string[] contentSegment = clipboardContent.Split(new char[] { '-' });
-            //    txtPart1.Text = contentSegment[0];
-            //}
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V) //组合键Ctrl+V
+            {
+                string clipboardContent = GetContextFromClipboard();
+                if (string.IsNullOrEmpty(clipboardContent)) return;
+                string[] contentSegment = clipboardContent.Split(new char[] { '-' });
+                if (contentSegment.Length == 4)
+                {
+                    txtPart1.Text = contentSegment[0];
+                    txtPart2.Text = contentSegment[1];
+                    txtPart3.Text = contentSegment[2];
+                    txtPart4.Text = contentSegment[3];
+                }
+                else {
+                    txtPart1.Text = clipboardContent;
+                }
+            }
         }
 
         private string GetContextFromClipboard()

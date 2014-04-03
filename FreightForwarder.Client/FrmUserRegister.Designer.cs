@@ -43,6 +43,7 @@
             // txtPart1
             // 
             this.txtPart1.Location = new System.Drawing.Point(13, 25);
+            this.txtPart1.MaxLength = 6;
             this.txtPart1.Name = "txtPart1";
             this.txtPart1.Size = new System.Drawing.Size(100, 21);
             this.txtPart1.TabIndex = 0;
@@ -78,6 +79,7 @@
             // txtPart2
             // 
             this.txtPart2.Location = new System.Drawing.Point(136, 25);
+            this.txtPart2.MaxLength = 6;
             this.txtPart2.Name = "txtPart2";
             this.txtPart2.Size = new System.Drawing.Size(100, 21);
             this.txtPart2.TabIndex = 1;
@@ -85,6 +87,7 @@
             // txtPart3
             // 
             this.txtPart3.Location = new System.Drawing.Point(266, 25);
+            this.txtPart3.MaxLength = 6;
             this.txtPart3.Name = "txtPart3";
             this.txtPart3.Size = new System.Drawing.Size(100, 21);
             this.txtPart3.TabIndex = 2;
@@ -92,6 +95,7 @@
             // txtPart4
             // 
             this.txtPart4.Location = new System.Drawing.Point(404, 25);
+            this.txtPart4.MaxLength = 6;
             this.txtPart4.Name = "txtPart4";
             this.txtPart4.Size = new System.Drawing.Size(100, 21);
             this.txtPart4.TabIndex = 3;
