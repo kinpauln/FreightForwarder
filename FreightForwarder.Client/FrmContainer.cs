@@ -289,6 +289,7 @@ namespace FreightForwarder.UI.Winform
             tsItemBtnAddCompany.Visible = false;
 
             toolStripStatusLblCompanyInfo.Text = (Session.CURRENT_SOFT != null && Session.CURRENT_SOFT.Company != null) ? Session.CURRENT_SOFT.Company.Name : "未注册";
+            toolStripStatusLblCompanyInfo.Text += string.Format(" [版本：{0}]", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
             toolStripSeparator1.Visible = false;
 
             DisableMenuBar(menuStrip1, disable);
