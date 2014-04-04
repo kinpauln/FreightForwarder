@@ -11,8 +11,33 @@ using System.Threading.Tasks;
 
 namespace FreightForwarder.Business
 {
-    public class ServerBusinesses : BusinessBase
+    public class PackageBusinesses
     {
+        public IEnumerable<string> CheckUpdate(string version)
+        {
+            return (new DBHelper()).CheckUpdate(version);
+        }
+
+        public UpgradePackage GetUpdate(string version)
+        {
+            return (new DBHelper()).GetUpdate(version);
+        }
+
+        public int GetUpgradePackageCount()
+        {
+            return (new DBHelper()).GetUpgradePackageCount();
+        }
+
+        public bool AddUpgradePackage(UpgradePackage entity)
+        {
+            return (new DBHelper()).AddUpgradePackage(entity);
+        }
+
+        public IEnumerable<UpgradePackage> GetUpgradePackages()
+        {
+            return (new DBHelper()).GetUpgradePackages();
+        }
+
         public bool ExistedEntity(string machineCode)
         {
             return (new DBHelper()).ExistedEntity(machineCode);

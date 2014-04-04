@@ -53,6 +53,7 @@
     <Compile Include="Extentions.cs" />
     <Compile Include="ServerBusinesses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PackageBusinesses.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FreightForwarder.Common\FreightForwarder.Common.csproj">
