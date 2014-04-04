@@ -25,7 +25,7 @@ namespace FreightForwarder.Upgrade.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("UpdateService.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("UpdateService.svc/basic")]
         public string UpdateUrl {
             get {
                 return ((string)(this["UpdateUrl"]));
@@ -61,7 +61,7 @@ namespace FreightForwarder.Upgrade.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/FFUpgrade.Service/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.15/FFUpgrade.Service/")]
         public string ServerUrl {
             get {
                 return ((string)(this["ServerUrl"]));

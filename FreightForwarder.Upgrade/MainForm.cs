@@ -17,7 +17,8 @@ using Microsoft.Win32;
 using System.Configuration;
 using FreightForwarder.Upgrade.FFUpgrade.Service;
 
-namespace TransPadUpdater {
+namespace TransPadUpdater
+{
     public partial class MainForm : Form
     {
         private FreightForwarder.Upgrade.Properties.Settings _settings;
@@ -26,7 +27,8 @@ namespace TransPadUpdater {
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern IntPtr SetFocus(HandleRef hWnd);
 
-        public MainForm() {
+        public MainForm()
+        {
             InitializeComponent();
             _settings = FreightForwarder.Upgrade.Properties.Settings.Default;
 
@@ -39,7 +41,8 @@ namespace TransPadUpdater {
         }
 
         //加载
-        private void MainForm_Load(object sender, EventArgs e) {
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             Init();
 
             Thread thread = new Thread(new ThreadStart(StartUpdate));
@@ -51,7 +54,7 @@ namespace TransPadUpdater {
         }
 
         //系统升级
-        private void StartUpdate() 
+        private void StartUpdate()
         {
             try
             {
@@ -66,7 +69,10 @@ namespace TransPadUpdater {
                     File.ReadAllBytes(Application.StartupPath + "\\" + _settings.ExecutablePath));
                 string[] versions = _service.CheckUpdate(assembly.GetName().Version.ToString());
 
-                lblVersion.Text = string.Format("程序版本：{0}", assembly.GetName().Version.ToString());
+                this.Invoke(new Action(() =>
+                {
+                    lblVersion.Text = string.Format("程序版本：{0}", assembly.GetName().Version.ToString());
+                }));
 
                 if (versions != null && versions.Length > 0)
                 {
@@ -133,33 +139,41 @@ namespace TransPadUpdater {
         }
 
         //解压升级程序
-        private void Unzip(Stream zipStream, string rootDirectory) {
-            if (!Directory.Exists(rootDirectory)) {
+        private void Unzip(Stream zipStream, string rootDirectory)
+        {
+            if (!Directory.Exists(rootDirectory))
+            {
                 Directory.CreateDirectory(rootDirectory);
             }
 
             ZipInputStream stream = new ZipInputStream(zipStream);
 
             ZipEntry entry = null;
-            while ((entry = stream.GetNextEntry()) != null) {
+            while ((entry = stream.GetNextEntry()) != null)
+            {
                 string directoryName = Path.GetDirectoryName(entry.Name);
                 string fileName = Path.GetFileName(entry.Name);
 
-                if (!String.IsNullOrEmpty(directoryName)) {
+                if (!String.IsNullOrEmpty(directoryName))
+                {
                     Directory.CreateDirectory(rootDirectory + directoryName);
                 }
 
-                if (!String.IsNullOrEmpty(fileName)) {
+                if (!String.IsNullOrEmpty(fileName))
+                {
                     FileStream streamWriter = File.Create(rootDirectory + entry.Name);
 
                     int size = 2048;
                     byte[] data = new byte[2048];
-                    while (true) {
+                    while (true)
+                    {
                         size = stream.Read(data, 0, data.Length);
-                        if (size > 0) {
+                        if (size > 0)
+                        {
                             streamWriter.Write(data, 0, size);
                         }
-                        else {
+                        else
+                        {
                             break;
                         }
                     }

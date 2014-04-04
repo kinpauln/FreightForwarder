@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="UpdateUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">UpdateService.svc</Value>
+      <Value Profile="(Default)">UpdateService.svc/basic</Value>
     </Setting>
     <Setting Name="ExecutablePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">FreightForwarder.exe</Value>
@@ -12,7 +12,7 @@
       <Value Profile="(Default)">Login.aspx</Value>
     </Setting>
     <Setting Name="ServerUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost/FFUpgrade.Service/</Value>
+      <Value Profile="(Default)">http://192.168.0.15/FFUpgrade.Service/</Value>
     </Setting>
   </Settings>
 </SettingsFile>
