@@ -27,21 +27,7 @@ namespace FreightForwarder.Upgrade.Service
 
         public static void Delete(UpgradePackage UpgradePackage)
         {
-            //using (DataContext dc = new DataContext(
-            //    WebConfigurationManager.ConnectionStrings["FFDB"].ConnectionString))
-            //{
-            //    UpgradePackage fileToDelete = dc.GetTable<UpgradePackage>().Where(k => k.FileVersion == UpgradePackage.FileVersion).FirstOrDefault();
-            //    if (fileToDelete != default(UpgradePackage))
-            //    {
-            //        dc.GetTable<UpgradePackage>().DeleteOnSubmit(fileToDelete);
-
-            //        using (TransactionScope ts = new TransactionScope())
-            //        {
-            //            dc.SubmitChanges();
-            //            ts.Complete();
-            //        }
-            //    }
-            //}
+            bool result = (new PackageBusinesses()).DeletePackage(UpgradePackage.Id);
         }
     }
 }
