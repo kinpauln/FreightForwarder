@@ -71,7 +71,7 @@ namespace TransPadUpdater
 
                 this.Invoke(new Action(() =>
                 {
-                    lblVersion.Text = string.Format("程序版本：{0}", assembly.GetName().Version.ToString());
+                    this.Text = "货代Mini-V" + assembly.GetName().Version.ToString();
                 }));
 
                 if (versions != null && versions.Length > 0)
@@ -116,11 +116,7 @@ namespace TransPadUpdater
 
                     assembly = Assembly.Load(
                     File.ReadAllBytes(Application.StartupPath + "\\" + _settings.ExecutablePath));
-                    lblVersion.Text = string.Format("程序版本：{0}", assembly.GetName().Version.ToString());
-
-                    //允许开始登录
-                    pnlLogin.Enabled = true;
-                    txtUserName.Focus();
+                    this.Text = "货代Mini-V" + assembly.GetName().Version.ToString();
                 }));
 
                 Upgrade();
@@ -188,8 +184,7 @@ namespace TransPadUpdater
         //初始化界面
         private void Init()
         {
-            pnlLogin.Enabled = false;
-            //ad.Navigate(new Uri(string.Format("{0}{1}", _settings.ServerUrl, _settings.NotifyUrl), false));
+            ad.Navigate(new Uri(string.Format("{0}{1}", _settings.ServerUrl, _settings.NotifyUrl), false));
         }
 
         /// <summary>

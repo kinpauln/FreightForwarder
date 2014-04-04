@@ -49,6 +49,7 @@
     <Compile Include="Entities\RegisterCode.cs" />
     <Compile Include="Entities\RouteItemInformation.cs" />
     <Compile Include="Entities\UpgradePackage.cs" />
+    <Compile Include="Entities\Announcement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

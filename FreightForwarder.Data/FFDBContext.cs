@@ -33,6 +33,7 @@ namespace FreightForwarder.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<RegisterCode> RegisterCodes { get; set; }
         public DbSet<UpgradePackage> UpgradePackages { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
