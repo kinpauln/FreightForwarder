@@ -1,4 +1,5 @@
-﻿using FreightForwarder.Domain.Entities;
+﻿using FreightForwarder.Business;
+using FreightForwarder.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,26 +14,12 @@ namespace FreightForwarder.Upgrade.Service
     {
         public IEnumerable<string> CheckUpdate(string version)
         {
-            return null;
-            //using (DataContext dc = new DataContext(
-            //    WebConfigurationManager.ConnectionStrings["FFDB"].ConnectionString))
-            //{
-            //    return (from file in dc.GetTable<UpgradePackage>()
-            //            where file.FileVersion.CompareTo(version) > 0
-            //            select file.FileVersion).ToList();
-            //}
+            return (new PackageBusinesses()).CheckUpdate(version);
         }
 
         public UpgradePackage GetUpdate(string version)
         {
-            return null;
-            //using (DataContext dc = new DataContext(
-            //    WebConfigurationManager.ConnectionStrings["FFDB"].ConnectionString))
-            //{
-            //    return (from file in dc.GetTable<UpgradePackage>()
-            //            where file.FileVersion == version
-            //            select file).FirstOrDefault();
-            //}
+            return (new PackageBusinesses()).GetUpdate(version);
         }
     }
 }

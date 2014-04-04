@@ -12,17 +12,17 @@ namespace FreightForwarder.Upgrade.Service
     {
         public static IEnumerable<UpgradePackage> Select(int? startRowIndex, int? maximumRows)
         {
-            return (new ServerBusinesses()).GetUpgradePackages();
+            return (new PackageBusinesses()).GetUpgradePackages();
         }
 
         public static int SelectCount()
         {
-            return (new ServerBusinesses()).GetUpgradePackageCount();
+            return (new PackageBusinesses()).GetUpgradePackageCount();
         }
 
         public static void Insert(UpgradePackage UpgradePackage)
         {
-            (new ServerBusinesses()).AddUpgradePackage(UpgradePackage);
+            (new PackageBusinesses()).AddUpgradePackage(UpgradePackage);
         }
 
         public static void Delete(UpgradePackage UpgradePackage)
