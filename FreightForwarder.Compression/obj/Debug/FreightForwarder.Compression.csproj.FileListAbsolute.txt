@@ -1,5 +1,0 @@
-E:\Sync\Git\FreightForwarder\FreightForwarder.Compression\bin\Debug\FreightForwarder.Compression.dll
-E:\Sync\Git\FreightForwarder\FreightForwarder.Compression\bin\Debug\FreightForwarder.Compression.pdb
-E:\Sync\Git\FreightForwarder\FreightForwarder.Compression\obj\Debug\FreightForwarder.Compression.csprojResolveAssemblyReference.cache
-E:\Sync\Git\FreightForwarder\FreightForwarder.Compression\obj\Debug\FreightForwarder.Compression.dll
-E:\Sync\Git\FreightForwarder\FreightForwarder.Compression\obj\Debug\FreightForwarder.Compression.pdb
