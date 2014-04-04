@@ -201,7 +201,7 @@ namespace TransPadUpdater
             {
                 //登录成功
                 Process process = new Process();
-                string startfile = Application.StartupPath + "\\";// +_settings.ExecutablePath;
+                string startfile = Application.StartupPath + "\\" +_settings.ExecutablePath;
 
                 ProcessStartInfo StartInfo = new ProcessStartInfo(startfile, null);
                 StartInfo.UseShellExecute = false;

@@ -13,6 +13,11 @@ namespace FreightForwarder.Business
 {
     public class PackageBusinesses
     {
+        public bool DeletePackage(int pid)
+        {
+            return (new DBHelper()).DeletePackage(pid);
+        }
+
         public IEnumerable<string> CheckUpdate(string version)
         {
             return (new DBHelper()).CheckUpdate(version);

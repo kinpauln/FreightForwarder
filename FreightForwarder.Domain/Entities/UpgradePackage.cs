@@ -29,5 +29,8 @@ namespace FreightForwarder.Domain.Entities
 
         [DataMember]
         public DateTime PostTime { get; set; }
+
+        [DataMember]
+        public int SideType { get; set; }
     }
 }

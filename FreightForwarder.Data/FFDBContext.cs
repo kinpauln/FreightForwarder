@@ -29,7 +29,6 @@ namespace FreightForwarder.Data
         //    //Database.SetInitializer<PhotoCompContext>(new DropCreateDatabaseAlways<PhotoCompContext>());
         //}
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<RouteInformationItem> RouteItems { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<RegisterCode> RegisterCodes { get; set; }

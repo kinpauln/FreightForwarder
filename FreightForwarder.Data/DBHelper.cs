@@ -14,6 +14,63 @@ namespace FreightForwarder.Data
 {
     public class DBHelper
     {
+        #region Package
+        public bool DeletePackage(int pid)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    var package = context.UpgradePackages.SingleOrDefault(p=>p.Id == pid);
+                    if (package != null) {
+                        context.UpgradePackages.Remove(package);
+                        context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("删除失败", ex);
+                    return false;
+                }
+            }
+        }
+        public IEnumerable<string> CheckUpdate(string version)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    return context.UpgradePackages
+                        .Where(p => p.FileVersion.CompareTo(version) > 0)
+                        .Select(p => p.FileVersion)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("获取版本号失败", ex);
+                    return null;
+                }
+            }
+        }
+
+        public UpgradePackage GetUpdate(string version)
+        {
+            using (FFDBContext context = new FFDBContext())
+            {
+                try
+                {
+                    return context.UpgradePackages.Where(p => p.FileVersion.Equals(version)).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("获取升级包个数", ex);
+                    return null;
+                }
+            }
+        }
+
         public int GetUpgradePackageCount()
         {
             using (FFDBContext context = new FFDBContext())
@@ -46,7 +103,8 @@ namespace FreightForwarder.Data
                     return false;
                 }
             }
-        }
+        } 
+
         public IEnumerable<UpgradePackage> GetUpgradePackages()
         {
             using (FFDBContext context = new FFDBContext())
@@ -62,6 +120,7 @@ namespace FreightForwarder.Data
                 }
             }
         }
+        #endregion
 
         #region Company
         public IEnumerable<Company> GetAllCompanies()
