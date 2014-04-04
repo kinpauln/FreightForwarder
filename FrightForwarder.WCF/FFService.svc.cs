@@ -69,18 +69,5 @@ namespace FrightForwarder.WCF
             ServerBusinesses sb = new ServerBusinesses();
             return sb.AddCompany(companyName, companyCode);
         }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
     }
 }
