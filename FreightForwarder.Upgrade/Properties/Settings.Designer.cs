@@ -23,39 +23,51 @@ namespace FreightForwarder.Upgrade.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("UpdateService.svc")]
         public string UpdateUrl {
             get {
                 return ((string)(this["UpdateUrl"]));
             }
+            set {
+                this["UpdateUrl"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("FreightForwarder.exe")]
         public string ExecutablePath {
             get {
                 return ((string)(this["ExecutablePath"]));
             }
+            set {
+                this["ExecutablePath"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Login.aspx")]
         public string NotifyUrl {
             get {
                 return ((string)(this["NotifyUrl"]));
             }
+            set {
+                this["NotifyUrl"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/FFUpgrade.Service")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/FFUpgrade.Service/")]
         public string ServerUrl {
             get {
                 return ((string)(this["ServerUrl"]));
+            }
+            set {
+                this["ServerUrl"] = value;
             }
         }
     }

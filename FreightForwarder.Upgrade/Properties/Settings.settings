@@ -2,17 +2,17 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FreightForwarder.Upgrade.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="UpdateUrl" Type="System.String" Scope="Application">
+    <Setting Name="UpdateUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">UpdateService.svc</Value>
     </Setting>
-    <Setting Name="ExecutablePath" Type="System.String" Scope="Application">
+    <Setting Name="ExecutablePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">FreightForwarder.exe</Value>
     </Setting>
-    <Setting Name="NotifyUrl" Type="System.String" Scope="Application">
+    <Setting Name="NotifyUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">Login.aspx</Value>
     </Setting>
-    <Setting Name="ServerUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost/FFUpgrade.Service</Value>
+    <Setting Name="ServerUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost/FFUpgrade.Service/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

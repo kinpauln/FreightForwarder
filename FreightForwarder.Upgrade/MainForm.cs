@@ -20,7 +20,7 @@ using FreightForwarder.Upgrade.FFUpgrade.Service;
 namespace TransPadUpdater {
     public partial class MainForm : Form
     {
-        private FreightForwarder.Upgrade.Properties.Settings _settings = FreightForwarder.Upgrade.Properties.Settings.Default;
+        private FreightForwarder.Upgrade.Properties.Settings _settings;
         private UpdateServiceClient _service = null;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
@@ -28,12 +28,12 @@ namespace TransPadUpdater {
 
         public MainForm() {
             InitializeComponent();
+            _settings = FreightForwarder.Upgrade.Properties.Settings.Default;
 
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.MaxReceivedMessageSize = Int32.MaxValue;
             binding.ReaderQuotas.MaxArrayLength = Int32.MaxValue;
             binding.Security.Mode = BasicHttpSecurityMode.None;
-
             _service = new UpdateServiceClient(
                 binding, new EndpointAddress(string.Format("{0}{1}", _settings.ServerUrl, _settings.UpdateUrl)));
         }
@@ -43,14 +43,16 @@ namespace TransPadUpdater {
             Init();
 
             Thread thread = new Thread(new ThreadStart(StartUpdate));
+            thread.IsBackground = true;
             thread.Start();
 
             //自动远行
-            SetAutoRun();
+            //SetAutoRun();
         }
 
         //系统升级
-        private void StartUpdate() {
+        private void StartUpdate() 
+        {
             try
             {
                 this.Invoke(new Action(() =>
@@ -121,9 +123,12 @@ namespace TransPadUpdater {
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Close();
-                Application.ExitThread();
+                this.Invoke(new Action(() =>
+                {
+                    MessageBox.Show(this, ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Close();
+                    Application.ExitThread();
+                }));
             }
         }
 
