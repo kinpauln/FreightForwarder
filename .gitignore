@@ -169,3 +169,6 @@ FreightForwarder.UI.Winform.csproj.GenerateResource.Cache
 FreightForwarder.UI.Winform.csprojResolveAssemblyReference.cache
 FreightForwarder.exe
 FreightForwarder.pdb
+FreightForwarder.Upgrade.exe
+FreightForwarder.Upgrade.exe.config
+FreightForwarder.Upgrade.pdb
