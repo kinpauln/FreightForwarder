@@ -15,13 +15,13 @@ using System.ServiceModel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.Configuration;
+using FreightForwarder.Upgrade.FFUpgrade.Service;
 
 namespace TransPadUpdater {
-    public partial class MainForm : Form {
-        private TransPadUpdater.Properties.Settings _settings = TransPadUpdater.Properties.Settings.Default;
+    public partial class MainForm : Form
+    {
+        private FreightForwarder.Upgrade.Properties.Settings _settings = FreightForwarder.Upgrade.Properties.Settings.Default;
         private UpdateServiceClient _service = null;
-        private BusinessServiceClient _worker = null;
-        private string login_retn_val = string.Empty;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern IntPtr SetFocus(HandleRef hWnd);
@@ -29,10 +29,10 @@ namespace TransPadUpdater {
         public MainForm() {
             InitializeComponent();
 
-            WSHttpBinding binding = new WSHttpBinding();
+            BasicHttpBinding binding = new BasicHttpBinding();
             binding.MaxReceivedMessageSize = Int32.MaxValue;
             binding.ReaderQuotas.MaxArrayLength = Int32.MaxValue;
-            binding.Security.Mode = SecurityMode.None;
+            binding.Security.Mode = BasicHttpSecurityMode.None;
 
             _service = new UpdateServiceClient(
                 binding, new EndpointAddress(string.Format("{0}{1}", _settings.ServerUrl, _settings.UpdateUrl)));
@@ -51,8 +51,10 @@ namespace TransPadUpdater {
 
         //系统升级
         private void StartUpdate() {
-            try {
-                this.Invoke(new Action(() => {
+            try
+            {
+                this.Invoke(new Action(() =>
+                {
                     sbStatus.Text = "正在检查是否存在新版本...";
                     sbPbar.Style = ProgressBarStyle.Marquee;
                     sbPbar.Visible = true;
@@ -64,25 +66,32 @@ namespace TransPadUpdater {
 
                 lblVersion.Text = string.Format("程序版本：{0}", assembly.GetName().Version.ToString());
 
-                if (versions != null && versions.Length > 0) {
-                    this.Invoke(new Action(() => {
+                if (versions != null && versions.Length > 0)
+                {
+                    this.Invoke(new Action(() =>
+                    {
                         sbPbar.Style = ProgressBarStyle.Blocks;
                         sbPbar.Maximum = versions.Length;
                         sbPbar.Value = 0;
                     }));
-                    foreach (string version in versions.OrderBy(k => k)) {
-                        this.Invoke(new Action(() => {
+                    foreach (string version in versions.OrderBy(k => k))
+                    {
+                        this.Invoke(new Action(() =>
+                        {
                             sbStatus.Text = "正在升级至 " + version + " ...";
                         }));
 
-                        UpdateFile updateFile = _service.GetUpdate(version);
-                        if (updateFile != default(UpdateFile)) {
-                            using (Stream stream = new MemoryStream(updateFile.FileBytes)) {
+                        UpgradePackage updateFile = _service.GetUpdate(version);
+                        if (updateFile != default(UpgradePackage))
+                        {
+                            using (Stream stream = new MemoryStream(updateFile.FileBytes))
+                            {
                                 Unzip(stream, Application.StartupPath + "\\");
                             }
                         }
 
-                        this.Invoke(new Action(() => {
+                        this.Invoke(new Action(() =>
+                        {
                             ++sbPbar.Value;
                             //sbStatus.Text = "已升级至 " + version;
                         }));
@@ -91,7 +100,8 @@ namespace TransPadUpdater {
                     }
                 }
 
-                this.Invoke(new Action(() => {
+                this.Invoke(new Action(() =>
+                {
                     sbPbar.Style = ProgressBarStyle.Marquee;
                     sbPbar.Visible = false;
                     sbStatus.Text = "准备就绪";
@@ -109,7 +119,8 @@ namespace TransPadUpdater {
 
                 Application.ExitThread();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(this, ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
                 Application.ExitThread();
@@ -159,7 +170,7 @@ namespace TransPadUpdater {
         private void Init()
         {
             pnlLogin.Enabled = false;
-            ad.Navigate(new Uri(string.Format("{0}{1}", _settings.ServerUrl, _settings.NotifyUrl), false));
+            //ad.Navigate(new Uri(string.Format("{0}{1}", _settings.ServerUrl, _settings.NotifyUrl), false));
         }
 
         /// <summary>
@@ -171,7 +182,7 @@ namespace TransPadUpdater {
             {
                 //登录成功
                 Process process = new Process();
-                string startfile = Application.StartupPath + "\\" + _settings.ExecutablePath;
+                string startfile = Application.StartupPath + "\\";// +_settings.ExecutablePath;
 
                 ProcessStartInfo StartInfo = new ProcessStartInfo(startfile, null);
                 StartInfo.UseShellExecute = false;

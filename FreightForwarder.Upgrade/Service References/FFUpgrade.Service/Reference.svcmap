@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d4a61ccb-26e2-42e8-a265-be64cc5fe755" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/FFUpgrade.Service/UpdateService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UpdateService.wsdl" MetadataType="Wsdl" ID="673e2289-514b-4e68-8456-04e77b4e9593" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?wsdl" />
+    <MetadataFile FileName="UpdateService.disco" MetadataType="Disco" ID="0eea81fb-672c-413d-8cc6-ff215c9c7918" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?disco" />
+    <MetadataFile FileName="UpdateService.xsd" MetadataType="Schema" ID="9354c549-665b-44c0-b37e-86c747024687" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UpdateService1.xsd" MetadataType="Schema" ID="fb118cc5-375f-4991-8126-1a77e3b6ad38" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UpdateService2.xsd" MetadataType="Schema" ID="e30b5c80-b0a2-4354-96e8-f6c3396625f7" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UpdateService3.xsd" MetadataType="Schema" ID="4c994a0c-7a25-46a2-a3c4-84a4a891dc93" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

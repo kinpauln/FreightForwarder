@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TransPadUpdater.Properties {
+namespace FreightForwarder.Upgrade.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -34,7 +34,7 @@ namespace TransPadUpdater.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("TransPad.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("FreightForwarder.exe")]
         public string ExecutablePath {
             get {
                 return ((string)(this["ExecutablePath"]));
@@ -52,16 +52,7 @@ namespace TransPadUpdater.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("BusinessService.svc")]
-        public string WorkUrl {
-            get {
-                return ((string)(this["WorkUrl"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.1.101/TransPad/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/FFUpgrade.Service")]
         public string ServerUrl {
             get {
                 return ((string)(this["ServerUrl"]));

@@ -1,21 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TransPadUpdater.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FreightForwarder.Upgrade.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="UpdateUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">UpdateService.svc</Value>
     </Setting>
     <Setting Name="ExecutablePath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">TransPad.exe</Value>
+      <Value Profile="(Default)">FreightForwarder.exe</Value>
     </Setting>
     <Setting Name="NotifyUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Login.aspx</Value>
     </Setting>
-    <Setting Name="WorkUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">BusinessService.svc</Value>
-    </Setting>
     <Setting Name="ServerUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://192.168.1.101/TransPad/</Value>
+      <Value Profile="(Default)">http://localhost/FFUpgrade.Service</Value>
     </Setting>
   </Settings>
 </SettingsFile>
