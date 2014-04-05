@@ -102,7 +102,6 @@
     <Compile Include="Update\Download.ashx.cs">
       <DependentUpon>Download.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Update\ImageImport.aspx.designer.cs" />
     <Compile Include="Update\UpdateFileBusiness.cs" />
   </ItemGroup>
   <ItemGroup />

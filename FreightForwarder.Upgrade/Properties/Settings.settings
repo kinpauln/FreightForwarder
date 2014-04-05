@@ -12,7 +12,7 @@
       <Value Profile="(Default)">Login.aspx</Value>
     </Setting>
     <Setting Name="ServerUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://192.168.0.15/FFUpgrade.Service/</Value>
+      <Value Profile="(Default)">http://localhost/FFUpgrade.Service/</Value>
     </Setting>
   </Settings>
 </SettingsFile>
