@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Configuration;
 using FreightForwarder.Domain.Entities;
+using FreightForwarder.Business;
 
 namespace FreightForwarder.Upgrade.Service {
     /// <summary>
@@ -15,17 +16,14 @@ namespace FreightForwarder.Upgrade.Service {
     public class Download : IHttpHandler {
 
         public void ProcessRequest(HttpContext context) {
-            //using (DataContext dc = new DataContext(
-            //    WebConfigurationManager.ConnectionStrings["FFDB"].ConnectionString)) {
 
-            //    UpgradePackage UpgradePackage = dc.GetTable<UpgradePackage>().Where(k => k.FileVersion == context.Request.QueryString["version"]).FirstOrDefault();
-            //    if (UpgradePackage != default(UpgradePackage)) {
-            //        context.Response.ContentType = "application/octet-stream";
-            //        context.Response.AddHeader("Content-Disposition", "attachment; filename=" + UpgradePackage.FileName);
-            //        context.Response.BinaryWrite(UpgradePackage.FileBytes);
-            //    }
-            //}
-
+            UpgradePackage UpgradePackage = (new PackageBusinesses()).GetUpdate(context.Request.QueryString["version"]);
+            if (UpgradePackage != default(UpgradePackage))
+            {
+                context.Response.ContentType = "application/octet-stream";
+                context.Response.AddHeader("Content-Disposition", "attachment; filename=" + UpgradePackage.FileName);
+                context.Response.BinaryWrite(UpgradePackage.FileBytes);
+            }
         }
 
         public bool IsReusable {
