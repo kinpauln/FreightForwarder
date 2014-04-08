@@ -33,10 +33,6 @@ namespace FreightForwarder.UI.Winform
 
         public FrmContainer()
         {
-            _load = new FrmStart();
-            _load.TopMost = true;
-            _load.Show();
-
             InitializeComponent();
             _defaultSettings = Properties.Settings.Default;
         }
@@ -44,6 +40,7 @@ namespace FreightForwarder.UI.Winform
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.StartPosition = FormStartPosition.CenterParent;
+            this.WindowState = FormWindowState.Maximized;
             this.KeyPreview = true;
 
             //UserUtils.ShowError(dbconnString);
@@ -51,32 +48,31 @@ namespace FreightForwarder.UI.Winform
 
             //(new FreightForwarder.Business.BusinessBase()).GetRouteInformationItems(null);
 
-            Thread.Sleep(2000);
-            if (_load != null)
-            {
-                _load.Close();
-                this.Focus();
-            }
 
 #if ClientVersion
             //Thread validateThread = new Thread(new ParameterizedThreadStart(ValidateSoft));
             //validateThread.IsBackground = true;
             //validateThread.Start();
+
+            toolStrip1.Visible = false;
+            menuStrip1.Visible = false;
+            _load = new FrmStart();
+            _load.TopMost = true;
+            _load.StatusInfo = "正在验证软件信息，请耐心等待...";
+            _load.Show();
+
             ValidateSoftHandler vsh = new ValidateSoftHandler(ValidateSoft);
             vsh.BeginInvoke(new AsyncCallback(ValidateSoftComplete), null);
 
-            OpenProgressForm("正在验证软件信息，请耐心等待。。。", null);
+            //OpenProgressForm("正在验证软件信息，请耐心等待。", null);
 #endif
 
 #if ServerVersion
                         this.Text = "货代Mini-服务端";
                         toolStripStatusLblCompanyInfo.Text = "服务端";
                         toolStripMenuItemSoftInfo.Visible = false;
-                        ShowQueryForm();
+                        ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
 #endif
-
-            this.WindowState = FormWindowState.Maximized;
-            ShowBackForm();
         }
 
         private System.Windows.Forms.MdiClient mdiClient;
@@ -194,7 +190,7 @@ namespace FreightForwarder.UI.Winform
                 {
                     this.Invoke(new Action(() =>
                     {
-                        ShowQueryForm();
+                        ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
                     }));
                 }
                 else
@@ -223,13 +219,16 @@ namespace FreightForwarder.UI.Winform
             {
                 this.Invoke(new Action(() =>
                 {
+                    ShowBackForm();
+                    _load.Close();
+
                     InitClientUI();
                 }));
-                CloseProgressForm();
+                //CloseProgressForm();
             }
             else
             {
-                CloseProgressForm();
+                //CloseProgressForm();
                 this.Invoke(new Action(() =>
                 {
                     InitClientUI(true);
@@ -273,13 +272,11 @@ namespace FreightForwarder.UI.Winform
             }
         }
 
-        private void ShowQueryForm()
-        {
-            ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
-        }
-
         private void InitClientUI(bool disable = false)
         {
+            toolStrip1.Visible = true;
+            menuStrip1.Visible = true;
+
             this.Text = "货代Mini-客户端";
 
             toolStripMenuItemTool.Visible = false;

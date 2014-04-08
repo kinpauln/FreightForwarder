@@ -94,5 +94,29 @@ namespace FreightForwarder.UI.Winform.Properties {
                 this["ServiceEmail"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/FFUpgrade.Service/")]
+        public string ServerUrl {
+            get {
+                return ((string)(this["ServerUrl"]));
+            }
+            set {
+                this["ServerUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Login.aspx")]
+        public string NotifyUrl {
+            get {
+                return ((string)(this["NotifyUrl"]));
+            }
+            set {
+                this["NotifyUrl"] = value;
+            }
+        }
     }
 }

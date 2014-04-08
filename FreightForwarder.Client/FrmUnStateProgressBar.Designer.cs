@@ -39,7 +39,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(29, 50);
+            this.progressBar1.Location = new System.Drawing.Point(29, 76);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(400, 23);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -50,13 +50,13 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(27, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 12);
+            this.label1.Size = new System.Drawing.Size(137, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "正在执行，请耐心等待。。。。";
+            this.label1.Text = "正在执行，请耐心等待。";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(354, 79);
+            this.btnCancel.Location = new System.Drawing.Point(354, 105);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -67,10 +67,10 @@
             // lblTimer
             // 
             this.lblTimer.AutoSize = true;
-            this.lblTimer.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTimer.Location = new System.Drawing.Point(206, 20);
+            this.lblTimer.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTimer.Location = new System.Drawing.Point(26, 47);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(17, 16);
+            this.lblTimer.Size = new System.Drawing.Size(16, 16);
             this.lblTimer.TabIndex = 1;
             this.lblTimer.Text = "0";
             // 
@@ -83,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 108);
+            this.ClientSize = new System.Drawing.Size(450, 138);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblTimer);
