@@ -28,8 +28,8 @@ namespace FreightForwarder.Business
             return (new DBHelper()).AssociatMachineAndRegCode(machineCode, regcode, companyId);
         }
 
-        public bool AddMachineCode(string machineCode, int companyId) {
-            return (new DBHelper()).AddMachineCode(machineCode, companyId);
+        public bool AddMachineCode(string machineCode, string description, int companyId) {
+            return (new DBHelper()).AddMachineCode(machineCode,description, companyId);
         }
 
         public IList<RouteInformationItem> ImportExcelData(Stream stream, Dictionary<string, int> dicCompanies)

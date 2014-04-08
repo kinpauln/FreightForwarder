@@ -409,7 +409,7 @@ namespace FreightForwarder.Data
             }
         }
 
-        public bool AddMachineCode(string machineCode, int companyId)
+        public bool AddMachineCode(string machineCode, string description, int companyId)
         {
             using (FFDBContext context = new FFDBContext())
             {
@@ -418,6 +418,7 @@ namespace FreightForwarder.Data
                     context.RegisterCodes.Add(new RegisterCode()
                     {
                         MachineCode = machineCode,
+                        Description = description,
                         CreatedDate = DateTime.Now,
                         CompanyId = companyId,
                         State = (int)RegCodeStates.Actived

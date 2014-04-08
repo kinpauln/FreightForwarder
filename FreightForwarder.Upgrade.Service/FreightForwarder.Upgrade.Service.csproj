@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Login.aspx" />
+    <None Include="Resources\青岛_small.png" />
     <Content Include="Script\jquery-1.3.2.min.js" />
     <Content Include="Script\Script.js" />
     <Content Include="Style\Help.css" />
@@ -87,6 +88,11 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UpdateService.svc.cs">
       <DependentUpon>UpdateService.svc</DependentUpon>
     </Compile>
@@ -104,7 +110,12 @@
     </Compile>
     <Compile Include="Update\UpdateFileBusiness.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Update\Download.ashx" />
     <Content Include="packages.config" />

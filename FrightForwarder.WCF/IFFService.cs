@@ -40,7 +40,7 @@ namespace FrightForwarder.WCF
         bool AssociatMachineAndRegCode(string machineCode, string regcode, int companyId);
 
         [OperationContract]
-        bool AddMachineCode(string machineCode, int companyId);
+        bool AddMachineCode(string machineCode, string description, int companyId);
 
         [OperationContract]
         RegisterCode IsRegistered(string machineCode);

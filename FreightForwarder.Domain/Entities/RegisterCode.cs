@@ -34,6 +34,13 @@ namespace FreightForwarder.Domain.Entities
         public string RegCode { get; set; }
 
         /// <summary>
+        /// 描述
+        /// </summary>
+        [Unique]
+        [DataMember]
+        public string Description { get; set; }
+
+        /// <summary>
         /// 隶属的货代公司
         /// </summary>
         public int CompanyId { get; set; }

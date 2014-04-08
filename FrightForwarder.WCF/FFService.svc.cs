@@ -47,13 +47,13 @@ namespace FrightForwarder.WCF
             return (new ServerBusinesses()).AssociatMachineAndRegCode(machineCode, regcode, companyId);
         }
 
-        public bool AddMachineCode(string machineCode, int companyId)
+        public bool AddMachineCode(string machineCode, string description, int companyId)
         {
             // 机器码数据库中已经存在
             if ((new ServerBusinesses()).ExistedEntity(machineCode)) {
                 return false;
             }
-            return (new ServerBusinesses()).AddMachineCode(machineCode, companyId);
+            return (new ServerBusinesses()).AddMachineCode(machineCode,description, companyId);
         }
 
         public RegisterCode IsRegistered(string machineCode)
