@@ -24,7 +24,7 @@
 				    <strong>欢迎使用《货代Mini》</strong>
 			    </td>
 			    <td align="right">
-				    <a href="http://localhost/FFUpgrade.Service/" target="_blank">官方主页</a>&nbsp;|&nbsp;
+				    <%--<a href="http://localhost/FFUpgrade.Service/" target="_blank">官方主页</a>&nbsp;|&nbsp;--%>
 				    <a href="http://localhost/FFUpgrade.Service/FFDB/down/setup.zip" target="_blank">下载最新版</a>
 			    </td>
 		    </tr>
