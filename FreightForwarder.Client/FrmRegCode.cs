@@ -32,6 +32,11 @@ namespace FreightForwarder.UI.Winform
                 UserUtils.ShowError("机器码不能为空");
                 return;
             }
+            //if (string.IsNullOrEmpty(txtDescription.Text.Trim()))
+            //{
+            //    UserUtils.ShowError("描述不能为空");
+            //    return;
+            //}
 
             if (mcode.Length != 24)
             {
@@ -46,7 +51,7 @@ namespace FreightForwarder.UI.Winform
                     btnRegCode.Enabled = false;
                     string regCode = CommonTool.GetRegCode(mcode);
                     int companyId = (int)cbBoxCompanies.SelectedValue;
-                    if (_service.AddMachineCode(mcode, companyId))
+                    if (_service.AddMachineCode(mcode, txtDescription.Text.Trim(), companyId))
                     {
                         lblRegCode.Text = regCode;
                         btnCopy.Visible = true;

@@ -9,70 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace FreightForwarder.UI.Winform.FFWCF {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/FrightForwarder.WCF")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BoolValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StringValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
-            get {
-                return this.BoolValueField;
-            }
-            set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
-            get {
-                return this.StringValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="FrightForwarder", ConfigurationName="FFWCF.IFFService")]
@@ -119,10 +56,10 @@ namespace FreightForwarder.UI.Winform.FFWCF {
         System.Threading.Tasks.Task<bool> AssociatMachineAndRegCodeAsync(string machineCode, string regcode, int companyId);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AddMachineCode", ReplyAction="FrightForwarder/IFFService/AddMachineCodeResponse")]
-        bool AddMachineCode(string machineCode, int companyId);
+        bool AddMachineCode(string machineCode, string description, int companyId);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AddMachineCode", ReplyAction="FrightForwarder/IFFService/AddMachineCodeResponse")]
-        System.Threading.Tasks.Task<bool> AddMachineCodeAsync(string machineCode, int companyId);
+        System.Threading.Tasks.Task<bool> AddMachineCodeAsync(string machineCode, string description, int companyId);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/IsRegistered", ReplyAction="FrightForwarder/IFFService/IsRegisteredResponse")]
         FreightForwarder.Domain.Entities.RegisterCode IsRegistered(string machineCode);
@@ -141,12 +78,6 @@ namespace FreightForwarder.UI.Winform.FFWCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/AddCompany", ReplyAction="FrightForwarder/IFFService/AddCompanyResponse")]
         System.Threading.Tasks.Task<bool> AddCompanyAsync(string companyName, string companyCode);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetDataUsingDataContract", ReplyAction="FrightForwarder/IFFService/GetDataUsingDataContractResponse")]
-        FreightForwarder.UI.Winform.FFWCF.CompositeType GetDataUsingDataContract(FreightForwarder.UI.Winform.FFWCF.CompositeType composite);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/GetDataUsingDataContract", ReplyAction="FrightForwarder/IFFService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<FreightForwarder.UI.Winform.FFWCF.CompositeType> GetDataUsingDataContractAsync(FreightForwarder.UI.Winform.FFWCF.CompositeType composite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -224,12 +155,12 @@ namespace FreightForwarder.UI.Winform.FFWCF {
             return base.Channel.AssociatMachineAndRegCodeAsync(machineCode, regcode, companyId);
         }
         
-        public bool AddMachineCode(string machineCode, int companyId) {
-            return base.Channel.AddMachineCode(machineCode, companyId);
+        public bool AddMachineCode(string machineCode, string description, int companyId) {
+            return base.Channel.AddMachineCode(machineCode, description, companyId);
         }
         
-        public System.Threading.Tasks.Task<bool> AddMachineCodeAsync(string machineCode, int companyId) {
-            return base.Channel.AddMachineCodeAsync(machineCode, companyId);
+        public System.Threading.Tasks.Task<bool> AddMachineCodeAsync(string machineCode, string description, int companyId) {
+            return base.Channel.AddMachineCodeAsync(machineCode, description, companyId);
         }
         
         public FreightForwarder.Domain.Entities.RegisterCode IsRegistered(string machineCode) {
@@ -254,14 +185,6 @@ namespace FreightForwarder.UI.Winform.FFWCF {
         
         public System.Threading.Tasks.Task<bool> AddCompanyAsync(string companyName, string companyCode) {
             return base.Channel.AddCompanyAsync(companyName, companyCode);
-        }
-        
-        public FreightForwarder.UI.Winform.FFWCF.CompositeType GetDataUsingDataContract(FreightForwarder.UI.Winform.FFWCF.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContract(composite);
-        }
-        
-        public System.Threading.Tasks.Task<FreightForwarder.UI.Winform.FFWCF.CompositeType> GetDataUsingDataContractAsync(FreightForwarder.UI.Winform.FFWCF.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContractAsync(composite);
         }
     }
 }

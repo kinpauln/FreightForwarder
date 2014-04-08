@@ -232,6 +232,7 @@ namespace FreightForwarder.UI.Winform
                 this.Invoke(new Action(() =>
                 {
                     InitClientUI(true);
+                    _load.Close();
                     UserUtils.ShowInfo(vsis.errorString);
                 }));
 
@@ -276,6 +277,7 @@ namespace FreightForwarder.UI.Winform
         {
             toolStrip1.Visible = true;
             menuStrip1.Visible = true;
+            toolStripMenuItemCompanyMgr.Visible = false;
 
             this.Text = "货代Mini-客户端";
 
@@ -552,7 +554,7 @@ namespace FreightForwarder.UI.Winform
 
         private void toolStripMenuItemAboutUs_Click(object sender, EventArgs e)
         {
-            FrmAboutUs form = new FrmAboutUs();
+            FrmStart form = new FrmStart();
             form.ShowDialog(this);
         }
 

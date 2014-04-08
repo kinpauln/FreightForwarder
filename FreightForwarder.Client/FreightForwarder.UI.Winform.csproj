@@ -219,12 +219,6 @@
     <None Include="Service References\FFWCF\FFService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFWCF\FFService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FFWCF\FreightForwarder.UI.Winform.FFWCF.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

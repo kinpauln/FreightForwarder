@@ -48,6 +48,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Company" nillable="true" type="tns:Company" />
       <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="MachineCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RegCode" nillable="true" type="xs:string" />
