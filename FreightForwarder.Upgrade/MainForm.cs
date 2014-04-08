@@ -184,7 +184,7 @@ namespace TransPadUpdater
         //初始化界面
         private void Init()
         {
-            ad.Navigate(new Uri(string.Format("{0}{1}", _settings.ServerUrl, _settings.NotifyUrl), false));
+            //ad.Navigate(new Uri(string.Format("{0}{1}", _settings.ServerUrl, _settings.NotifyUrl), false));
         }
 
         /// <summary>

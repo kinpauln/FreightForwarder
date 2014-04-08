@@ -24,31 +24,20 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.ad = new System.Windows.Forms.WebBrowser();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sbStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.sbPbar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ad
-            // 
-            this.ad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ad.Location = new System.Drawing.Point(0, 0);
-            this.ad.MinimumSize = new System.Drawing.Size(20, 20);
-            this.ad.Name = "ad";
-            this.ad.Size = new System.Drawing.Size(642, 423);
-            this.ad.TabIndex = 3;
-            this.ad.TabStop = false;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sbStatus,
             this.sbPbar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 401);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 258);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(642, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(512, 22);
             this.statusStrip1.TabIndex = 4;
             // 
             // sbStatus
@@ -71,10 +60,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 423);
+            this.BackgroundImage = global::FreightForwarder.Upgrade.Properties.Resources.青岛_small;
+            this.ClientSize = new System.Drawing.Size(512, 280);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.ad);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -90,7 +79,6 @@
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser ad;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel sbStatus;
         private System.Windows.Forms.ToolStripProgressBar sbPbar;
