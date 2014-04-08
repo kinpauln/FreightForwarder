@@ -58,7 +58,7 @@ namespace FreightForwarder.UI.Winform
             menuStrip1.Visible = false;
             _load = new FrmStart();
             _load.TopMost = true;
-            _load.StatusInfo = "正在验证软件信息，请耐心等待...";
+            _load.StatusInfo = "正在验证软件信息，请耐心等待。。。";
             _load.Show();
 
             ValidateSoftHandler vsh = new ValidateSoftHandler(ValidateSoft);

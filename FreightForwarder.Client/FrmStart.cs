@@ -23,6 +23,10 @@ namespace FreightForwarder.UI.Winform
 
         private void FrmStart_Load(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(StatusInfo)) {
+                statusStrip1.Visible = false;
+                return;
+            }
             toolStripStatusLabel1.Text = StatusInfo;
         }
     }
