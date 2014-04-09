@@ -1,5 +1,5 @@
-﻿//#define ServerVersion
-#define ClientVersion
+﻿#define ServerVersion
+//#define ClientVersion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
