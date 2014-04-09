@@ -31,8 +31,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("删除失败", ex);
-                    return false;
+                    throw ex;
                 }
             }
         }
@@ -49,8 +48,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("获取版本号失败", ex);
-                    return null;
+                    throw ex;
                 }
             }
         }
@@ -65,8 +63,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("获取升级包个数", ex);
-                    return null;
+                    throw ex;
                 }
             }
         }
@@ -81,8 +78,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("获取升级包个数", ex);
-                    return 0;
+                    throw ex;
                 }
             }
         }
@@ -99,8 +95,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("发布升级包失败", ex);
-                    return false;
+                    throw ex;
                 }
             }
         } 
@@ -115,8 +110,7 @@ namespace FreightForwarder.Data
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("获取升级包失败", ex);
-                    return null;
+                    throw ex;
                 }
             }
         }

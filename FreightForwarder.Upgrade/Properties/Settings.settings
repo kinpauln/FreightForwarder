@@ -12,7 +12,7 @@
       <Value Profile="(Default)">Login.aspx</Value>
     </Setting>
     <Setting Name="ServerUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost/FFUpgrade.Service/</Value>
+      <Value Profile="(Default)">http://upgrade.s5.jutuo.net/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

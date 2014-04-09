@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/FFUpgrade.Service/UpdateService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://upgrade.s5.jutuo.net/UpdateService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="UpdateService.wsdl" MetadataType="Wsdl" ID="673e2289-514b-4e68-8456-04e77b4e9593" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?wsdl" />
-    <MetadataFile FileName="UpdateService.disco" MetadataType="Disco" ID="0eea81fb-672c-413d-8cc6-ff215c9c7918" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?disco" />
-    <MetadataFile FileName="UpdateService.xsd" MetadataType="Schema" ID="9354c549-665b-44c0-b37e-86c747024687" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd3" />
-    <MetadataFile FileName="UpdateService1.xsd" MetadataType="Schema" ID="fb118cc5-375f-4991-8126-1a77e3b6ad38" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd2" />
-    <MetadataFile FileName="UpdateService2.xsd" MetadataType="Schema" ID="e30b5c80-b0a2-4354-96e8-f6c3396625f7" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd1" />
-    <MetadataFile FileName="UpdateService3.xsd" MetadataType="Schema" ID="4c994a0c-7a25-46a2-a3c4-84a4a891dc93" SourceId="1" SourceUrl="http://localhost/FFUpgrade.Service/UpdateService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UpdateService1.wsdl" MetadataType="Wsdl" ID="48258dc2-9014-4ef2-af5f-9ebe3d031173" SourceId="1" SourceUrl="http://upgrade.s5.jutuo.net/UpdateService.svc?wsdl" />
+    <MetadataFile FileName="UpdateService1.disco" MetadataType="Disco" ID="a7e17658-ed35-4017-8e7b-92f1d0d65906" SourceId="1" SourceUrl="http://upgrade.s5.jutuo.net/UpdateService.svc?disco" />
+    <MetadataFile FileName="UpdateService4.xsd" MetadataType="Schema" ID="98b3fbf0-8e2b-499e-abef-6688c342fb41" SourceId="1" SourceUrl="http://upgrade.s5.jutuo.net/UpdateService.svc?xsd=xsd3" />
+    <MetadataFile FileName="UpdateService41.xsd" MetadataType="Schema" ID="d98a12f6-65ab-4072-a437-c1aec6866d0c" SourceId="1" SourceUrl="http://upgrade.s5.jutuo.net/UpdateService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UpdateService42.xsd" MetadataType="Schema" ID="1c194d5e-0e0f-4754-ab7f-6a990d89cb68" SourceId="1" SourceUrl="http://upgrade.s5.jutuo.net/UpdateService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UpdateService43.xsd" MetadataType="Schema" ID="be93b412-3263-4fe7-b976-766f3d8cc1ae" SourceId="1" SourceUrl="http://upgrade.s5.jutuo.net/UpdateService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

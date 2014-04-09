@@ -120,22 +120,23 @@
     <None Include="Service References\FFUpgrade.Service\FreightForwarder.Upgrade.FFUpgrade.Service.UpgradePackage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FFUpgrade.Service\UpdateService.wsdl" />
-    <None Include="Service References\FFUpgrade.Service\UpdateService.xsd">
+    <None Include="Service References\FFUpgrade.Service\UpdateService1.wsdl" />
+    <None Include="Service References\FFUpgrade.Service\UpdateService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFUpgrade.Service\UpdateService1.xsd">
+    <None Include="Service References\FFUpgrade.Service\UpdateService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFUpgrade.Service\UpdateService2.xsd">
+    <None Include="Service References\FFUpgrade.Service\UpdateService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFUpgrade.Service\UpdateService3.xsd">
+    <None Include="Service References\FFUpgrade.Service\UpdateService43.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Service References\FFUpgrade.Service\UpdateService1.disco" />
     <None Include="Resources\青岛_small.png" />
     <None Include="Service References\FFUpgrade.Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
@@ -143,7 +144,6 @@
     </None>
     <None Include="Service References\FFUpgrade.Service\configuration.svcinfo" />
     <None Include="Service References\FFUpgrade.Service\configuration91.svcinfo" />
-    <None Include="Service References\FFUpgrade.Service\UpdateService.disco" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
   </ItemGroup>
   <ItemGroup>

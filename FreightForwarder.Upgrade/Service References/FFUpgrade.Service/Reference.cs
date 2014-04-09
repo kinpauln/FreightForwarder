@@ -34,6 +34,9 @@ namespace FreightForwarder.Upgrade.FFUpgrade.Service {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime PostTimeField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SideTypeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -92,6 +95,19 @@ namespace FreightForwarder.Upgrade.FFUpgrade.Service {
                 if ((this.PostTimeField.Equals(value) != true)) {
                     this.PostTimeField = value;
                     this.RaisePropertyChanged("PostTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SideType {
+            get {
+                return this.SideTypeField;
+            }
+            set {
+                if ((this.SideTypeField.Equals(value) != true)) {
+                    this.SideTypeField = value;
+                    this.RaisePropertyChanged("SideType");
                 }
             }
         }

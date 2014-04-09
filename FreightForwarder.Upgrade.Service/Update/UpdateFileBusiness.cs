@@ -12,22 +12,50 @@ namespace FreightForwarder.Upgrade.Service
     {
         public static IEnumerable<UpgradePackage> Select(int? startRowIndex, int? maximumRows)
         {
-            return (new PackageBusinesses()).GetUpgradePackages();
+            try
+            {
+                return (new PackageBusinesses()).GetUpgradePackages();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static int SelectCount()
         {
-            return (new PackageBusinesses()).GetUpgradePackageCount();
+            try
+            {
+                return (new PackageBusinesses()).GetUpgradePackageCount();
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
         }
 
         public static void Insert(UpgradePackage UpgradePackage)
         {
-            (new PackageBusinesses()).AddUpgradePackage(UpgradePackage);
+            try
+            {
+                (new PackageBusinesses()).AddUpgradePackage(UpgradePackage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static void Delete(UpgradePackage UpgradePackage)
         {
-            bool result = (new PackageBusinesses()).DeletePackage(UpgradePackage.Id);
+            try
+            {
+                bool result = (new PackageBusinesses()).DeletePackage(UpgradePackage.Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
