@@ -21,7 +21,7 @@
       <Value Profile="(Default)">ffminisoft@126.com</Value>
     </Setting>
     <Setting Name="ServerUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost/FFUpgrade.Service/</Value>
+      <Value Profile="(Default)">http://ffminisoft.s5.jutuo.net/</Value>
     </Setting>
     <Setting Name="NotifyUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">Login.aspx</Value>

@@ -97,7 +97,7 @@ namespace FreightForwarder.UI.Winform.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/FFUpgrade.Service/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://ffminisoft.s5.jutuo.net/")]
         public string ServerUrl {
             get {
                 return ((string)(this["ServerUrl"]));

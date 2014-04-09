@@ -205,20 +205,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\FFWCF\FFService.wsdl" />
-    <None Include="Service References\FFWCF\FFService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FFWCF\FFService1.wsdl" />
-    <None Include="Service References\FFWCF\FFService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FFWCF\FFService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FFWCF\FFService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -296,15 +282,26 @@
     <WCFMetadataStorage Include="Service References\FFWCF\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\FFWCF\FFService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\FFWCF\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FFWCF\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\FFWCF\FFService.wsdl" />
+    <None Include="Service References\FFWCF\FFService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService1.wsdl" />
+    <None Include="Service References\FFWCF\FFService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFWCF\FFService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\FFWCF\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -315,6 +312,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="search.ico" />
+    <None Include="Service References\FFWCF\FFService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
