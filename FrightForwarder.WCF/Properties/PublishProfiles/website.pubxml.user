@@ -17,22 +17,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2014 14:25:01</publishTime>
     </File>
     <File Include="bin/FreightForwarder.Business.dll">
-      <publishTime>04/08/2014 15:44:13</publishTime>
+      <publishTime>04/09/2014 16:26:14</publishTime>
     </File>
     <File Include="bin/FreightForwarder.Common.dll">
-      <publishTime>04/08/2014 15:44:11</publishTime>
+      <publishTime>04/09/2014 16:26:13</publishTime>
     </File>
     <File Include="bin/FreightForwarder.Compression.dll">
-      <publishTime>04/08/2014 15:44:11</publishTime>
+      <publishTime>04/09/2014 15:38:44</publishTime>
     </File>
     <File Include="bin/FreightForwarder.Data.dll">
-      <publishTime>04/08/2014 15:44:12</publishTime>
+      <publishTime>04/09/2014 16:26:14</publishTime>
     </File>
     <File Include="bin/FreightForwarder.Domain.dll">
-      <publishTime>04/08/2014 15:44:10</publishTime>
+      <publishTime>04/09/2014 16:26:13</publishTime>
     </File>
     <File Include="bin/FrightForwarder.WCF.dll">
-      <publishTime>04/08/2014 15:44:14</publishTime>
+      <publishTime>04/09/2014 17:05:20</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>02/21/2014 14:25:01</publishTime>
@@ -47,16 +47,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/21/2014 14:25:01</publishTime>
     </File>
     <File Include="Login.aspx">
-      <publishTime>04/08/2014 15:22:55</publishTime>
+      <publishTime>04/09/2014 17:04:59</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>02/21/2014 17:33:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.7.1.min.js">
+      <publishTime>04/09/2014 17:04:51</publishTime>
     </File>
     <File Include="Style/login.css">
       <publishTime>04/08/2014 09:53:55</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/08/2014 15:44:16</publishTime>
+      <publishTime>04/09/2014 17:05:21</publishTime>
     </File>
   </ItemGroup>
 </Project>
