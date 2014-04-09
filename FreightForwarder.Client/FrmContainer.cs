@@ -1,6 +1,4 @@
-﻿//#define ServerVersion
-#define ClientVersion
-using FreightForwarder.Business;
+﻿using FreightForwarder.Business;
 using FreightForwarder.Common;
 using FreightForwarder.Data;
 using FreightForwarder.Domain.Entities;
@@ -48,31 +46,32 @@ namespace FreightForwarder.UI.Winform
 
             //(new FreightForwarder.Business.BusinessBase()).GetRouteInformationItems(null);
 
+            if (Session.SOFT_VERSION_TYPE == SoftVersionType.Client)
+            {
+                //Thread validateThread = new Thread(new ParameterizedThreadStart(ValidateSoft));
+                //validateThread.IsBackground = true;
+                //validateThread.Start();
 
-#if ClientVersion
-            //Thread validateThread = new Thread(new ParameterizedThreadStart(ValidateSoft));
-            //validateThread.IsBackground = true;
-            //validateThread.Start();
+                toolStrip1.Visible = false;
+                menuStrip1.Visible = false;
+                _load = new FrmStart();
+                _load.TopMost = true;
+                _load.StatusInfo = "正在验证软件信息，请耐心等待。。。";
+                _load.Show();
 
-            toolStrip1.Visible = false;
-            menuStrip1.Visible = false;
-            _load = new FrmStart();
-            _load.TopMost = true;
-            _load.StatusInfo = "正在验证软件信息，请耐心等待。。。";
-            _load.Show();
+                ValidateSoftHandler vsh = new ValidateSoftHandler(ValidateSoft);
+                vsh.BeginInvoke(new AsyncCallback(ValidateSoftComplete), null);
 
-            ValidateSoftHandler vsh = new ValidateSoftHandler(ValidateSoft);
-            vsh.BeginInvoke(new AsyncCallback(ValidateSoftComplete), null);
+                //OpenProgressForm("正在验证软件信息，请耐心等待。", null);
+            }
 
-            //OpenProgressForm("正在验证软件信息，请耐心等待。", null);
-#endif
-
-#if ServerVersion
-                        this.Text = "货代Mini-服务端";
-                        toolStripStatusLblCompanyInfo.Text = "服务端";
-                        toolStripMenuItemSoftInfo.Visible = false;
-                        ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
-#endif
+            if (Session.SOFT_VERSION_TYPE == SoftVersionType.Server)
+            {
+                this.Text = "货代Mini-服务端";
+                toolStripStatusLblCompanyInfo.Text = "服务端";
+                toolStripMenuItemSoftInfo.Visible = false;
+                ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
+            }
         }
 
         private System.Windows.Forms.MdiClient mdiClient;
@@ -416,9 +415,10 @@ namespace FreightForwarder.UI.Winform
 
                     int? companyId = null;
 
-#if ClientVersion
-                    companyId = Session.CURRENT_SOFT.Company.Id;
-#endif
+                    if (Session.SOFT_VERSION_TYPE == SoftVersionType.Client)
+                    {
+                        companyId = Session.CURRENT_SOFT.Company.Id;
+                    }
                     IList<RouteInformationItem> exportList = _service.GetRouteInformationItems(companyId);
                     if (exportList == null)
                     {
@@ -520,36 +520,37 @@ namespace FreightForwarder.UI.Winform
 
         private void ContainerForm_KeyDown(object sender, KeyEventArgs e)
         {
-#if ClientVersion
-            // 注册机器码
-            if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F8) //Ctrl+Shift+Alt+F8
+            if (Session.SOFT_VERSION_TYPE == SoftVersionType.Client)
             {
-                if (Session.CURRENT_SOFT == null)
-                    return;
-                if (!string.IsNullOrEmpty(Session.CURRENT_SOFT.RegCode))
-                    return;
-                FrmUserRegister formRegCode = new FrmUserRegister();
-                formRegCode.StartPosition = FormStartPosition.CenterParent;
-                DialogResult dresult = formRegCode.ShowDialog(this);
-                if (dresult == System.Windows.Forms.DialogResult.Yes)
+                // 注册机器码
+                if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F8) //Ctrl+Shift+Alt+F8
                 {
-                    UserUtils.ShowInfo("注册成功！");
-                    InitClientUI();
-                    Session.CURRENT_SOFT.RegCode = CommonTool.GetRegCode(Session.CURRENT_SOFT.MachineCode);
+                    if (Session.CURRENT_SOFT == null)
+                        return;
+                    if (!string.IsNullOrEmpty(Session.CURRENT_SOFT.RegCode))
+                        return;
+                    FrmUserRegister formRegCode = new FrmUserRegister();
+                    formRegCode.StartPosition = FormStartPosition.CenterParent;
+                    DialogResult dresult = formRegCode.ShowDialog(this);
+                    if (dresult == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        UserUtils.ShowInfo("注册成功！");
+                        InitClientUI();
+                        Session.CURRENT_SOFT.RegCode = CommonTool.GetRegCode(Session.CURRENT_SOFT.MachineCode);
+                    }
+                    if (dresult == System.Windows.Forms.DialogResult.No)
+                    {
+                        UserUtils.ShowError("注册失败！");
+                    }
                 }
-                if (dresult == System.Windows.Forms.DialogResult.No)
+                // 查看机器码
+                if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F9) //Ctrl+Shift+Alt+F9
                 {
-                    UserUtils.ShowError("注册失败！");
+                    FrmSoftInfo formInstance = new FrmSoftInfo();
+                    formInstance.StartPosition = FormStartPosition.CenterParent;
+                    formInstance.ShowDialog(this);
                 }
             }
-            // 查看机器码
-            if (e.Modifiers == (Keys.Control | Keys.Shift | Keys.Alt) && e.KeyCode == Keys.F9) //Ctrl+Shift+Alt+F9
-            {
-                FrmSoftInfo formInstance = new FrmSoftInfo();
-                formInstance.StartPosition = FormStartPosition.CenterParent;
-                formInstance.ShowDialog(this);
-            }
-#endif
         }
 
         private void toolStripMenuItemAboutUs_Click(object sender, EventArgs e)
