@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define ServerVersion
+#define ClientVersion
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -114,8 +116,7 @@ namespace TransPadUpdater
                     sbPbar.Visible = false;
                     sbStatus.Text = "准备就绪";
 
-                    assembly = Assembly.Load(
-                    File.ReadAllBytes(Application.StartupPath + "\\" + _settings.ExecutablePath));
+                    assembly = Assembly.Load(File.ReadAllBytes(Application.StartupPath + "\\" + _settings.ExecutablePath));
                     this.Text = "货代Mini-V" + assembly.GetName().Version.ToString();
                 }));
 
@@ -196,9 +197,17 @@ namespace TransPadUpdater
             {
                 //登录成功
                 Process process = new Process();
-                string startfile = Application.StartupPath + "\\" +_settings.ExecutablePath;
+                string startfile = Application.StartupPath + "\\" + _settings.ExecutablePath;
 
-                ProcessStartInfo StartInfo = new ProcessStartInfo(startfile, null);
+                string args = string.Empty;
+#if ClientVersion
+                args = ((int)FreightForwarder.Common.SoftVersionType.Client).ToString();
+#endif
+#if ServerVersion
+                args = ((int)FreightForwarder.Common.SoftVersionType.Server).ToString();
+#endif
+
+                ProcessStartInfo StartInfo = new ProcessStartInfo(startfile, args);
                 StartInfo.UseShellExecute = false;
                 process.StartInfo = StartInfo;
                 process.Start();

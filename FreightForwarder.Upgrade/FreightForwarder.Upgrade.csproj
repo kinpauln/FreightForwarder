@@ -194,6 +194,12 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\FFUpgrade.Service\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreightForwarder.Common\FreightForwarder.Common.csproj">
+      <Project>{e8e1c397-1f15-45d2-8050-fcc454395a57}</Project>
+      <Name>FreightForwarder.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

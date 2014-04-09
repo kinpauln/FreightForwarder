@@ -1,4 +1,5 @@
-﻿using FreightForwarder.Domain.Entities;
+﻿using FreightForwarder.Common;
+using FreightForwarder.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace FreightForwarder.UI.Winform
     {
 
         private static RegisterCode current_soft;
+        private static SoftVersionType soft_version_type;
 
         /// <summary>
         /// 当前登录用户信息
@@ -26,6 +28,15 @@ namespace FreightForwarder.UI.Winform
         {
             get { return Session.current_soft; }
             set { Session.current_soft = value; }
+        }
+
+        /// <summary>
+        /// 软件版本
+        /// </summary> 
+        public static SoftVersionType SOFT_VERSION_TYPE
+        {
+            get { return Session.soft_version_type; }
+            set { Session.soft_version_type = value; }
         }
     }
 }

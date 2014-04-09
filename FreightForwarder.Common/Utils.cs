@@ -205,4 +205,12 @@ namespace FreightForwarder.Common
         [Description("过期")]
         Invalid = 4// 过期
     }
+
+    public enum SoftVersionType
+    {
+        [Description("管理端")]
+        Server = 1,
+        [Description("客户端")]
+        Client = 2
+    }
 }

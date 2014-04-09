@@ -1,4 +1,5 @@
-﻿using FreightForwarder.Domain.Entities;
+﻿using FreightForwarder.Common;
+using FreightForwarder.Domain.Entities;
 using FreightForwarder.UI.Winform;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,21 @@ namespace FreightForwarder
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            if (args == null || args.Length == 0)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(args[0]))
+            {
+                return;
+            }
+            
+            SoftVersionType svt = (SoftVersionType)(int.Parse(args[0]));
+            Session.SOFT_VERSION_TYPE = svt;
+
             try
             {
                 //设置应用程序处理异常方式：ThreadException处理
