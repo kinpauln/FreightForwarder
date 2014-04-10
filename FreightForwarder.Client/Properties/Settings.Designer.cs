@@ -25,54 +25,6 @@ namespace FreightForwarder.UI.Winform.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("657237151@qq.com")]
-        public string AboutUs_Email {
-            get {
-                return ((string)(this["AboutUs_Email"]));
-            }
-            set {
-                this["AboutUs_Email"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
-        public string AboutUs_QQGroup {
-            get {
-                return ((string)(this["AboutUs_QQGroup"]));
-            }
-            set {
-                this["AboutUs_QQGroup"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("657237151")]
-        public string AboutUs_QQ {
-            get {
-                return ((string)(this["AboutUs_QQ"]));
-            }
-            set {
-                this["AboutUs_QQ"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1333454355")]
-        public string AboutUs_Telephone {
-            get {
-                return ((string)(this["AboutUs_Telephone"]));
-            }
-            set {
-                this["AboutUs_Telephone"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("true")]
         public string SendErrorEmail {
             get {
