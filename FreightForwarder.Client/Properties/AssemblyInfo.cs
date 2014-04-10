@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FreightForwarder")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("代贸通物流")]
+[assembly: AssemblyDescription("货代Mini开发团队（QQ:403172772）")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("FreightForwarder")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2014")]
+[assembly: AssemblyCompany("青岛代贸通物流有限公司")]
+[assembly: AssemblyProduct("货代Mini")]
+[assembly: AssemblyCopyright("Copyright © 货代Mini开发团队 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,7 +31,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.0.5")]
-[assembly: AssemblyFileVersion("2.0.0.5")]
+[assembly: AssemblyVersion("2.0.*")]
+//[assembly: AssemblyFileVersion("2.0.*")] 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]

@@ -32,8 +32,17 @@ namespace FreightForwarder.UI.Winform
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            Query();
+        }
+
+        private void Query() { 
             //picBoxLoading.Visible = true;
             //btnSearch.Enabled = false;
+            if (string.IsNullOrEmpty(txtDestinationPort.Text.Trim())) {
+                UserUtils.ShowWarning("目的港不能为空，必须输入。");
+                txtDestinationPort.Focus();
+                return;
+            }
 
             threadSearch = new Thread(new ThreadStart(new Action(() =>
             {
@@ -163,6 +172,14 @@ namespace FreightForwarder.UI.Winform
                         };
                         break;
                 }
+            }
+        }
+
+        private void txtDestinationPort_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Query();
             }
         }
     }

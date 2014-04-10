@@ -30,9 +30,11 @@ namespace FreightForwarder
             {
                 return;
             }
-            
+
             SoftVersionType svt = (SoftVersionType)(int.Parse(args[0]));
             Session.SOFT_VERSION_TYPE = svt;
+
+            //Session.SOFT_VERSION_TYPE = SoftVersionType.Client;
 
             try
             {

@@ -128,6 +128,7 @@
             this.txtDestinationPort.Name = "txtDestinationPort";
             this.txtDestinationPort.Size = new System.Drawing.Size(186, 21);
             this.txtDestinationPort.TabIndex = 1;
+            this.txtDestinationPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDestinationPort_KeyDown);
             // 
             // label3
             // 
