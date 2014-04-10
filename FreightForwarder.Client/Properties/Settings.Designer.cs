@@ -70,5 +70,17 @@ namespace FreightForwarder.UI.Winform.Properties {
                 this["NotifyUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://upgrade.s5.jutuo.net/")]
+        public string UpdateServerUrl {
+            get {
+                return ((string)(this["UpdateServerUrl"]));
+            }
+            set {
+                this["UpdateServerUrl"] = value;
+            }
+        }
     }
 }

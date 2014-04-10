@@ -3,15 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
+<head id="Head1" runat="server">
     <title>货代Mini</title>
     <link type="text/css" rel="stylesheet" href="style/login.css" />
-    <script type="text/javascript" src="script/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $(document)
-	            .bind("contextmenu", function() { return false; })
-	            .bind("selectstart", function() { return false; });
+	            .bind("contextmenu", function () { return false; })
+	            .bind("selectstart", function () { return false; });
         });
     </script>
 </head>
@@ -24,8 +24,8 @@
 				    <strong>欢迎使用《货代Mini》</strong>
 			    </td>
 			    <td align="right">
-				    <a href="http://localhost/FFUpgrade.Service/" target="_blank">官方主页</a>&nbsp;|&nbsp;
-				    <a href="http://localhost/FFUpgrade.Service/FFDB/down/setup.zip" target="_blank">下载最新版</a>
+				    <%--<a href="http://localhost/FFUpgrade.Service/" target="_blank">官方主页</a>&nbsp;|&nbsp;--%>
+				    <a href="http://upgrade.s5.jutuo.net/setup.zip" target="_blank">下载最新版</a>
 			    </td>
 		    </tr>
 	    </table>

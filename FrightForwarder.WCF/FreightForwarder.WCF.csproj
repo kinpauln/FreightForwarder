@@ -71,9 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FFService.svc" />
-    <Content Include="Login.aspx" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
-    <Content Include="Style\login.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -83,13 +80,6 @@
       <DependentUpon>FFService.svc</DependentUpon>
     </Compile>
     <Compile Include="IFFService.cs" />
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

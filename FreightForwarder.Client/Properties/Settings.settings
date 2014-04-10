@@ -14,5 +14,8 @@
     <Setting Name="NotifyUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">Login.aspx</Value>
     </Setting>
+    <Setting Name="UpdateServerUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://upgrade.s5.jutuo.net/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -18,7 +18,7 @@ namespace FreightForwarder.UI.Winform
         public FrmStart()
         {
             InitializeComponent();
-            webBrowser1.Navigate(new Uri(string.Format("{0}{1}", _settings.ServerUrl, _settings.NotifyUrl), false));
+            webBrowser1.Navigate(string.Format("{0}{1}", _settings.UpdateServerUrl, _settings.NotifyUrl));
         }
 
         private void FrmStart_Load(object sender, EventArgs e)
