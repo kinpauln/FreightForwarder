@@ -34,6 +34,13 @@ namespace TransPadUpdater
             InitializeComponent();
             _settings = FreightForwarder.Upgrade.Properties.Settings.Default;
 
+            int frmwidth = 621;
+            int frmheight = 420;
+            int.TryParse(_settings.FormWidth, out frmwidth);
+            int.TryParse(_settings.FormHeight, out frmheight);
+            this.Width = frmwidth;
+            this.Height = frmheight;
+
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.MaxReceivedMessageSize = Int32.MaxValue;
             binding.ReaderQuotas.MaxArrayLength = Int32.MaxValue;
@@ -210,9 +217,8 @@ namespace TransPadUpdater
                 ProcessStartInfo StartInfo = new ProcessStartInfo(startfile, args);
                 StartInfo.UseShellExecute = false;
                 process.StartInfo = StartInfo;
-                process.Start();
-
-                Application.Exit();
+                //process.Start();
+                //Application.Exit();
             }
             catch (Exception ex)
             {

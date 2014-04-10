@@ -36,9 +36,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sbStatus,
             this.sbPbar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 327);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 382);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(605, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(718, 22);
             this.statusStrip1.TabIndex = 4;
             // 
             // sbStatus
@@ -65,14 +65,14 @@
             this.ad.Location = new System.Drawing.Point(0, 0);
             this.ad.MinimumSize = new System.Drawing.Size(20, 20);
             this.ad.Name = "ad";
-            this.ad.Size = new System.Drawing.Size(605, 327);
+            this.ad.Size = new System.Drawing.Size(718, 382);
             this.ad.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 349);
+            this.ClientSize = new System.Drawing.Size(718, 404);
             this.Controls.Add(this.ad);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
