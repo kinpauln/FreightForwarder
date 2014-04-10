@@ -37,7 +37,7 @@ namespace FreightForwarder
        
 #endif
 #if DEBUG
-            Session.SOFT_VERSION_TYPE = SoftVersionType.Client;
+            Session.SOFT_VERSION_TYPE = SoftVersionType.Server;
 #endif
             try
             {

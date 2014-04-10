@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="/OvsS68Rt1alXSxINoOtJ50Vu6o=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="D+rHsGPtdjXPDFOLDUut6bCx7X4=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IFFService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IFFService" contract="FFWCF.IFFService" bindingType="basicHttpBinding" address="http://minisoft.s4.jutuo.net/FFService.svc/basic" bindingConfiguration="BasicHttpBinding_IFFService">
+    <endpoint name="BasicHttpBinding_IFFService" contract="FFWCF.IFFService" bindingType="basicHttpBinding" address="http://ffminisoft.s5.jutuo.net/FFService.svc/basic" bindingConfiguration="BasicHttpBinding_IFFService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://minisoft.s4.jutuo.net/FFService.svc/basic</serializedValue>
+          <serializedValue>http://ffminisoft.s5.jutuo.net/FFService.svc/basic</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

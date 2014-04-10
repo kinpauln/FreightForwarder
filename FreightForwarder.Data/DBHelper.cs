@@ -189,6 +189,8 @@ namespace FreightForwarder.Data
 
             using (FFDBContext context = new FFDBContext())
             {
+                //设置的时间是300秒，即五分钟
+                context.Database.CommandTimeout = 300;
                 DbTransaction tran = null;
                 try
                 {
@@ -238,7 +240,7 @@ namespace FreightForwarder.Data
                             // 要删除的 数据库ID
                             int[] deleteIDs = oldDestinationIDs.Except(idInFiles).ToArray();
 
-                            IEnumerable<RouteInformationItem> deletelist = context.RouteItems.Where(ri => deleteIDs.Contains(ri.Id));
+                            IEnumerable<RouteInformationItem> deletelist = context.RouteItems.Where(ri => deleteIDs.Contains(ri.Id)).ToList();
                             // delete
                             foreach (RouteInformationItem item in deletelist)
                             {

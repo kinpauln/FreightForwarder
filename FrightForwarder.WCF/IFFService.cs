@@ -27,6 +27,7 @@ namespace FrightForwarder.WCF
         Dictionary<string, int> GetAllCompanies();
 
         [OperationContract]
+        [CompressionOperationBehavior]
         bool ImportRouteInformationItems(IList<RouteInformationItem> rlist);
 
         [OperationContract]

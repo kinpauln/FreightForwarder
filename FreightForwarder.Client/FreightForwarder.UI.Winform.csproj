@@ -279,18 +279,18 @@
     <None Include="Service References\FFWCF\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\FFWCF\FFService.wsdl" />
-    <None Include="Service References\FFWCF\FFService.xsd">
+    <None Include="Service References\FFWCF\FFService2.wsdl" />
+    <None Include="Service References\FFWCF\FFService21.wsdl" />
+    <None Include="Service References\FFWCF\FFService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFWCF\FFService1.wsdl" />
-    <None Include="Service References\FFWCF\FFService1.xsd">
+    <None Include="Service References\FFWCF\FFService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFWCF\FFService2.xsd">
+    <None Include="Service References\FFWCF\FFService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FFWCF\FFService3.xsd">
+    <None Include="Service References\FFWCF\FFService43.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\FFWCF\Reference.svcmap">
@@ -303,7 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="search.ico" />
-    <None Include="Service References\FFWCF\FFService.disco" />
+    <None Include="Service References\FFWCF\FFService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

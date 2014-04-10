@@ -19,16 +19,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://minisoft.s4.jutuo.net/FFService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://ffminisoft.s5.jutuo.net/FFService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FFService.wsdl" MetadataType="Wsdl" ID="707650c0-41e0-4bba-964b-1038cfd87e91" SourceId="1" SourceUrl="http://minisoft.s4.jutuo.net/FFService.svc?wsdl=wsdl0" />
-    <MetadataFile FileName="FFService.xsd" MetadataType="Schema" ID="16fc2e24-623c-4126-8bd5-0ebaa1f335a6" SourceId="1" SourceUrl="http://minisoft.s4.jutuo.net/FFService.svc?xsd=xsd0" />
-    <MetadataFile FileName="FFService1.xsd" MetadataType="Schema" ID="2c4f18fc-d762-48d8-beb0-3f5e0cb8b189" SourceId="1" SourceUrl="http://minisoft.s4.jutuo.net/FFService.svc?xsd=xsd1" />
-    <MetadataFile FileName="FFService2.xsd" MetadataType="Schema" ID="063dd398-d1a9-4376-bc97-f24e51df9966" SourceId="1" SourceUrl="http://minisoft.s4.jutuo.net/FFService.svc?xsd=xsd3" />
-    <MetadataFile FileName="FFService3.xsd" MetadataType="Schema" ID="c1597199-3f18-4ffa-b8af-1c51a3d929fe" SourceId="1" SourceUrl="http://minisoft.s4.jutuo.net/FFService.svc?xsd=xsd2" />
-    <MetadataFile FileName="FFService1.wsdl" MetadataType="Wsdl" ID="e614f0d9-94ae-4b08-80d4-138e7f366c91" SourceId="1" SourceUrl="http://minisoft.s4.jutuo.net/FFService.svc?wsdl" />
-    <MetadataFile FileName="FFService.disco" MetadataType="Disco" ID="c34e0678-e5d4-4179-a720-b847a8187dac" SourceId="1" SourceUrl="http://minisoft.s4.jutuo.net/FFService.svc?disco" />
+    <MetadataFile FileName="FFService4.xsd" MetadataType="Schema" ID="80273e6e-aa69-465f-b902-24402873c9d3" SourceId="1" SourceUrl="http://ffminisoft.s5.jutuo.net/FFService.svc?xsd=xsd2" />
+    <MetadataFile FileName="FFService41.xsd" MetadataType="Schema" ID="fc215e57-551e-4c35-bd2d-9514df005338" SourceId="1" SourceUrl="http://ffminisoft.s5.jutuo.net/FFService.svc?xsd=xsd3" />
+    <MetadataFile FileName="FFService42.xsd" MetadataType="Schema" ID="c2ef6fcd-ab95-4b67-a58c-e0e057ea63ed" SourceId="1" SourceUrl="http://ffminisoft.s5.jutuo.net/FFService.svc?xsd=xsd0" />
+    <MetadataFile FileName="FFService43.xsd" MetadataType="Schema" ID="b1136e1b-b490-4564-b9ef-cf6cfe945c43" SourceId="1" SourceUrl="http://ffminisoft.s5.jutuo.net/FFService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FFService2.wsdl" MetadataType="Wsdl" ID="1706f5db-3af1-40f1-9124-f8cbcb2da2ee" SourceId="1" SourceUrl="http://ffminisoft.s5.jutuo.net/FFService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="FFService1.disco" MetadataType="Disco" ID="d51133b3-3aea-475d-8088-63c8da0c5711" SourceId="1" SourceUrl="http://ffminisoft.s5.jutuo.net/FFService.svc?disco" />
+    <MetadataFile FileName="FFService21.wsdl" MetadataType="Wsdl" ID="b3cd31e6-824f-4548-9e8b-c368a417995e" SourceId="1" SourceUrl="http://ffminisoft.s5.jutuo.net/FFService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

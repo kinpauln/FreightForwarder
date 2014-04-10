@@ -37,6 +37,7 @@ namespace FreightForwarder.UI.Winform.FFWCF {
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, int>> GetAllCompaniesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/ImportRouteInformationItems", ReplyAction="FrightForwarder/IFFService/ImportRouteInformationItemsResponse")]
+        [FreightForwarder.MessageCompression.CompressionOperationBehavior]
         bool ImportRouteInformationItems(FreightForwarder.Domain.Entities.RouteInformationItem[] rlist);
         
         [System.ServiceModel.OperationContractAttribute(Action="FrightForwarder/IFFService/ImportRouteInformationItems", ReplyAction="FrightForwarder/IFFService/ImportRouteInformationItemsResponse")]
