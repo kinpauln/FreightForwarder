@@ -32,6 +32,14 @@ namespace FreightForwarder.UI.Winform
         public FrmContainer()
         {
             InitializeComponent();
+            foreach (Control c in this.Controls)
+            {
+                if (c is MdiClient)
+                {
+                    c.BackColor = this.BackColor;
+                    c.BackgroundImage = this.BackgroundImage;
+                }
+            }
             _defaultSettings = Properties.Settings.Default;
         }
 
@@ -73,55 +81,8 @@ namespace FreightForwarder.UI.Winform
                 ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
             }
         }
-
-        private System.Windows.Forms.MdiClient mdiClient;
-        private void ShowBackForm()
-        {
-            //显示背景
-            FrmBack frmb = new FrmBack();
-            frmb.MdiParent = this;
-            //(frmb, true);
-            frmb.Dock = DockStyle.Fill;
-            frmb.Show();
-
-            //MdiClient ctlMDI;
-            //// Loop through all of the form's controls looking
-            //// for the control of type MdiClient.
-            //foreach (Control ctl in this.Controls)
-            //{
-            //    try
-            //    {
-            //        // Attempt to cast the control to type MdiClient.
-            //        ctlMDI = (MdiClient)ctl;
-
-            //        // Set the BackColor of the MdiClient control.
-            //        ctlMDI.BackColor = this.BackColor;
-            //    }
-            //    catch (InvalidCastException exc)
-            //    {
-            //        // Catch and ignore the error if casting failed.
-            //    }
-            //}
-            //
-
-            //int iCnt = this.Controls.Count;
-            //for (int i = 0; i < this.Controls.Count; i++)
-            //{
-            //    if (this.Controls[i].GetType().ToString() == "System.Windows.Forms.MdiClient")
-            //    {
-            //        this.mdiClient = (System.Windows.Forms.MdiClient)this.Controls[i];
-            //        break;
-            //    }
-            //}
-            //string fbImage = Application.StartupPath + "\\Images\\backGround.png";
-            //if (File.Exists(fbImage))
-            //{
-            //    Bitmap bm = new Bitmap(fbImage);
-            //    this.mdiClient.BackgroundImage = bm;
-            //    mdiClient.BackgroundImageLayout = ImageLayout.Stretch; 
-            //}
-        }
-
+        
+        #region 客户端登陆验证
         struct ValidateSoftInfoStruct
         {
             public bool isValidSoft;
@@ -218,7 +179,7 @@ namespace FreightForwarder.UI.Winform
             {
                 this.Invoke(new Action(() =>
                 {
-                    ShowBackForm();
+                    //ShowBackForm();
                     _load.Close();
 
                     InitClientUI();
@@ -244,7 +205,8 @@ namespace FreightForwarder.UI.Winform
 
             //MessageBox.Show(handler.EndInvoke(result));
             //MessageBox.Show(result.AsyncState);
-        }
+        } 
+        #endregion
 
         private void DisableMenuBar(MenuStrip menu, bool disable)
         {
@@ -320,6 +282,7 @@ namespace FreightForwarder.UI.Winform
             frm.Show();
         }
 
+        #region 工具栏按钮事件
         /// <summary>
         /// 导入
         /// </summary>
@@ -445,45 +408,17 @@ namespace FreightForwarder.UI.Winform
             }
         }
 
-        private void OpenProgressForm(string displayInfo, Thread thread, bool showCancel = false)
-        {
-            if (formProgressBar == null)
-            {
-                formProgressBar = new FrmUnStateProgressBar();
-            }
-
-            formProgressBar.DisplayInfo = displayInfo;
-            formProgressBar.ShowCancel = showCancel;
-            System.Windows.Forms.DialogResult dresult = formProgressBar.ShowDialog();
-            if (dresult == System.Windows.Forms.DialogResult.Cancel)
-            {
-                if (thread != null)
-                {
-                    thread.Abort();
-                }
-            }
-        }
-
-        private void CloseProgressForm()
-        {
-            this.Invoke(new Action(() =>
-            {
-                if (formProgressBar != null)
-                {
-                    this.Invoke(new Action(() =>
-                    {
-                        formProgressBar.Close();
-                    })
-                    );
-                }
-            }));
-        }
-
+        /// <summary>
+        ///  查询
+        /// </summary>
         private void toolStripMenuItemSearch_Click(object sender, EventArgs e)
         {
             ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
         }
+        
+        #endregion
 
+        #region 菜单栏按钮事件
         private void tsItemBtnAddCompany_Click(object sender, EventArgs e)
         {
             //ShowSingleWindow(typeof(AddCompanyForm));
@@ -500,10 +435,6 @@ namespace FreightForwarder.UI.Winform
             DialogResult dresult = regForm.ShowDialog(this);
         }
 
-        private void ContainerForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-        }
-
         private void toolStripMenuItemSoftInfo_Click(object sender, EventArgs e)
         {
             FrmSoftInfo formInstance = new FrmSoftInfo();
@@ -518,6 +449,43 @@ namespace FreightForwarder.UI.Winform
             formInstance.ShowDialog(this);
         }
 
+        private void toolStripMenuItemAboutUs_Click(object sender, EventArgs e)
+        {
+            FrmStart form = new FrmStart();
+            form.ShowDialog(this);
+        }
+
+        private void toolStripBtnQuery_Click(object sender, EventArgs e)
+        {
+            ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
+        }
+
+        private void toolStripMenuItemCompanyMgr_Click(object sender, EventArgs e)
+        {
+            FrmCompanyList regForm = new FrmCompanyList();
+            regForm.StartPosition = FormStartPosition.CenterParent;
+            DialogResult dresult = regForm.ShowDialog(this);
+        } 
+        #endregion
+
+        /// <summary>
+        ///  去除mdi子窗体最大化后的（最大化、最小化）按钮
+        /// </summary>
+        private void menuStrip1_ItemAdded(object sender, ToolStripItemEventArgs e)
+        {
+            if (e.Item.Text.Length == 0         //隐藏子窗体图标         
+                //|| e.Item.Text == "最小化(&N)"  //隐藏最小化按钮         
+                //|| e.Item.Text == "还原(&R)"  //隐藏还原按钮         
+                //|| e.Item.Text == "关闭(&C)" //隐藏最关闭按钮
+                )
+            {
+                e.Item.Visible = false;
+            }
+        }
+
+        /// <summary>
+        ///  快捷键
+        /// </summary>
         private void ContainerForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (Session.SOFT_VERSION_TYPE == SoftVersionType.Client)
@@ -553,42 +521,107 @@ namespace FreightForwarder.UI.Winform
             }
         }
 
-        private void toolStripMenuItemAboutUs_Click(object sender, EventArgs e)
+        /// <summary>
+        ///  窗体关闭
+        /// </summary>
+        private void ContainerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FrmStart form = new FrmStart();
-            form.ShowDialog(this);
         }
 
-        private void menuStrip1_ItemAdded(object sender, ToolStripItemEventArgs e)
+        #region 进度条窗体
+        private void OpenProgressForm(string displayInfo, Thread thread, bool showCancel = false)
         {
-            if (e.Item.Text.Length == 0         //隐藏子窗体图标         
-                //|| e.Item.Text == "最小化(&N)"  //隐藏最小化按钮         
-                //|| e.Item.Text == "还原(&R)"  //隐藏还原按钮         
-                //|| e.Item.Text == "关闭(&C)" //隐藏最关闭按钮
-                )
+            if (formProgressBar == null)
             {
-                e.Item.Visible = false;
+                formProgressBar = new FrmUnStateProgressBar();
             }
+
+            formProgressBar.DisplayInfo = displayInfo;
+            formProgressBar.ShowCancel = showCancel;
+            System.Windows.Forms.DialogResult dresult = formProgressBar.ShowDialog();
+            if (dresult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                if (thread != null)
+                {
+                    thread.Abort();
+                }
+            }
+        }
+
+        private void CloseProgressForm()
+        {
+            this.Invoke(new Action(() =>
+            {
+                if (formProgressBar != null)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        formProgressBar.Close();
+                    })
+                    );
+                }
+            }));
+        } 
+        #endregion
+
+        #region 弃用代码
+        /// <summary>
+        ///  显示背景窗体
+        /// </summary>
+        private void ShowBackForm()
+        {
+            //显示背景
+            FrmBack frmb = new FrmBack();
+            frmb.MdiParent = this;
+            //(frmb, true);
+            frmb.Dock = DockStyle.Fill;
+            frmb.Show();
+
+            //MdiClient ctlMDI;
+            //// Loop through all of the form's controls looking
+            //// for the control of type MdiClient.
+            //foreach (Control ctl in this.Controls)
+            //{
+            //    try
+            //    {
+            //        // Attempt to cast the control to type MdiClient.
+            //        ctlMDI = (MdiClient)ctl;
+
+            //        // Set the BackColor of the MdiClient control.
+            //        ctlMDI.BackColor = this.BackColor;
+            //    }
+            //    catch (InvalidCastException exc)
+            //    {
+            //        // Catch and ignore the error if casting failed.
+            //    }
+            //}
+            //
+
+            //int iCnt = this.Controls.Count;
+            //for (int i = 0; i < this.Controls.Count; i++)
+            //{
+            //    if (this.Controls[i].GetType().ToString() == "System.Windows.Forms.MdiClient")
+            //    {
+            //        this.mdiClient = (System.Windows.Forms.MdiClient)this.Controls[i];
+            //        break;
+            //    }
+            //}
+            //string fbImage = Application.StartupPath + "\\Images\\backGround.png";
+            //if (File.Exists(fbImage))
+            //{
+            //    Bitmap bm = new Bitmap(fbImage);
+            //    this.mdiClient.BackgroundImage = bm;
+            //    mdiClient.BackgroundImageLayout = ImageLayout.Stretch; 
+            //}
         }
 
         private void FrmContainer_MdiChildActivate(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild.Name == "FrmBack")
-                foreach (Form f in this.MdiChildren)
-                    if (f.Name != "FrmBack") f.Activate();//或f.BringToFront();
-        }
-
-        private void toolStripBtnQuery_Click(object sender, EventArgs e)
-        {
-            ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
-        }
-
-        private void toolStripMenuItemCompanyMgr_Click(object sender, EventArgs e)
-        {
-            FrmCompanyList regForm = new FrmCompanyList();
-            regForm.StartPosition = FormStartPosition.CenterParent;
-            DialogResult dresult = regForm.ShowDialog(this);
-        }
+            //if (this.ActiveMdiChild.Name == "FrmBack")
+            //    foreach (Form f in this.MdiChildren)
+            //        if (f.Name != "FrmBack") f.Activate();//或f.BringToFront();
+        } 
+        #endregion
     }
 
     public enum SoftState

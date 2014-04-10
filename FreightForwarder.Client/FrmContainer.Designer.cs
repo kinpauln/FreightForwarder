@@ -42,6 +42,7 @@
             this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.tsItemBtnAddCompany = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCompanyMgr = new System.Windows.Forms.ToolStripMenuItem();
             this.tsItemBtnRegCode = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAboutUs = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,6 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLblCompanyInfo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripMenuItemCompanyMgr = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -157,21 +157,28 @@
             // toolStripMenuItemSearch
             // 
             this.toolStripMenuItemSearch.Name = "toolStripMenuItemSearch";
-            this.toolStripMenuItemSearch.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemSearch.Size = new System.Drawing.Size(136, 22);
             this.toolStripMenuItemSearch.Text = "查询";
             this.toolStripMenuItemSearch.Click += new System.EventHandler(this.toolStripMenuItemSearch_Click);
             // 
             // tsItemBtnAddCompany
             // 
             this.tsItemBtnAddCompany.Name = "tsItemBtnAddCompany";
-            this.tsItemBtnAddCompany.Size = new System.Drawing.Size(152, 22);
+            this.tsItemBtnAddCompany.Size = new System.Drawing.Size(136, 22);
             this.tsItemBtnAddCompany.Text = "添加公司";
             this.tsItemBtnAddCompany.Click += new System.EventHandler(this.tsItemBtnAddCompany_Click);
+            // 
+            // toolStripMenuItemCompanyMgr
+            // 
+            this.toolStripMenuItemCompanyMgr.Name = "toolStripMenuItemCompanyMgr";
+            this.toolStripMenuItemCompanyMgr.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItemCompanyMgr.Text = "公司管理";
+            this.toolStripMenuItemCompanyMgr.Click += new System.EventHandler(this.toolStripMenuItemCompanyMgr_Click);
             // 
             // tsItemBtnRegCode
             // 
             this.tsItemBtnRegCode.Name = "tsItemBtnRegCode";
-            this.tsItemBtnRegCode.Size = new System.Drawing.Size(152, 22);
+            this.tsItemBtnRegCode.Size = new System.Drawing.Size(136, 22);
             this.tsItemBtnRegCode.Text = "注册机器码";
             this.tsItemBtnRegCode.Click += new System.EventHandler(this.tsItemBtnRegCode_Click);
             // 
@@ -234,18 +241,13 @@
             this.toolStripStatusLblCompanyInfo.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLblCompanyInfo.Text = "公司名";
             // 
-            // toolStripMenuItemCompanyMgr
-            // 
-            this.toolStripMenuItemCompanyMgr.Name = "toolStripMenuItemCompanyMgr";
-            this.toolStripMenuItemCompanyMgr.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemCompanyMgr.Text = "公司管理";
-            this.toolStripMenuItemCompanyMgr.Click += new System.EventHandler(this.toolStripMenuItemCompanyMgr_Click);
-            // 
             // FrmContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::FreightForwarder.UI.Winform.Properties.Resources.青岛;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
