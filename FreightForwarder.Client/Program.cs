@@ -21,6 +21,7 @@ namespace FreightForwarder
         [STAThread]
         static void Main(string[] args)
         {
+#if !DEBUG
             if (args == null || args.Length == 0)
             {
                 return;
@@ -33,9 +34,11 @@ namespace FreightForwarder
 
             SoftVersionType svt = (SoftVersionType)(int.Parse(args[0]));
             Session.SOFT_VERSION_TYPE = svt;
-
-            //Session.SOFT_VERSION_TYPE = SoftVersionType.Client;
-
+       
+#endif
+#if DEBUG
+            Session.SOFT_VERSION_TYPE = SoftVersionType.Client;
+#endif
             try
             {
                 //设置应用程序处理异常方式：ThreadException处理
