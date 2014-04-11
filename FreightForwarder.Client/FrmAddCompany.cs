@@ -36,11 +36,11 @@ namespace FreightForwarder.UI.Winform
                     if (_service.AddCompany(name,code))
                     {
                         btnSave.Visible = true;
-                        UserUtils.ShowError("添加公司成功");
+                        UserUtils.ShowInfo("添加公司成功");
                     }
                     else
                     {
-                        UserUtils.ShowInfo("添加公司失败");
+                        UserUtils.ShowError("添加公司失败");
                     }
 
                     btnSave.Enabled = true;
