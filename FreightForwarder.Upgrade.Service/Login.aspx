@@ -25,7 +25,7 @@
 			    </td>
 			    <td align="right">
 				    <%--<a href="http://localhost/FFUpgrade.Service/" target="_blank">官方主页</a>&nbsp;|&nbsp;--%>
-				    <a href="http://upgrade.s5.jutuo.net/setup.zip" target="_blank">下载最新版</a>
+				    <a href="http://upgrade.s5.jutuo.net/download/client.zip" target="_blank">下载最新版</a>
 			    </td>
 		    </tr>
 	    </table>
