@@ -13,6 +13,7 @@ namespace FreightForwarder.Common
 {
     public class NPOIHelper : AbstractProgressBar
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private HSSFWorkbook workbook;
         public static IWorkbook LoadFromFile(string filepath)
         {
@@ -322,17 +323,43 @@ namespace FreightForwarder.Common
                                     dr[j] = string.Empty;
                                     continue;
                                 }
-                                string cellValue = dataRow.GetCell(j).StringCellValue;
-                                if (!string.IsNullOrEmpty(cellValue))
+
+                                object cellValue = null;
+                                string cellType = dataRow.GetCell(j).CellType.ToString();
+                                switch (cellType)
                                 {
-                                    dr[j] = dataRow.GetCell(j).StringCellValue.ToString();
+                                    case "Numeric":
+                                        cellValue = dataRow.GetCell(j).NumericCellValue;
+                                        break;
+                                    case "String":
+                                        cellValue = dataRow.GetCell(j).StringCellValue;
+                                        break;
+                                    case "Boolean":
+                                        cellValue = dataRow.GetCell(j).BooleanCellValue;
+                                        break;
+                                    case "Date":
+                                        cellValue = dataRow.GetCell(j).DateCellValue;
+                                        break;
+                                    case "Error":
+                                        cellValue = dataRow.GetCell(j).ErrorCellValue;
+                                        break;
+                                    case "RichString":
+                                        cellValue = dataRow.GetCell(j).RichStringCellValue;
+                                        break;
+                                    default:
+                                        cellValue = null;
+                                        break;
+                                }
+                                if (cellValue != null)
+                                {
+                                    dr[j] = cellValue != null ? cellValue.ToString() : string.Empty;
                                 }
                             }
                             catch (Exception ex)
                             {
+                                log.Error("Excel转换成Table时出错，出错列为：" + j, ex);
                                 continue;
                             }
-
                         }
 
                         dt.Rows.Add(dr);
