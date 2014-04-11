@@ -213,4 +213,12 @@ namespace FreightForwarder.Common
         [Description("客户端")]
         Client = 2
     }
+
+    public enum PackageSavingType
+    {
+        [Description("数据库")]
+        DB = 1,
+        [Description("XML")]
+        XML = 2
+    }
 }

@@ -79,9 +79,11 @@
     <Content Include="Style\Tools.css" />
     <Content Include="UpdateService.svc" />
     <Content Include="Update\Default.aspx" />
+    <Content Include="upgrade-packages.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extentions.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

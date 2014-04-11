@@ -9,7 +9,10 @@ using System.IO;
 namespace FreightForwarder.Upgrade.Service {
     public partial class _Default : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-
+            if (!IsPostBack)
+            {
+                BindDropdownList();
+            }
         }
 
         protected void FormView1_ItemInserting(object sender, FormViewInsertEventArgs e) {
@@ -18,8 +21,37 @@ namespace FreightForwarder.Upgrade.Service {
             e.Values.Add("FileName", Path.GetFileName(fileUpload.FileName));
             e.Values.Add("FileBytes", fileUpload.FileBytes);
             e.Values.Add("PostTime", DateTime.Now);
+
+            string savingType = (FormView1.FindControl("drpSavingType") as DropDownList).SelectedValue;
+            e.Values.Add("SavingType", savingType);
         }
 
+        private void BindDropdownList() {
+            Dictionary<int, string> denums = FreightForwarder.Common.Extentions.GetEnumDescriptions<FreightForwarder.Common.PackageSavingType>();
+            var dsource = new Dictionary<int, string>
+            {
+                {0, "请选择"}
+            }.Union(denums);
+
+            DropDownList drp = FormView1.FindControl("drpSavingType") as DropDownList;
+            drp.DataSource = dsource;
+            drp.DataTextField = "Value";
+            drp.DataValueField = "Key";
+            drp.DataBind();
+
+            drpSavingType2.DataSource = denums;
+            drpSavingType2.DataTextField = "Value";
+            drpSavingType2.DataValueField = "Key";
+            drpSavingType2.DataBind();
+        }
+
+        protected void Query(object sender, EventArgs e)
+        {
+            ObjectDataSource1.SelectParameters.Clear();
+            ObjectDataSource1.SelectParameters.Add("SavingType", drpSavingType2.SelectedValue);
+            GridView1.DataSource = ObjectDataSource1;
+            GridView1.DataBind();
+        }
         //protected void ObjectDataSource1_Inserting(object sender, ObjectDataSourceMethodEventArgs e) {
             
         //    ObjectDataSource1.InsertParameters.Add("FileVersion", 
@@ -31,6 +63,5 @@ namespace FreightForwarder.Upgrade.Service {
         //    //ObjectDataSource1.InsertParameters["PostTime"].DefaultValue = DateTime.Now;
             
         //}
-
     }
 }

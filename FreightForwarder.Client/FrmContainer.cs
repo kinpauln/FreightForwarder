@@ -52,7 +52,7 @@ namespace FreightForwarder.UI.Winform
             //UserUtils.ShowError(dbconnString);
             //FreightForwarder.Client.DBHelper.GetEntries();
 
-            //(new FreightForwarder.Business.BusinessBase()).GetRouteInformationItems(null);
+            (new FreightForwarder.Business.BusinessBase()).GetRouteInformationItems(null);
 
             if (Session.SOFT_VERSION_TYPE == SoftVersionType.Client)
             {

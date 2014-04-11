@@ -1,5 +1,5 @@
-﻿#define ServerVersion
-//#define ClientVersion
+﻿//#define ServerVersion
+#define ClientVersion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -217,8 +217,8 @@ namespace TransPadUpdater
                 ProcessStartInfo StartInfo = new ProcessStartInfo(startfile, args);
                 StartInfo.UseShellExecute = false;
                 process.StartInfo = StartInfo;
-                process.Start();
-                Application.Exit();
+                //process.Start();
+                //Application.Exit();
             }
             catch (Exception ex)
             {

@@ -30,13 +30,21 @@
     </style>
     <link href="../Style/Style.css" type="text/css" rel="Stylesheet" />
     <link href="../Style/Tools.css" type="text/css" rel="Stylesheet" />
-    <script type="text/javascript" src="../Script/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-1.7.1.min.js"></script>
     <script type="text/javascript">
         $(function () {
             $(document)
 	            .bind("contextmenu", function () { return false; })
 	            .bind("selectstart", function () { return false; });
         });
+
+        function CheckSavingType() {
+            if ($("#FormView1_drpSavingType").val() == "0") {
+                alert("请选择保存方式");
+                return false;
+            }
+            return true;
+        }
     </script>
 </head>
 <body>
@@ -49,17 +57,23 @@
                 OnItemInserting="FormView1_ItemInserting">
                 <InsertItemTemplate>
                     请选择升级包文件，文件后缀为*.zip，选择文件后，点击上传按钮。<br />
-                    升级文件:<asp:FileUpload ID="fileUpload" runat="server" Width="400px" />
-                    <asp:Button ID="btnPost" runat="server" Text="发布" OnClientClick="" CommandName="Insert" CssClass="button" />
+                    升级文件:<asp:FileUpload ID="fileUpload" runat="server" Width="400px" /><br />
+                    存储方式：<asp:DropDownList ID="drpSavingType" runat="server">
+                    </asp:DropDownList>
+                    <br />
+                    <asp:Button ID="btnPost" runat="server" Text="发布" OnClientClick="return CheckSavingType()" CommandName="Insert" CssClass="button" />
                 </InsertItemTemplate>
             </asp:FormView>
         </div>
 
         <br />
 
+        存储方式：<asp:DropDownList ID="drpSavingType2" runat="server">
+        </asp:DropDownList>
+        <br />
+        <asp:Button ID="btnQuery" runat="server" Text="检索" OnClientClick="" OnClick="Query" CommandName="Select" CssClass="button" />
         <asp:GridView ID="GridView1" runat="server"
             AutoGenerateColumns="false"
-            DataSourceID="ObjectDataSource1"
             DataKeyNames="Id"
             AllowPaging="true"
             PageSize="20" Width="100%" CssClass="grid">
@@ -100,6 +114,10 @@
             InsertMethod="Insert"
             DeleteMethod="Delete"
             EnablePaging="true">
+            <SelectParameters>
+                <%--<asp:Parameter Name="SavingType" Direction="Input"
+                    Type="String" />--%>
+            </SelectParameters>
         </asp:ObjectDataSource>
     </form>
 </body>

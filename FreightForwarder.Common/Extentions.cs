@@ -66,6 +66,16 @@ namespace FreightForwarder.Common
             for (int i = interval; i < input.Length; i += interval + 1)
                 input = input.Insert(i, value);
             return input;
-        }  
+        }
+
+        public static Dictionary<int, string> GetEnumDescriptions<T>() where T : struct
+        {
+            Dictionary<int, string> rlist = new Dictionary<int, string>();
+            foreach (T item in Enum.GetValues(typeof(T)))
+            {
+                rlist.Add(Convert.ToInt32(item), item.GetDescription());
+            }
+            return rlist;
+        }
     }
 }

@@ -31,6 +31,6 @@ namespace FreightForwarder.Domain.Entities
         public DateTime PostTime { get; set; }
 
         [DataMember]
-        public int SideType { get; set; }
+        public int SavingType { get; set; }
     }
 }
