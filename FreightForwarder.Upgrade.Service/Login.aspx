@@ -54,7 +54,7 @@
                 <p class="title">联系电话：</p>
                 <p class="data">18766202310</p>
                 <p class="title">QQ：</p>
-                <p class="data">403172772</p>
+                <p class="data">734452050</p>
             </td>
         </tr>
         </table>
