@@ -1,0 +1,29 @@
+2014-04-11 10:44:05,859 [4] ERROR FreightForwarder.UI.Winform.FrmContainer - 读取Excel文件失败
+System.ServiceModel.FaultException: 由于内部错误，服务器无法处理该请求。有关该错误的详细信息，请打开服务器上的 IncludeExceptionDetailInFaults (从 ServiceBehaviorAttribute 或从 <serviceDebug> 配置行为)以便将异常信息发送回客户端，或打开对每个 Microsoft .NET Framework SDK 文档的跟踪并检查服务器跟踪日志。
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.ThrowIfFaultUnderstood(Message reply, MessageFault fault, String action, MessageVersion version, FaultConverter faultConverter)
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 FreightForwarder.UI.Winform.FFWCF.IFFService.GetAllCompanies()
+   在 FreightForwarder.UI.Winform.FFWCF.FFServiceClient.GetAllCompanies() 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Client\Service References\FFWCF\Reference.cs:行号 128
+   在 FreightForwarder.UI.Winform.FrmContainer.<>c__DisplayClass11.<tsddBtnImport_Click>b__c() 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Client\FrmContainer.cs:行号 302
+2014-04-11 11:04:13,511 [12] ERROR FreightForwarder.Common.Logger - 
+****************************异常文本****************************
+【出现时间】：2014/4/11 11:04:13
+【异常类型】：InvalidOperationException
+【异常信息】：序列不包含任何匹配元素
+【堆栈调用】：   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 FreightForwarder.Data.DBHelper.ImportRouteInformationItems(IEnumerable`1 importlist) 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Data\DBHelper.cs:行号 219
+***************************************************************
+
+2014-04-11 12:30:58,232 [12] ERROR FreightForwarder.UI.Winform.FrmContainer - 读取Excel文件失败
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 FreightForwarder.Business.ServerBusinesses.GetExcelData(String filepath, Dictionary`2 companies) 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Business\ServerBusinesses.cs:行号 59
+   在 FreightForwarder.UI.Winform.FrmContainer.<>c__DisplayClass11.<tsddBtnImport_Click>b__c() 位置 e:\Sync\Git\FreightForwarder\FreightForwarder.Client\FrmContainer.cs:行号 303
