@@ -29,6 +29,11 @@ namespace FreightForwarder.Upgrade.Service
             }
         }
 
+        public static IEnumerable<UpgradePackage> Select(int? startRowIndex, int? maximumRows)
+        {
+            return Select(startRowIndex, maximumRows, (int)FreightForwarder.Common.PackageSavingType.DB);
+        }
+
         public static int SelectCount(int? SavingType)
         {
             try
@@ -39,6 +44,11 @@ namespace FreightForwarder.Upgrade.Service
             {
                 throw ex;
             }
+        }
+
+        public static int SelectCount()
+        {
+            return SelectCount((int)FreightForwarder.Common.PackageSavingType.DB);
         }
 
         public static void Insert(UpgradePackage UpgradePackage)

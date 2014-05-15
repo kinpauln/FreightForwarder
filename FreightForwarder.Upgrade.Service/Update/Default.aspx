@@ -112,10 +112,8 @@
             InsertMethod="Insert"
             DeleteMethod="Delete"
             EnablePaging="true">
-            <SelectParameters>
-                <%--<asp:Parameter Name="SavingType" Direction="Input"
-                    Type="String" />--%>
-            </SelectParameters>
+            <%--<SelectParameters>
+            </SelectParameters>--%>
         </asp:ObjectDataSource>
     </form>
 </body>

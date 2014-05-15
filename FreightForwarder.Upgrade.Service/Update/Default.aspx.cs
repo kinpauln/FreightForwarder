@@ -43,7 +43,7 @@ namespace FreightForwarder.Upgrade.Service {
         {
             ObjectDataSource1.SelectParameters.Clear();
             ObjectDataSource1.SelectParameters.Add("SavingType", drpSavingType2.SelectedValue);
-            GridView1.DataSource = ObjectDataSource1;
+            //GridView1.DataSource = ObjectDataSource1;
             GridView1.DataBind();
         }
         //protected void ObjectDataSource1_Inserting(object sender, ObjectDataSourceMethodEventArgs e) {
