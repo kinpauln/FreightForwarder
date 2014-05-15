@@ -22,7 +22,7 @@ namespace FreightForwarder.Upgrade.Service {
             e.Values.Add("FileBytes", fileUpload.FileBytes);
             e.Values.Add("PostTime", DateTime.Now);
 
-            string savingType = (FormView1.FindControl("drpSavingType") as DropDownList).SelectedValue;
+            string savingType = drpSavingType2.SelectedValue;
             e.Values.Add("SavingType", savingType);
         }
 
@@ -32,12 +32,6 @@ namespace FreightForwarder.Upgrade.Service {
             {
                 {0, "请选择"}
             }.Union(denums);
-
-            DropDownList drp = FormView1.FindControl("drpSavingType") as DropDownList;
-            drp.DataSource = dsource;
-            drp.DataTextField = "Value";
-            drp.DataValueField = "Key";
-            drp.DataBind();
 
             drpSavingType2.DataSource = denums;
             drpSavingType2.DataTextField = "Value";

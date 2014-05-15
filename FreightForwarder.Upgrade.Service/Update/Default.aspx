@@ -39,7 +39,7 @@
         });
 
         function CheckSavingType() {
-            if ($("#FormView1_drpSavingType").val() == "0") {
+            if ($("#drpSavingType2").val() == "0") {
                 alert("请选择保存方式");
                 return false;
             }
@@ -58,24 +58,22 @@
                 <InsertItemTemplate>
                     请选择升级包文件，文件后缀为*.zip，选择文件后，点击上传按钮。<br />
                     升级文件:<asp:FileUpload ID="fileUpload" runat="server" Width="400px" /><br />
-                    存储方式：<asp:DropDownList ID="drpSavingType" runat="server">
-                    </asp:DropDownList>
-                    <br />
                     <asp:Button ID="btnPost" runat="server" Text="发布" OnClientClick="return CheckSavingType()" CommandName="Insert" CssClass="button" />
                 </InsertItemTemplate>
             </asp:FormView>
         </div>
 
         <br />
-
-        存储方式：<asp:DropDownList ID="drpSavingType2" runat="server">
-        </asp:DropDownList>
-        <br />
-        <asp:Button ID="btnQuery" runat="server" Text="检索" OnClientClick="" OnClick="Query" CommandName="Select" CssClass="button" />
+        <div>
+            存储方式：<asp:DropDownList ID="drpSavingType2" runat="server">
+            </asp:DropDownList>
+            <asp:Button ID="btnQuery" runat="server" Text="检索" OnClientClick="" OnClick="Query" CommandName="Select" CssClass="button" />
+        </div>
         <asp:GridView ID="GridView1" runat="server"
             AutoGenerateColumns="false"
             DataKeyNames="Id"
             AllowPaging="true"
+            DataSourceID="ObjectDataSource1"
             PageSize="20" Width="100%" CssClass="grid">
             <Columns>
                 <asp:TemplateField HeaderText="Id" Visible="false">
