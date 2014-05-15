@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>货代Mini升级文件管理</title>
+    <title>代贸通物流平台升级文件管理</title>
     <style type="text/css">
         body, td {
             font-size: 11pt;

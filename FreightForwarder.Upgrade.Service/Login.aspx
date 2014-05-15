@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head id="Head1" runat="server">
-    <title>货代Mini</title>
+    <title>代贸通物流平台</title>
     <link type="text/css" rel="stylesheet" href="style/login.css" />
     <script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>
     <script type="text/javascript">
@@ -21,7 +21,7 @@
 	    <table cellpadding="0" cellspacing="0" style="border-collapse:collapse" width="100%">
 		    <tr>
 			    <td>
-				    <strong>欢迎使用《货代Mini》</strong>
+				    <strong>欢迎使用《代贸通物流平台》</strong>
 			    </td>
 			    <td align="right">
 				    <%--<a href="http://localhost/FFUpgrade.Service/" target="_blank">官方主页</a>&nbsp;|&nbsp;--%>

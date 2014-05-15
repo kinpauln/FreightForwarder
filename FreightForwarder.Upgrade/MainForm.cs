@@ -80,7 +80,7 @@ namespace TransPadUpdater
 
                 this.Invoke(new Action(() =>
                 {
-                    this.Text = "货代Mini-V" + assembly.GetName().Version.ToString();
+                    this.Text = "代贸通物流平台-V" + assembly.GetName().Version.ToString();
                 }));
 
                 if (versions != null && versions.Length > 0)
@@ -124,7 +124,7 @@ namespace TransPadUpdater
                     sbStatus.Text = "准备就绪";
 
                     assembly = Assembly.Load(File.ReadAllBytes(Application.StartupPath + "\\" + _settings.ExecutablePath));
-                    this.Text = "货代Mini-V" + assembly.GetName().Version.ToString();
+                    this.Text = "代贸通物流平台-V" + assembly.GetName().Version.ToString();
                 }));
 
                 Upgrade();
@@ -217,8 +217,8 @@ namespace TransPadUpdater
                 ProcessStartInfo StartInfo = new ProcessStartInfo(startfile, args);
                 StartInfo.UseShellExecute = false;
                 process.StartInfo = StartInfo;
-                //process.Start();
-                //Application.Exit();
+                process.Start();
+                Application.Exit();
             }
             catch (Exception ex)
             {

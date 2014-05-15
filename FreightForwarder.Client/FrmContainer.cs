@@ -75,7 +75,7 @@ namespace FreightForwarder.UI.Winform
 
             if (Session.SOFT_VERSION_TYPE == SoftVersionType.Server)
             {
-                this.Text = "货代Mini-服务端";
+                this.Text = "代贸通物流平台-服务端";
                 toolStripStatusLblCompanyInfo.Text = "服务端";
                 toolStripMenuItemSoftInfo.Visible = false;
                 ShowSingleWindow(typeof(FrmMain), FormWindowState.Maximized);
@@ -240,7 +240,7 @@ namespace FreightForwarder.UI.Winform
             menuStrip1.Visible = true;
             toolStripMenuItemCompanyMgr.Visible = false;
 
-            this.Text = "货代Mini-客户端";
+            this.Text = "代贸通物流平台-客户端";
 
             toolStripMenuItemTool.Visible = false;
             tsddBtnImport.Visible = false;

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("代贸通物流")]
-[assembly: AssemblyDescription("货代Mini开发团队（QQ:403172772）")]
+[assembly: AssemblyDescription("代贸通物流平台开发团队（QQ:403172772）")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("青岛代贸通物流有限公司")]
-[assembly: AssemblyProduct("货代Mini")]
-[assembly: AssemblyCopyright("Copyright © 货代Mini开发团队 2014")]
+[assembly: AssemblyProduct("代贸通物流平台")]
+[assembly: AssemblyCopyright("Copyright © 代贸通物流平台开发团队 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
