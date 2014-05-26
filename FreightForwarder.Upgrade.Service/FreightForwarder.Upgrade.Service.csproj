@@ -80,7 +80,9 @@
     <Content Include="UpdateService.svc" />
     <Content Include="Update\Default.aspx" />
     <Content Include="upgrade-packages.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions.cs" />

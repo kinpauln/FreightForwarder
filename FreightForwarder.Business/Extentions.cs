@@ -41,7 +41,7 @@ namespace FreightForwarder.Business
                 entity.Price_40GP = _40GP;
                 entity.Price_40HQ = _40HQ;
 
-                string nonstopString = row["是否转船"].ToString();
+                string nonstopString = row["是否直达"].ToString();
                 if (nonstopString.Trim().Equals("是"))
                 {
                     entity.Nonstop = (int)SailNonstopValues.Yes;
@@ -97,7 +97,7 @@ namespace FreightForwarder.Business
             dt.Columns.Add("20GP",typeof(string));
             dt.Columns.Add("40GP",typeof(string));
             dt.Columns.Add("40HQ",typeof(string));
-            dt.Columns.Add("是否转船",typeof(string));
+            dt.Columns.Add("是否直达",typeof(string));
             dt.Columns.Add("整柜/拼箱",typeof(string));
             dt.Columns.Add("航程",typeof(string));
             dt.Columns.Add("有效期",typeof(string));
@@ -127,7 +127,7 @@ namespace FreightForwarder.Business
                         nostopString = string.Empty;
                         break;
                 }
-                row["是否转船"] = nostopString;
+                row["是否直达"] = nostopString;
 
                 string isSingleContainerString = string.Empty;
                 switch (item.IsSingleContainer)

@@ -14,6 +14,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.WCF", "FrightForwarder.WCF\FreightForwarder.WCF.csproj", "{B787C1D0-0089-49DC-BFFC-8F1C0E9134D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreightForwarder.UI.Winform", "FreightForwarder.Client\FreightForwarder.UI.Winform.csproj", "{EDD7CB0C-410B-4D2B-9053-8442BCD4FC2A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B787C1D0-0089-49DC-BFFC-8F1C0E9134D0} = {B787C1D0-0089-49DC-BFFC-8F1C0E9134D0}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WCF", "WCF", "{2EE8418F-4C55-4011-A5AB-55EF8AFEB206}"
 EndProject
