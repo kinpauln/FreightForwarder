@@ -48,7 +48,7 @@
                 <p class="title">更新日期：</p>
                 <p class="data"><%# Convert.ToDateTime(Eval("PostTime")).ToString("yyyy年MM月dd日") %></p>
                 <p class="title">公司：</p>
-                <p class="data">青岛代贸通物流有限公司</p>
+                <p class="data">代贸通物流平台</p>
                 <p class="title">地址：</p>
                 <p class="data">青岛市李沧区重庆中路<br />217号211-21室</p>
                 <p class="title">联系电话：</p>
