@@ -1,5 +1,5 @@
-﻿//#define ServerVersion
-#define ClientVersion
+﻿#define ServerVersion
+//#define ClientVersion
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,7 @@ using Microsoft.Win32;
 using System.Configuration;
 using FreightForwarder.Upgrade.FFUpgrade.Service;
 
-namespace TransPadUpdater
+namespace FFUpdater
 {
     public partial class MainForm : Form
     {

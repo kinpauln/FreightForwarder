@@ -7,7 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Data;
 
-namespace TransPadUpdater
+namespace FFUpdater
 {
     public class Config
     {
